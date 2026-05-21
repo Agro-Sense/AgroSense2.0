@@ -1,0 +1,118 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: 0;
+}
+
+
+body {
+    width: 100%;
+    height: 100vh;
+    background-image: url(../imgs/Screenshot\ 2026-04-16\ at\ 19.12.07.png);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-family: "Poppins", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+}
+
+.div_tela_cadastro_login {
+    display: flex;
+    flex-direction: column;
+    background-image: linear-gradient(45deg, #306a2d, #4a8f4a);
+    width: 400px;
+    padding: 50px;
+    border-radius: 30px;
+    box-shadow: 2px 2px 2px 2px #514b4b;
+    text-align: center;
+    gap: 20px;
+}
+
+
+.div_tela_cadastro {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background-image: linear-gradient(45deg, #306a2d, #4a8f4a);
+    padding: 50px;
+    width: 300px;
+    border-radius: 30px;
+    box-shadow: 2px 2px 2px 2px #514b4b;
+}
+.tituloAgroSense {
+    color: aliceblue;
+}
+
+#msg_alerta {
+    font-weight: 600;
+    background-color: aliceblue;
+    padding: 3px;
+    border-radius: 10px;
+}
+
+.ipt {
+    padding: 6px;
+    height: 25px;
+    width: 200px;
+    border-radius: 20px;
+    border-style: none;
+    font-size: 12px;
+}
+
+#button_registro {
+    border-radius: 20px;
+    width: 200px;
+    height: 30px;
+    border-style: none;
+    background-color: #184c0f;
+    color: aliceblue;
+    padding: 4px;
+    font-size: 20px;
+}
+
+#button_registro:hover {
+    background-color: #82cb82;
+    transition: 2ms;
+}
+
+.link {
+    text-decoration: none;
+    color: aliceblue;
+}
+
+.link:hover {
+    transition: 2ms;
+    color: #d7d7d7;
+}
+
+.acesso {
+    text-decoration: none;
+    color: aliceblue;
+    background-color: transparent;
+    border: none;
+    padding: 0;
+}
+
+.acesso:hover {
+    color: #d7d7d7;
+}
+
+.cadastro {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex: 1;
+    margin-top: 70px;
+    flex-direction: column;
+}
+
+
