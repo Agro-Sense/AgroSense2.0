@@ -94,12 +94,11 @@ header {
     flex-direction: row;
     padding-top: 40px;
     gap: 8%;
-    justify-content: center;
+    justify-content: space-around;
     align-items: center;
     min-height: 100vh;
     padding-left: 10%;
     padding-right: 10%;
-    justify-content: space-around;
 }
 
 .conteudo-texto {
@@ -107,7 +106,6 @@ header {
     flex-direction: column;
     gap: 16px;
     max-width: 520px;
-    
 }
 
 .conteudo-texto p {
@@ -189,7 +187,6 @@ header {
     display: block;
 }
 
-/* Badge "Irrigando" — canto superior esquerdo da imagem */
 .caixaIrrigando {
     background-color: #eef0e4;
     border-radius: 20px;
@@ -210,7 +207,6 @@ header {
     font-size: 13px;
 }
 
-/* Badge "Umidade" — canto inferior direito da imagem */
 .caixaUmidade {
     background-color: #eef0e4;
     border-radius: 16px;
@@ -259,26 +255,6 @@ header {
 }
 
 /* ===== SECTION SOBRE NÓS ===== */
-.sobrenos {
-    background-color: #f7fdf5;
-    display: flex;
-    align-items: center;
-}
-
-.main-SobreNos {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    padding: 100px 8% 60px;
-    gap: 60px;
-    min-height: 100vh;
-}
-
-.conteudoSobreNos {
-    max-width: 500px;
-}
-
 .tituloSobreNos {
     color: #59744d;
     font-weight: 700;
@@ -302,7 +278,7 @@ header {
     flex-shrink: 0;
 }
 
-/* ===== SECTION O QUE OFERECEMOS ===== */
+/* ===== SECTION O QUE OFERECEMOS (usada tb no Sobre Nós) ===== */
 .main-oferecimento {
     display: flex;
     flex-direction: row;
@@ -320,13 +296,6 @@ header {
     font-size: 56px;
     line-height: 1.1;
     margin-bottom: 28px;
-}
-
-.paragrafoOferecemos {
-    font-size: 17px;
-    line-height: 1.8;
-    color: #2b2b2b;
-    max-width: 460px;
 }
 
 .div_imagemOferecimento {
@@ -376,7 +345,7 @@ header {
     background-image: linear-gradient(to right, #9ac289, #006852);
     border-radius: 20px;
     width: 100%;
-    padding: 50px 30px 50px;
+    padding: 50px 30px;
     text-align: center;
 }
 
@@ -443,4 +412,97 @@ header {
     color: white;
     font-family: "Poppins", sans-serif;
     cursor: pointer;
+}
+
+/* ===== FAQ ACCORDION ===== */
+.faq-container {
+    width: 100%;
+    max-width: 1100px;
+}
+
+.faq-titulo {
+    font-size: 28px;
+    font-weight: 700;
+    color: #59744d;
+    margin-bottom: 24px;
+    font-family: "Poppins", sans-serif;
+}
+
+.faq-item {
+    background-color: #ffffff;
+    border-radius: 14px;
+    margin-bottom: 12px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+    border: 1.5px solid #e0eed9;
+    transition: border-color 0.2s;
+}
+
+.faq-item.aberto {
+    border-color: #6bad60;
+}
+
+.faq-pergunta {
+    width: 100%;
+    background: none;
+    border: none;
+    padding: 20px 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    font-family: "Poppins", sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+    color: #353734;
+    text-align: left;
+    gap: 16px;
+    transition: background 0.2s;
+}
+
+.faq-pergunta:hover {
+    background-color: #f4faf2;
+}
+
+.faq-item.aberto .faq-pergunta {
+    background-color: #f0f8ef;
+    color: #28631d;
+}
+
+.faq-seta {
+    color: #6bad60;
+    font-size: 13px;
+    flex-shrink: 0;
+    transition: transform 0.3s ease;
+    display: inline-block;
+}
+
+.faq-resposta {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.35s ease;
+}
+
+.faq-resposta ol {
+    padding: 0 24px 20px 44px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.faq-resposta ol li {
+    font-size: 15px;
+    color: #444;
+    line-height: 1.6;
+    font-weight: 400;
+}
+
+.faq-resposta ol li a {
+    color: #28631d;
+    font-weight: 600;
+    text-decoration: underline;
+}
+
+.faq-resposta ol li a:hover {
+    color: #6bad60;
 }

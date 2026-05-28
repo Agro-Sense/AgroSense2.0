@@ -105,18 +105,89 @@
   <section id="suporte" class="pagina">
     <main class="main-suporte">
       <div class="conteudoSuporte">
-        <h1 class="titulo-Suporte">Perguntas Frequentes</h1>
-        <div class="card">
-          <span class="texto_complementar_suporte">
-            
-          </span>
+        <h1 class="titulo-Suporte">SUPORTE</h1>
+
+        <div class="faq-container">
+          <h2 class="faq-titulo">Perguntas Frequentes</h2>
+
+          <div class="faq-item">
+            <button class="faq-pergunta" onclick="toggleFaq(this)">
+              <span>Não estou conseguindo realizar o login</span>
+              <span class="faq-seta">▶</span>
+            </button>
+            <div class="faq-resposta">
+              <ol>
+                <li>Verifique se você já está cadastrado no site da AgroSense.</li>
+                <li>Verifique se o e-mail e a senha informados estão corretos.</li>
+              </ol>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-pergunta" onclick="toggleFaq(this)">
+              <span>Como posso fazer um orçamento do meu investimento e lucro com a plataforma?</span>
+              <span class="faq-seta">▶</span>
+            </button>
+            <div class="faq-resposta">
+              <ol>
+                <li>Acesse o <a href="../public/simulador.html" target="_blank">Simulador Financeiro</a> e insira as suas informações.</li>
+              </ol>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-pergunta" onclick="toggleFaq(this)">
+              <span>Como posso entrar em contato com a equipe em caso de dúvidas mais específicas?</span>
+              <span class="faq-seta">▶</span>
+            </button>
+            <div class="faq-resposta">
+              <ol>
+                <li>Envie uma mensagem através do suporte <a href="login.html">"Fale Conosco"</a>.</li>
+              </ol>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-pergunta" onclick="toggleFaq(this)">
+              <span>A Dashboard (Painel) está sem dados</span>
+              <span class="faq-seta">▶</span>
+            </button>
+            <div class="faq-resposta">
+              <ol>
+                <li>Recarregue a página como primeira tentativa, para que os dados sejam exibidos.</li>
+                <li>Caso o problema persista, entre em contato com o suporte <a href="login.html">"Fale Conosco"</a>.</li>
+              </ol>
+            </div>
+          </div>
         </div>
+
         <div class="ajuda">
           <p class="textoAjuda">Fale com<br>Atendimento</p>
         </div>
       </div>
     </main>
   </section>
+
+  <script>
+    function toggleFaq(btn) {
+      var item = btn.parentElement;
+      var resposta = item.querySelector('.faq-resposta');
+      var seta = btn.querySelector('.faq-seta');
+      var aberto = item.classList.contains('aberto');
+
+      document.querySelectorAll('.faq-item.aberto').forEach(function(el) {
+        el.classList.remove('aberto');
+        el.querySelector('.faq-resposta').style.maxHeight = null;
+        el.querySelector('.faq-seta').style.transform = 'rotate(0deg)';
+      });
+
+      if (!aberto) {
+        item.classList.add('aberto');
+        resposta.style.maxHeight = resposta.scrollHeight + 'px';
+        seta.style.transform = 'rotate(90deg)';
+      }
+    }
+  </script>
 
 </body>
 </html>
