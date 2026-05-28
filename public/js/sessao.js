@@ -4,9 +4,18 @@ function validarSessao() {
     var nome = sessionStorage.NOME_USUARIO;
 
     var b_usuario = document.getElementById("b_usuario");
+    var b_data = document.getElementById("b_data");
+    var b_email = document.getElementById("b_email");
+    var b_cpf = document.getElementById("b_cpf");
+    var b_telefone = document.getElementById("b_telefone");
 
     if (email != null && nome != null) {
         b_usuario.innerHTML = nome;
+        b_data.innerHTML = sessionStorage.DATA_CADASTRO;
+        b_email.innerHTML = sessionStorage.EMAIL_USUARIO;
+        b_cpf.innerHTML = sessionStorage.CPF_USUARIO;
+        b_telefone.innerHTML = sessionStorage.TELEFONE_USUARIO;
+
     } else {
         window.location = "../login.html";
     }
