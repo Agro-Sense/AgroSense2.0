@@ -43,6 +43,13 @@ porcentagem decimal (5,2), constraint chkPorcentagem check(porcentagem between 0
 fkSensor int, constraint fkSensorDados foreign key (fkSensor) references sensor(id)
 );
 
+CREATE TABLE fale_conosco (
+    id_fale_conosco INT AUTO_INCREMENT PRIMARY KEY,
+    nome            VARCHAR(100) NOT NULL,
+    email           VARCHAR(150) NOT NULL,
+    mensagem        TEXT         NOT NULL
+);
+
 
 INSERT INTO empresa (nome, cnpj, email) VALUES
 ('Novos Morangos', '45.290.600/0001-00','morangos@novosmorangos.com'),

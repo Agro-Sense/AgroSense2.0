@@ -8,6 +8,89 @@
   <link rel="stylesheet" href="../public/css/perfil.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    .campo textarea {
+      padding: 10px 14px;
+      border: 1.5px solid #e0e0e0;
+      border-radius: 8px;
+      font-family: "Poppins", sans-serif;
+      font-size: 13px;
+      color: #353734;
+      background-color: #fafafa;
+      outline: none;
+      transition: 0.2s;
+      resize: vertical;
+      min-height: 100px;
+      width: 100%;
+    }
+
+    .campo textarea:focus {
+      border-color: #6bad60;
+      background-color: white;
+    }
+
+    .btn-enviar {
+      background-color: #28631d;
+      color: white;
+      border: none;
+      border-radius: 10px;
+      padding: 12px 28px;
+      font-family: "Poppins", sans-serif;
+      font-size: 14px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.15s;
+      margin-top: 8px;
+    }
+
+    .btn-enviar:hover {
+      background-color: #1f4f15;
+    }
+
+    .btn-enviar:active {
+      transform: scale(0.98);
+    }
+
+    .btn-enviar:disabled {
+      background-color: #aaa;
+      cursor: not-allowed;
+      transform: none;
+    }
+
+    .feedback-msg {
+      display: none;
+      align-items: center;
+      gap: 10px;
+      border-radius: 10px;
+      padding: 13px 18px;
+      margin-top: 16px;
+      font-size: 13px;
+      font-weight: 600;
+    }
+
+    .feedback-msg.sucesso {
+      background-color: rgba(107, 173, 96, 0.15);
+      border: 1.5px solid rgba(107, 173, 96, 0.4);
+      color: #28631d;
+    }
+
+    .feedback-msg.erro {
+      background-color: rgba(185, 31, 31, 0.1);
+      border: 1.5px solid rgba(185, 31, 31, 0.3);
+      color: #b91f1f;
+    }
+
+    .campo-erro {
+      border-color: #df6a6a !important;
+      background-color: #fff8f8 !important;
+    }
+
+    .label-erro {
+      font-size: 11px;
+      color: #b91f1f;
+      margin-top: 3px;
+    }
+  </style>
 </head>
 
 <body>
@@ -16,12 +99,11 @@
     <div class="logo-sidebar">
       <h2>AgroSense</h2>
       <nav class="menu-itens">
-       <a href="perfil.html">Perfil</a>
-        <a href="chart_dashboard.html" >Dashboard</a>
-        <a href="manualInstalacao.html">Manual de Instalação </a>
+        <a href="perfil.html">Perfil</a>
+        <a href="chart_dashboard.html">Dashboard</a>
+        <a href="manualInstalacao.html">Manual de Instalação</a>
         <a href="fale_conosco.html" class="active">Fale Conosco</a>
         <a href="FAQ.html">Perguntas Frequentes</a>
-        <a href="">BoBIA</a>
       </nav>
       <div class="sidebar-footer">
         <a href="login.html" class="btn-sair">Sair</a>
@@ -34,28 +116,134 @@
       <span>Olá, Fernanda Caramico! Bem-vindo a Sua Área Exclusiva</span>
     </nav>
   </header>
+
   <div class="main-content">
-  <div class="card-empresa">
-        <div class="card-titulo">
-          <span class="icone"></span> Fale Conosco
+    <div class="page-title">Fale Conosco</div>
+
+    <div class="card-empresa">
+      <div class="card-titulo">
+        <span class="icone">✉️</span> Envie sua mensagem
+      </div>
+      <div class="empresa-grid">
+
+        <div class="campo">
+          <label for="nome">Seu nome</label>
+          <input type="text" id="nome" placeholder="Ex: Fernanda Caramico" />
+          <span class="label-erro" id="erro-nome"></span>
         </div>
-        <div class="empresa-grid">
-          <div class="campo">
-            <label>Insira seu nome:</label>
-            <input type="text" id="nome"/>
-          </div>
-          <div class="campo">
-            <label>Insira seu email para contato:</label>
-            <input type="text" id="email"/>
-          </div>
-          <div class="campo">
-            <label>Insira sua mensagem:</label>
-            <input type="text" id="mensagem"/>
-          </div>
-           <button onclick="enviar()">Enviar</button>
+
+        <div class="campo">
+          <label for="email">E-mail para contato</label>
+          <input type="email" id="email" placeholder="seuemail@exemplo.com" />
+          <span class="label-erro" id="erro-email"></span>
         </div>
+
+        <div class="campo" style="grid-column: span 2;">
+          <label for="mensagem">Mensagem</label>
+          <textarea id="mensagem" placeholder="Descreva sua dúvida ou problema em detalhes..."></textarea>
+          <span class="label-erro" id="erro-mensagem"></span>
+        </div>
+
+        <div style="grid-column: span 2;">
+          <button class="btn-enviar" id="btn-enviar" onclick="enviar()">Enviar Mensagem</button>
+        </div>
+
+        <div class="feedback-msg" id="feedback" style="grid-column: span 2;"></div>
+
       </div>
     </div>
+  </div>
+
+  <script>
+    function validarEmail(email) {
+      return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+    }
+
+    function limparErros() {
+      ["nome", "email", "mensagem"].forEach(function(campo) {
+        document.getElementById(campo).classList.remove("campo-erro");
+        document.getElementById("erro-" + campo).textContent = "";
+      });
+    }
+
+    function enviar() {
+      limparErros();
+
+      var nome     = document.getElementById("nome").value.trim();
+      var email    = document.getElementById("email").value.trim();
+      var mensagem = document.getElementById("mensagem").value.trim();
+      var btn      = document.getElementById("btn-enviar");
+      var feedback = document.getElementById("feedback");
+
+      var valido = true;
+
+      if (!nome) {
+        document.getElementById("nome").classList.add("campo-erro");
+        document.getElementById("erro-nome").textContent = "Por favor, insira seu nome.";
+        valido = false;
+      }
+
+      if (!email) {
+        document.getElementById("email").classList.add("campo-erro");
+        document.getElementById("erro-email").textContent = "Por favor, insira seu e-mail.";
+        valido = false;
+      } else if (!validarEmail(email)) {
+        document.getElementById("email").classList.add("campo-erro");
+        document.getElementById("erro-email").textContent = "Insira um e-mail válido.";
+        valido = false;
+      }
+
+      if (!mensagem) {
+        document.getElementById("mensagem").classList.add("campo-erro");
+        document.getElementById("erro-mensagem").textContent = "Por favor, escreva sua mensagem.";
+        valido = false;
+      }
+
+      if (!valido) return;
+
+      btn.disabled = true;
+      btn.textContent = "Enviando...";
+      feedback.style.display = "none";
+
+      fetch("/fale-conosco/cadastrar", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          nomeServer:     nome,
+          emailServer:    email,
+          mensagemServer: mensagem
+        })
+      })
+      .then(function(response) {
+        if (response.ok) {
+          return response.text();
+        }
+        return response.text().then(function(msg) {
+          throw new Error(msg);
+        });
+      })
+      .then(function(msg) {
+        feedback.className = "feedback-msg sucesso";
+        feedback.textContent = "✅ " + msg;
+        feedback.style.display = "flex";
+
+        document.getElementById("nome").value = "";
+        document.getElementById("email").value = "";
+        document.getElementById("mensagem").value = "";
+      })
+      .catch(function(erro) {
+        feedback.className = "feedback-msg erro";
+        feedback.textContent = "❌ " + (erro.message || "Erro ao enviar a mensagem. Tente novamente.");
+        feedback.style.display = "flex";
+      })
+      .finally(function() {
+        btn.disabled = false;
+        btn.textContent = "Enviar Mensagem";
+      });
+    }
+  </script>
 
 </body>
 </html>
