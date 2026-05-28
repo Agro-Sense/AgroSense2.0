@@ -218,7 +218,7 @@
     })
     .then(function(msg) {
       feedback.className = "feedback-msg sucesso";
-      feedback.textContent = "✅ " + msg;
+      feedback.textContent = msg;
       feedback.style.display = "flex";
       document.getElementById("nome").value = "";
       document.getElementById("email").value = "";
@@ -226,7 +226,7 @@
     })
     .catch(function(erro) {
       feedback.className = "feedback-msg erro";
-      feedback.textContent = "❌ " + (erro.message || "Erro ao enviar. Tente novamente.");
+      feedback.textContent = (erro.message || "Erro ao enviar. Tente novamente.");
       feedback.style.display = "flex";
     })
     .finally(function() {
