@@ -423,9 +423,10 @@ header {
 .faq-titulo {
     font-size: 28px;
     font-weight: 700;
-    color: #59744d;
+    color: #ffffff;
     margin-bottom: 24px;
     font-family: "Poppins", sans-serif;
+    text-align: center;
 }
 
 .faq-item {
