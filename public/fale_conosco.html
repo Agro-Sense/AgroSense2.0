@@ -1,18 +1,60 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AgroSense - Perfil do Usuário</title>
+  <link rel="stylesheet" href="../public/css/perfil.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 </head>
+
 <body>
-    <h2>Fale Conosco:</h2>
-    <p>Insira seu nome:</p>
-    <input type="text" name="" id="nome">
-    <p>Insira seu email para contato:</p>
-    <input type="text" name="" id="email">
-    <p>Insira sua mensagem:</p>
-    <input type="text" name="" id="mensagem"><br><br>
-    <button onclick="enviar()">Enviar</button>
+
+  <aside class="sidebar">
+    <div class="logo-sidebar">
+      <h2>AgroSense</h2>
+      <nav class="menu-itens">
+       <a href="perfil.html">Perfil</a>
+        <a href="chart_dashboard.html" >Dashboard</a>
+        <a href="manualInstalacao.html">Manual de Instalação </a>
+        <a href="fale_conosco.html" class="active">Fale Conosco</a>
+        <a href="">BoBIA</a>
+      </nav>
+      <div class="sidebar-footer">
+        <a href="login.html" class="btn-sair">Sair</a>
+      </div>
+    </div>
+  </aside>
+
+  <header>
+    <nav class="barradashboard">
+      <span>Olá, Fernanda Caramico! Bem-vindo ao Painel de Indicadores da sua Plantação</span>
+    </nav>
+  </header>
+  <div class="main-content">
+  <div class="card-empresa">
+        <div class="card-titulo">
+          <span class="icone"></span> Fale Conosco
+        </div>
+        <div class="empresa-grid">
+          <div class="campo">
+            <label>Insira seu nome:</label>
+            <input type="text" id="nome" readonly />
+          </div>
+          <div class="campo">
+            <label>Insira seu email para contato:</label>
+            <input type="text" id="email" readonly />
+          </div>
+          <div class="campo">
+            <label>Insira sua mensagem:</label>
+            <input type="text" id="mensagem" readonly />
+          </div>
+           <button onclick="enviar()">Enviar</button>
+        </div>
+      </div>
+    </div>
+
 </body>
 </html>
