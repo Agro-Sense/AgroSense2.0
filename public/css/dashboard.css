@@ -1,0 +1,186 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Poppins:wght@300;400;500;600;700;800&display=swap');
+
+/* ===================== RESET & BASE ===================== */
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  text-decoration: none;
+}
+
+body {
+  font-family: "Poppins", sans-serif;
+  background-color: #f5f0e8;
+  min-height: 100vh;
+}
+
+/* ===================== SIDEBAR ===================== */
+.sidebar {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 240px;
+  height: 100vh;
+  background-color: #6bad60;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  padding: 25px;
+  z-index: 1000;
+  box-shadow: 4px 0 15px rgba(0,0,0,0.1);
+}
+
+.logo-sidebar {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.logo-sidebar h2 {
+  color: white;
+  margin-bottom: 40px;
+  text-align: center;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 800;
+  font-size: 22px;
+  letter-spacing: 2px;
+}
+
+.menu-itens {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  flex-grow: 1;
+}
+
+.menu-itens a {
+  color: #e8f5e5;
+  padding: 12px 15px;
+  border-radius: 8px;
+  transition: all 0.3s;
+  font-size: 15px;
+  font-weight: 500;
+}
+
+.menu-itens a:hover,
+.menu-itens a.active {
+  background-color: #3a822d;
+  color: white;
+}
+
+.sidebar-footer {
+  margin-top: auto;
+}
+
+.sidebar-footer .btn-sair {
+  font-size: 16px;
+  font-weight: 700;
+  color: #fff;
+  background-color: rgba(185, 31, 31, 0.3);
+  display: block;
+  padding: 10px 15px;
+  border-radius: 8px;
+  text-align: center;
+  margin-top: 20px;
+  transition: all 0.3s;
+}
+
+.sidebar-footer .btn-sair:hover {
+  background-color: #b91f1f;
+  transform: scale(1.03);
+}
+
+/* ===================== HEADER ===================== */
+header {
+  margin-left: 240px;
+}
+
+.barradashboard {
+  font-family: "Poppins", sans-serif;
+  color: white;
+  font-size: 15px;
+  display: flex;
+  width: 70%;
+  background-color: #28631d;
+  justify-content: center;
+  height: 60px;
+  border-radius: 50px;
+  margin: 20px auto;
+  align-items: center;
+  text-align: center;
+  padding: 0 20px;
+  box-shadow: 0 4px 12px rgba(40, 99, 29, 0.3);
+}
+
+.tituloDashboard {
+  text-align: center;
+  font-weight: 500;
+}
+
+/* ===================== MAIN CONTENT AREA ===================== */
+.main-dashboard {
+  margin-left: 240px;
+  padding: 0 30px 40px 30px;
+}
+
+/* ===================== KPI CARDS ===================== */
+.allkpi {
+  display: flex;
+  flex-direction: row;
+  gap: 14px;
+  flex-wrap: wrap;
+  margin-bottom: 30px;
+}
+
+.kpi_1,
+.kpi_2,
+.kpi_3,
+.kpi_4,
+.kpi_5 {
+  flex: 1 1 180px;
+  border-radius: 15px;
+  padding: 16px;
+  font-family: "Poppins", sans-serif;
+  font-size: 13px;
+  font-weight: 400;
+  text-align: center;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.12);
+  color: white;
+  line-height: 1.5;
+}
+
+.kpi_1, .kpi_4 { background-color: #6bad60; }
+.kpi_2, .kpi_3 { background-color: #df6a6a; }
+.kpi_5         { background-color: #f0a030; }
+
+/* ===================== CHARTS GRID ===================== */
+.total-graficos {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 25px;
+}
+
+.card-grafico {
+  background-color: white;
+  border-radius: 20px;
+  padding: 25px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+  display: flex;
+  flex-direction: column;
+}
+
+.titulo-grafico {
+  font-family: "Poppins", sans-serif;
+  color: #28631d;
+  font-size: 15px;
+  margin-bottom: 15px;
+  font-weight: 600;
+  text-align: center;
+  flex-shrink: 0;
+}
+
+.chart-wrapper {
+  position: relative;
+  height: 280px;
+  width: 100%;
+}

@@ -1,0 +1,385 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Poppins:wght@300;400;500;600;700;800&display=swap');
+
+/* ===================== RESET & BASE ===================== */
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  text-decoration: none;
+}
+
+body {
+  font-family: "Poppins", sans-serif;
+  background-color: #f5f0e8;
+  min-height: 100vh;
+}
+
+/* ===================== SIDEBAR ===================== */
+.sidebar {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 240px;
+  height: 100vh;
+  background-color: #6bad60;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  padding: 25px;
+  z-index: 1000;
+  box-shadow: 4px 0 15px rgba(0,0,0,0.1);
+}
+
+.logo-sidebar {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.logo-sidebar h2 {
+  color: white;
+  margin-bottom: 40px;
+  text-align: center;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 800;
+  font-size: 22px;
+  letter-spacing: 2px;
+}
+
+.menu-itens {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  flex-grow: 1;
+}
+
+.menu-itens a {
+  color: #e8f5e5;
+  padding: 12px 15px;
+  border-radius: 8px;
+  transition: all 0.3s;
+  font-size: 15px;
+  font-weight: 500;
+}
+
+.menu-itens a:hover,
+.menu-itens a.active {
+  background-color: #3a822d;
+  color: white;
+}
+
+.sidebar-footer {
+  margin-top: auto;
+}
+
+.sidebar-footer .btn-sair {
+  font-size: 16px;
+  font-weight: 700;
+  color: #fff;
+  background-color: rgba(185, 31, 31, 0.3);
+  display: block;
+  padding: 10px 15px;
+  border-radius: 8px;
+  text-align: center;
+  margin-top: 20px;
+  transition: all 0.3s;
+}
+
+.sidebar-footer .btn-sair:hover {
+  background-color: #b91f1f;
+  transform: scale(1.03);
+}
+
+/* ===================== HEADER ===================== */
+header {
+  margin-left: 240px;
+}
+
+.barradashboard {
+  font-family: "Poppins", sans-serif;
+  color: white;
+  font-size: 15px;
+  display: flex;
+  width: 70%;
+  background-color: #28631d;
+  justify-content: center;
+  height: 60px;
+  border-radius: 50px;
+  margin: 20px auto;
+  align-items: center;
+  text-align: center;
+  padding: 0 20px;
+  box-shadow: 0 4px 12px rgba(40, 99, 29, 0.3);
+}
+
+/* ===================== MAIN CONTENT ===================== */
+.main-content {
+  margin-left: 260px;
+  padding: 10px 40px 40px 20px;
+}
+
+.page-title {
+  font-size: 22px;
+  font-weight: 700;
+  color: #28631d;
+  margin-bottom: 28px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.page-title::before {
+  content: "";
+  display: inline-block;
+  width: 6px;
+  height: 26px;
+  background-color: #6bad60;
+  border-radius: 3px;
+}
+
+/* ===================== PROFILE GRID ===================== */
+.profile-grid {
+  display: grid;
+  grid-template-columns: 300px 1fr;
+  grid-template-rows: auto auto;
+  gap: 25px;
+  max-width: 1050px;
+}
+
+/* ===================== AVATAR CARD ===================== */
+.card-avatar {
+  background-color: white;
+  border-radius: 20px;
+  padding: 35px 25px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+  grid-row: span 2;
+}
+
+.avatar-circle {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #6bad60, #28631d);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 38px;
+  color: white;
+  font-weight: 700;
+  box-shadow: 0 4px 20px rgba(107, 173, 96, 0.4);
+  font-family: "Montserrat", sans-serif;
+}
+
+.avatar-nome {
+  font-size: 18px;
+  font-weight: 700;
+  color: #353734;
+  text-align: center;
+}
+
+.avatar-cargo {
+  font-size: 13px;
+  color: #888;
+  font-weight: 400;
+  text-align: center;
+  margin-top: -8px;
+}
+
+.avatar-divider {
+  width: 100%;
+  height: 1px;
+  background-color: #eee;
+  margin: 4px 0;
+}
+
+.info-item {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.info-label {
+  font-size: 10px;
+  color: #aaa;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.info-value {
+  font-size: 13px;
+  color: #353734;
+  font-weight: 500;
+}
+
+/* ===================== COMPANY CARD ===================== */
+.card-empresa {
+  background-color: white;
+  border-radius: 20px;
+  padding: 28px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+}
+
+.card-titulo {
+  font-size: 15px;
+  font-weight: 700;
+  color: #28631d;
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.card-titulo .icone {
+  font-size: 18px;
+}
+
+.empresa-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.campo {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.campo label {
+  font-size: 10px;
+  color: #aaa;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.campo input {
+  padding: 10px 14px;
+  border: 1.5px solid #e0e0e0;
+  border-radius: 8px;
+  font-family: "Poppins", sans-serif;
+  font-size: 13px;
+  color: #353734;
+  background-color: #fafafa;
+  outline: none;
+  transition: 0.2s;
+}
+
+.campo input:focus {
+  border-color: #6bad60;
+  background-color: white;
+}
+
+.campo input[readonly] {
+  background-color: #f4f4f4;
+  color: #888;
+  cursor: default;
+}
+
+/* ===================== SENSORS CARD ===================== */
+.card-sensores {
+  background-color: white;
+  border-radius: 20px;
+  padding: 28px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+}
+
+.sensores-resumo {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+  margin-bottom: 22px;
+}
+
+.sensor-stat {
+  border-radius: 14px;
+  padding: 16px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.sensor-stat.total   { background-color: rgba(107,173,96,0.15); border: 1.5px solid rgba(107,173,96,0.3); }
+.sensor-stat.ativos  { background-color: rgba(40,99,29,0.10);   border: 1.5px solid rgba(40,99,29,0.2); }
+.sensor-stat.inativos{ background-color: rgba(223,106,106,0.12);border: 1.5px solid rgba(223,106,106,0.25); }
+
+.sensor-stat .numero {
+  font-size: 30px;
+  font-weight: 800;
+  line-height: 1;
+  font-family: "Montserrat", sans-serif;
+}
+
+.sensor-stat.total   .numero { color: #6bad60; }
+.sensor-stat.ativos  .numero { color: #28631d; }
+.sensor-stat.inativos.numero { color: #df6a6a; }
+
+.sensor-stat .descricao {
+  font-size: 11px;
+  font-weight: 600;
+  color: #888;
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+}
+
+.sensores-lista-titulo {
+  font-size: 12px;
+  font-weight: 600;
+  color: #aaa;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 12px;
+}
+
+.sensor-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 11px 14px;
+  border-radius: 10px;
+  margin-bottom: 8px;
+  background-color: #fafafa;
+  border: 1px solid #f0f0f0;
+  transition: 0.2s;
+}
+
+.sensor-item:hover {
+  background-color: #f0f8ef;
+  border-color: #c5e0c2;
+}
+
+.sensor-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.sensor-id {
+  font-size: 13px;
+  font-weight: 600;
+  color: #353734;
+}
+
+.sensor-local {
+  font-size: 11px;
+  color: #aaa;
+}
+
+.sensor-badge {
+  font-size: 11px;
+  font-weight: 700;
+  padding: 4px 12px;
+  border-radius: 20px;
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+}
+
+.sensor-badge.ativo   { background-color: rgba(107,173,96,0.2); color: #28631d; }
+.sensor-badge.inativo { background-color: rgba(223,106,106,0.2); color: #b91f1f; }
