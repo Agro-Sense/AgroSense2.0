@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AgroSense - Dashboard</title>
+  <link rel="stylesheet" href="../view/css/dashboard.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body>
+
+  <aside class="sidebar">
+    <div class="logo-sidebar">
+      <h2>AgroSense</h2>
+      <nav class="menu-itens">
+        <a href="chart_dashboard.html" class="active">Dashboard</a>
+        <a href="perfil.html">Perfil</a>
+        <a href="manualInstalacao.html"></a>
+        <a href="fale_conosco.html"></a>
+      </nav>
+      <div class="sidebar-footer">
+        <a href="login.html" class="btn-sair">Sair</a>
+      </div>
+    </div>
+  </aside>
+
+  <header>
+    <nav class="barradashboard">
+      <span class="tituloDashboard">Olá, Fernanda Caramico! Bem-vindo ao Painel de Indicadores da sua Plantação</span>
+    </nav>
+  </header>
+
+  <div class="main-dashboard">
+
+    <div class="allkpi">
+      <div class="kpi_1">
+        <b>Umidade Registrada</b><br>
+        Maior: 85% &nbsp;|&nbsp; Menor: 59%
+      </div>
+      <div class="kpi_2">
+        <b>Alerta de Umidade</b><br>
+        Porcentagens de umidade baixa detectadas!
+      </div>
+      <div class="kpi_3">
+        <b>Erro de Sensor</b><br>
+        SENSOR_UMID_001 e SENSOR_UMID_004 inativos.
+      </div>
+      <div class="kpi_4">
+        <b>Progresso na Produção</b><br>
+        Melhor mês: Dezembro
+      </div>
+      <div class="kpi_5">
+        <b>Condição de Cultivo</b><br>
+        Março apresenta historicamente menor produção.
+      </div>
+    </div>
+
+    <div class="total-graficos">
+
+      <div class="card-grafico">
+        <h3 class="titulo-grafico">Variação da Umidade do Solo</h3>
+        <div class="chart-wrapper">
+          <canvas id="myChart1"></canvas>
+        </div>
+      </div>
+
+      <div class="card-grafico">
+        <h3 class="titulo-grafico">Comportamento da Umidade do Solo</h3>
+        <div class="chart-wrapper">
+          <canvas id="myChart2"></canvas>
+        </div>
+      </div>
+
+      <div class="card-grafico">
+        <h3 class="titulo-grafico">Funcionamento dos Sensores</h3>
+        <div class="chart-wrapper">
+          <canvas id="myChart3"></canvas>
+        </div>
+      </div>
+
+      <div class="card-grafico">
+        <h3 class="titulo-grafico">Nível da Produção</h3>
+        <div class="chart-wrapper">
+          <canvas id="myChart4"></canvas>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const labels1 = ['00:00','01:00','02:00','03:00','04:00','05:00','06:00','07:00','08:00','09:00','10:00','11:00','12:00','13:00','14:00','15:00','16:00','17:00','18:00','19:00','20:00','21:00','22:00','23:00'];
+    const config1 = {
+      type: 'line',
+      data: {
+        labels: labels1,
+        datasets: [{
+          label: 'Umidade do Solo (%)',
+          backgroundColor: 'rgba(107, 173, 96, 0.15)',
+          borderColor: '#6bad60',
+          borderWidth: 2,
+          pointBackgroundColor: '#28631d',
+          pointRadius: 3,
+          data: [78,77,77,76,75,74,73,85,83,80,76,72,68,65,62,60,59,61,64,67,70,72,74,76],
+          fill: true,
+          tension: 0.4
+        }]
+      },
+      options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false } } }
+    };
+
+    const config2 = {
+      type: 'pie',
+      data: {
+        labels: ['Seco','Ideal','Úmido'],
+        datasets: [{
+          label: 'Comportamento da Umidade',
+          data: [5, 17, 2],
+          backgroundColor: ['rgba(240,160,48,0.7)','rgba(107,173,96,0.7)','rgba(78,147,230,0.7)'],
+          borderColor: ['#f0a030','#6bad60','#4e93e6'],
+          borderWidth: 2,
+          hoverOffset: 6
+        }]
+      },
+      options: { responsive: true, maintainAspectRatio: false }
+    };
+
+    const config3 = {
+      type: 'doughnut',
+      data: {
+        labels: ['Inativos','Ativos'],
+        datasets: [{
+          label: 'Sensores',
+          data: [2, 8],
+          backgroundColor: ['rgba(223,106,106,0.7)','rgba(107,173,96,0.7)'],
+          borderColor: ['#df6a6a','#6bad60'],
+          borderWidth: 2,
+          hoverOffset: 6
+        }]
+      },
+      options: { responsive: true, maintainAspectRatio: false }
+    };
+
+    const labels4 = ['Jan','Fev','Mar','Abr','Mai','Jun','Jul','Ago','Set','Out','Nov','Dez'];
+    const vals4   = [6.6,6.7,1.5,1.8,1.7,1.6,1.7,1.9,6.5,6.8,6.8,6.7];
+    const colors4 = vals4.map(v => v >= 5 ? 'rgba(107,173,96,0.7)' : 'rgba(240,160,48,0.7)');
+    const config4 = {
+      type: 'bar',
+      data: {
+        labels: labels4,
+        datasets: [{
+          label: 'Nível de Produção',
+          data: vals4,
+          backgroundColor: colors4,
+          borderColor: colors4.map(c => c.replace('0.7','1')),
+          borderWidth: 1,
+          borderRadius: 6
+        }]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        scales: { y: { beginAtZero: true } },
+        plugins: { legend: { display: false } }
+      }
+    };
+
+    new Chart(document.getElementById('myChart1'), config1);
+    new Chart(document.getElementById('myChart2'), config2);
+    new Chart(document.getElementById('myChart3'), config3);
+    new Chart(document.getElementById('myChart4'), config4);
+  </script>
+
+</body>
+</html>
