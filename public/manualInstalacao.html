@@ -1,93 +1,140 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./css/perfil.css">
-    <title>Document</title>
-    <style>
-    
-    .campo textarea {
-      padding: 10px 14px;
-      border: 1.5px solid #e0e0e0;
-      border-radius: 8px;
-      font-family: "Poppins", sans-serif;
-      font-size: 13px;
-      color: #353734;
-      background-color: #fafafa;
-      outline: none;
-      transition: 0.2s;
-      resize: vertical;
-      min-height: 100px;
-      width: 100%;
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="./css/perfil.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <title>AgroSense - Manual de Instalação</title>
+  <style>
+    .manual-card {
+      background-color: white;
+      border-radius: 20px;
+      padding: 36px 40px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+      max-width: 860px;
+      display: flex;
+      flex-direction: column;
+      gap: 28px;
     }
 
-    .campo textarea:focus {
-      border-color: #6bad60;
-      background-color: white;
+    .manual-secao h2 {
+      font-size: 14px;
+      font-weight: 700;
+      color: #28631d;
+      margin-bottom: 8px;
+      font-family: "Montserrat", sans-serif;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
     }
-    </style>
+
+    .manual-secao p {
+      font-size: 14px;
+      color: #555;
+      line-height: 1.9;
+      font-weight: 400;
+    }
+
+    .manual-divider {
+      width: 100%;
+      height: 1px;
+      background-color: #eee;
+    }
+  </style>
 </head>
 <body>
-<div id="campo textarea">
-Manual do Cliente para Instalação   
 
-Introdução 
+  <aside class="sidebar">
+    <div class="logo-sidebar">
+      <h2>AgroSense</h2>
+      <nav class="menu-itens">
+        <a href="perfil.html">Perfil</a>
+        <a href="chart_dashboard.html">Dashboard</a>
+        <a href="manualInstalacao.html" class="active">Manual de Instalação</a>
+        <a href="fale_conosco.html">Fale Conosco</a>
+        <a href="FAQ.html">Perguntas Frequentes</a>
+      </nav>
+      <div class="sidebar-footer">
+        <a href="login.html" class="btn-sair">Sair</a>
+      </div>
+    </div>
+  </aside>
 
-Este manual tem como objetivo orientar o cliente sobre a utilização do sistema AgroSense, apresentando seu funcionamento, acesso à dashboard, interpretação das informações exibidas e os cuidados necessários para garantir o correto funcionamento da solução. A AgroSense foi desenvolvida para realizar o monitoramento da umidade do solo em tempo real, auxiliando no acompanhamento da plantação de morangos e contribuindo para uma irrigação mais eficiente e inteligente. 
+  <header>
+    <nav class="barradashboard">
+      <span>Olá, Fernanda Caramico! Bem-vindo a Sua Área Exclusiva</span>
+    </nav>
+  </header>
 
+  <div class="main-content">
+    <div class="page-title">Manual do Cliente</div>
 
-Funcionamento do Sistema 
+    <div class="manual-card">
 
-O funcionamento do sistema ocorre de maneira automatizada. Os sensores instalados na plantação realizam constantemente a leitura da umidade do solo e enviam essas informações para o Arduino responsável pela coleta dos dados. Em seguida, a API do sistema processa as informações recebidas e realiza o armazenamento no banco de dados MySQL. Após esse processamento, os dados são apresentados na dashboard do sistema, permitindo ao cliente visualizar gráficos, indicadores e históricos das medições realizadas. 
+      <div class="manual-secao">
+        <h2>Introdução</h2>
+        <p>Este manual tem como objetivo orientar o cliente sobre a utilização do sistema AgroSense, apresentando seu funcionamento, acesso à dashboard, interpretação das informações exibidas e os cuidados necessários para garantir o correto funcionamento da solução. A AgroSense foi desenvolvida para realizar o monitoramento da umidade do solo em tempo real, auxiliando no acompanhamento da plantação de morangos e contribuindo para uma irrigação mais eficiente e inteligente.</p>
+      </div>
 
+      <div class="manual-divider"></div>
 
-Instalação e Configuração 
+      <div class="manual-secao">
+        <h2>Funcionamento do Sistema</h2>
+        <p>O funcionamento do sistema ocorre de maneira automatizada. Os sensores instalados na plantação realizam constantemente a leitura da umidade do solo e enviam essas informações para o Arduino responsável pela coleta dos dados. Em seguida, a API do sistema processa as informações recebidas e realiza o armazenamento no banco de dados MySQL. Após esse processamento, os dados são apresentados na dashboard do sistema, permitindo ao cliente visualizar gráficos, indicadores e históricos das medições realizadas.</p>
+      </div>
 
-Toda a instalação da AgroSense é realizada pela equipe técnica responsável pelo projeto. Durante a implantação, os sensores são posicionados estrategicamente na plantação, enquanto a máquina responsável pelo funcionamento do sistema é entregue totalmente configurada e pronta para uso. Todas as dependências, pacotes, banco de dados e serviços necessários já estarão devidamente instalados e em funcionamento. 
+      <div class="manual-divider"></div>
 
-Dessa forma, o cliente não precisa realizar configurações técnicas ou instalações adicionais, sendo necessário apenas acessar a dashboard para acompanhar as informações do sistema. 
+      <div class="manual-secao">
+        <h2>Instalação e Configuração</h2>
+        <p>Toda a instalação da AgroSense é realizada pela equipe técnica responsável pelo projeto. Durante a implantação, os sensores são posicionados estrategicamente na plantação, enquanto a máquina responsável pelo funcionamento do sistema é entregue totalmente configurada e pronta para uso. Todas as dependências, pacotes, banco de dados e serviços necessários já estarão devidamente instalados e em funcionamento. Dessa forma, o cliente não precisa realizar configurações técnicas ou instalações adicionais, sendo necessário apenas acessar a dashboard para acompanhar as informações do sistema.</p>
+      </div>
 
+      <div class="manual-divider"></div>
 
-Componentes do Sistema 
+      <div class="manual-secao">
+        <h2>Componentes do Sistema</h2>
+        <p>A AgroSense é composta por sensores de umidade, responsáveis pela coleta dos dados do solo, pelo Arduino utilizado na comunicação das informações, pela máquina do sistema, responsável pelo processamento e armazenamento dos dados, pelo banco de dados MySQL e pela dashboard de monitoramento, onde todas as informações são exibidas de forma gráfica e intuitiva.</p>
+      </div>
 
-A AgroSense é composta por sensores de umidade, responsáveis pela coleta dos dados do solo, pelo Arduino utilizado na comunicação das informações, pela máquina do sistema, responsável pelo processamento e armazenamento dos dados, pelo banco de dados MySQL e pela dashboard de monitoramento, onde todas as informações são exibidas de forma gráfica e intuitiva. 
- 
+      <div class="manual-divider"></div>
 
-Acesso à Dashboard 
+      <div class="manual-secao">
+        <h2>Acesso à Dashboard</h2>
+        <p>Para acessar a dashboard, basta ligar a máquina fornecida pela equipe técnica e abrir o navegador instalado no equipamento, como Google Chrome ou Microsoft Edge. Em seguida, acesse o endereço configurado pela equipe responsável (http://localhost:3333). Após o carregamento da página, será possível visualizar informações em tempo real sobre a umidade do solo, gráficos de acompanhamento, histórico das medições e status de funcionamento dos sensores e do sistema.</p>
+      </div>
 
-Para acessar a dashboard, basta ligar a máquina fornecida pela equipe técnica e abrir o navegador instalado no equipamento, como Google Chrome ou Microsoft Edge. Em seguida, o cliente deverá acessar o endereço configurado pela equipe responsável (http://localhost:3333). 
+      <div class="manual-divider"></div>
 
-Após o carregamento da página, será possível visualizar informações em tempo real sobre a umidade do solo, gráficos de acompanhamento, histórico das medições e status de funcionamento dos sensores e do sistema. 
+      <div class="manual-secao">
+        <h2>Visualização e Interpretação dos Dados</h2>
+        <p>A dashboard foi desenvolvida para facilitar a interpretação das informações coletadas pela AgroSense. Por meio dela, é possível acompanhar a evolução da umidade do solo ao longo do tempo, identificar possíveis alterações nas medições e monitorar o funcionamento dos sensores instalados na plantação. Caso os níveis de umidade estejam baixos, recomenda-se a realização da irrigação. Em situações em que houver oscilações incomuns ou ausência de dados, pode haver falhas de comunicação ou funcionamento dos sensores, sendo recomendado o contato com a equipe técnica responsável.</p>
+      </div>
 
- 
+      <div class="manual-divider"></div>
 
-Visualização e Interpretação dos Dados 
+      <div class="manual-secao">
+        <h2>Cuidados com o Sistema</h2>
+        <p>Para garantir o correto funcionamento do sistema, recomenda-se que os sensores não sejam removidos da plantação e que os equipamentos sejam preservados contra impactos físicos, umidade excessiva sobre componentes eletrônicos e desconexão de cabos. Também é importante manter a máquina ligada durante a utilização do sistema e evitar alterações nas configurações do equipamento entregue pela equipe técnica.</p>
+      </div>
 
-A dashboard foi desenvolvida para facilitar a interpretação das informações coletadas pela AgroSense. Por meio dela, o cliente consegue acompanhar a evolução da umidade do solo ao longo do tempo, identificar possíveis alterações nas medições e monitorar o funcionamento dos sensores instalados na plantação. 
+      <div class="manual-divider"></div>
 
-Caso os níveis de umidade estejam baixos, recomenda-se a realização da irrigação. Em situações em que houver oscilações incomuns ou ausência de dados, pode haver falhas de comunicação ou funcionamento dos sensores, sendo recomendado o contato com a equipe técnica responsável. 
+      <div class="manual-secao">
+        <h2>Manutenção Preventiva</h2>
+        <p>A manutenção preventiva da AgroSense consiste em inspeções periódicas dos sensores, verificação do funcionamento geral do sistema e acompanhamento contínuo da dashboard. Qualquer manutenção técnica, ajuste ou substituição de equipamentos deve ser realizada exclusivamente pela equipe responsável pelo projeto.</p>
+      </div>
 
- 
+      <div class="manual-divider"></div>
 
-Cuidados com o Sistema 
+      <div class="manual-secao">
+        <h2>Suporte Técnico</h2>
+        <p>Em caso de falhas na dashboard, ausência de dados, sensores desconectados ou qualquer comportamento inesperado do sistema, entre em contato com a equipe técnica responsável através do <a href="fale_conosco.html" style="color:#28631d; font-weight:600;">Fale Conosco</a> para análise e suporte adequado.</p>
+      </div>
 
-Para garantir o correto funcionamento do sistema, recomenda-se que os sensores não sejam removidos da plantação e que os equipamentos sejam preservados contra impactos físicos, umidade excessiva sobre componentes eletrônicos e desconexão de cabos. 
+    </div>
+  </div>
 
-Também é importante manter a máquina ligada durante a utilização do sistema e evitar alterações nas configurações do equipamento entregue pela equipe técnica. 
-
- 
-
-Manutenção Preventiva 
-
-A manutenção preventiva da AgroSense consiste em inspeções periódicas dos sensores, verificação do funcionamento geral do sistema e acompanhamento contínuo da dashboard. Qualquer manutenção técnica, ajuste ou substituição de equipamentos deve ser realizada exclusivamente pela equipe responsável pelo projeto. 
-
- 
-
-Suporte Técnico 
-
-Em caso de falhas na dashboard, ausência de dados, sensores desconectados ou qualquer comportamento inesperado do sistema, o cliente deverá entrar em contato com a equipe técnica responsável para análise e suporte adequado. 
-
-</div>
 </body>
 </html>
