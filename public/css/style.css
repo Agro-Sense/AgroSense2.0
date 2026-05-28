@@ -1,7 +1,5 @@
-/*Importação das fontes utilizadas no projeto*/
 @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 
-/* Padronização da pagina*/
 * {
     margin: 0;
     padding: 0;
@@ -22,14 +20,14 @@ body {
     background-repeat: no-repeat;
     width: 100vw;
     height: 100vh;
-
 }
 
 .pagina {
     width: 100vw;
-    height: 100vh;
+    min-height: 100vh;
 }
 
+/* ===== HEADER / NAV ===== */
 header {
     display: flex;
     justify-content: center;
@@ -39,34 +37,47 @@ header {
 
 .barra {
     display: flex;
-    width: 60%;
+    width: 70%;
     background-color: #006852;
     justify-content: space-around;
+    align-items: center;
     height: auto;
     border-radius: 30px;
     position: fixed;
-    margin-top: 4%;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 100;
+    padding: 0 20px;
 }
 
 .topicos-barra a {
     text-decoration: none;
     color: #ffffff;
+    transition: color 0.2s;
+}
+
+.topicos-barra a:hover {
+    color: #9ee796;
 }
 
 .topicos-barra {
     display: flex;
     flex-direction: row;
     list-style-type: none;
-    gap: 30px;
-    padding-bottom: 15px;
-    padding-top: 15px;
+    gap: 24px;
+    padding: 15px 0;
     color: #ffff;
+    flex-wrap: wrap;
+    align-items: center;
 }
 
 .logo-menu {
     display: flex;
     align-items: center;
     gap: 8px;
+    font-weight: 700;
+    color: white;
 }
 
 .logoAgroSense {
@@ -74,44 +85,50 @@ header {
     width: 40px;
     height: auto;
     object-fit: contain;
-    /* faz a imagem não cortar */
     object-position: center;
-    /*Alinha a imagem no centro */
 }
 
+/* ===== SECTION INÍCIO ===== */
 .main-inicio {
     display: flex;
     flex-direction: row;
-    margin-top: 7%;
-    gap: 10%;
+    padding-top: 40px;
+    gap: 8%;
     justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding-left: 10%;
+    padding-right: 10%;
+    justify-content: space-around;
 }
 
 .conteudo-texto {
     display: flex;
     flex-direction: column;
-    gap: 2%;
+    gap: 16px;
+    max-width: 520px;
+    
 }
 
 .conteudo-texto p {
-    padding-bottom: 20px;
     color: #545454;
     font-weight: 600;
-    font-size: 20px;
+    font-size: 18px;
+    line-height: 1.6;
 }
 
 .paragrafo-marcado {
     background-color: #ceedc2;
     border: solid 3px #59744d;
     border-radius: 20px;
-    display: flex;
-    justify-content: center;
-    padding: 6px 0px 6px 10px;
-    width: 56%;
+    display: inline-flex;
+    padding: 6px 16px;
+    list-style: none;
 }
 
 .titulo {
-    font-size: 45px;
+    font-size: 38px;
+    line-height: 1.2;
 }
 
 .colorido1 {
@@ -125,102 +142,127 @@ header {
 }
 
 .botaoinicial {
-    padding-top: 20px;
+    padding-top: 10px;
 }
 
 .btn_conhecaAgora {
     background-color: #59744d;
     border-radius: 20px;
-    width: 200px;
-    height: 35px;
-    display: flex;
+    padding: 10px 28px;
+    display: inline-flex;
     justify-content: center;
     align-items: center;
     text-decoration: none;
     font-family: "Poppins", sans-serif;
-    font-style: normal;
     font-weight: 600;
+    font-size: 15px;
     color: white;
-
+    transition: background 0.2s, padding 0.2s;
 }
 
 .btn_conhecaAgora:hover {
     background-color: #7caa68;
-    border-radius: 20px;
-    width: 230px;
-    height: 39px;
+    padding: 10px 34px;
+}
+
+/* ===== IMAGEM INÍCIO COM BADGES ===== */
+.conteudo-imagem {
+    position: relative;
+    display: flex;
+    align-items: flex-end;
+    flex-shrink: 0;
 }
 
 .div_imagemInicio {
-    margin-top: 10%;
     padding: 20px 20px 0 20px;
     background-color: #ffffff;
     border-radius: 20px;
-    box-shadow: 20px 10px #9ac289;
+    box-shadow: 12px 10px #9ac289;
+    position: relative;
+    z-index: 1;
 }
 
 .imagemInicio {
-    width: 286px;
-    height: 390px;
-    border-radius: 30px;
+    width: 260px;
+    height: 360px;
+    border-radius: 20px;
+    display: block;
 }
 
+/* Badge "Irrigando" — canto superior esquerdo da imagem */
 .caixaIrrigando {
     background-color: #eef0e4;
     border-radius: 20px;
-    display: flex;
-    padding: 5px;
-    width: 120px;
+    display: inline-flex;
+    padding: 8px 14px;
     align-items: center;
-    position: relative;
-    right: 22%;
-    top: -385px;
-
+    position: absolute;
+    top: 16px;
+    left: -90px;
+    z-index: 2;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    white-space: nowrap;
 }
 
 .irrigando {
     color: #38b6ff;
     font-weight: 600;
+    font-size: 13px;
 }
 
-
+/* Badge "Umidade" — canto inferior direito da imagem */
 .caixaUmidade {
     background-color: #eef0e4;
-    border-radius: 20px;
+    border-radius: 16px;
     display: flex;
     flex-direction: column;
-    padding: 10px;
-    width: 200px;
-    height: 110px;
+    padding: 12px 16px;
+    width: 180px;
     align-items: center;
+    gap: 8px;
     position: absolute;
-    right: 10%;
-    bottom: 22%;
-    gap: 10px;
+    bottom: 20px;
+    right: -90px;
+    z-index: 2;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
 }
 
 .caixaUmidade p {
-    font-size: 25px;
-
+    font-size: 22px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    gap: 8px;
 }
 
 .caixaSensorAtivo {
     background-color: #c9edba;
     border-radius: 10px;
     font-size: 10px;
-    padding: 10px;
+    padding: 4px 8px;
+    font-weight: 600;
+    color: #28631d;
 }
 
 .barraSensor {
     width: 80px;
     height: 10px;
     border-radius: 20px;
-    background-image: linear-gradient(to right, #9ac289 30%, #59744d 50%, #a6a6a6 80%, #ff5757 5%);
+    background-image: linear-gradient(to right, #9ac289 30%, #59744d 50%, #a6a6a6 80%, #ff5757 95%);
 }
 
 .tituloUmidade {
     color: #59744d;
     font-weight: 600;
+    font-size: 12px;
+    text-align: center;
+}
+
+/* ===== SECTION SOBRE NÓS ===== */
+.sobrenos {
+    background-color: #f7fdf5;
+    display: flex;
+    align-items: center;
 }
 
 .main-SobreNos {
@@ -228,189 +270,177 @@ header {
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    padding-top: 4%;
-    padding-right: 14%;
-    gap: 40px;
-
-
+    padding: 100px 8% 60px;
+    gap: 60px;
+    min-height: 100vh;
 }
-
-
-.sobrenos {
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center;
-    width: 100vw;
-    height: 100vh;
-}
-
 
 .conteudoSobreNos {
-    margin-left: 7%;
-    font-family: Poppins;
-
+    max-width: 500px;
 }
 
 .tituloSobreNos {
-    text-shadow: 3px 3px 8px rgba(0, 0, 0, 0.4);
     color: #59744d;
     font-weight: 700;
-    letter-spacing: -1px;
-    font-size: 90px;
-    font-family: "Poppins", sans-serif;
-    padding-top: 10%;
+    letter-spacing: -2px;
+    font-size: 72px;
+    line-height: 1;
+    margin-bottom: 32px;
 }
 
 .paragrafoSobreNos {
     color: #2b2b2b;
-    font-size: 22px;
-    padding-top: 12%;
+    font-size: 17px;
+    line-height: 1.8;
 }
 
 .imagemSobreNos {
-    width: 30em;
+    width: 400px;
     height: auto;
     border-radius: 15px;
-    box-shadow: 0px 10px 25px rgba(0, 0, 0, 0.499);
-    top: 150px;
-    left: 100px;
-
+    box-shadow: 0px 10px 25px rgba(0, 0, 0, 0.25);
+    flex-shrink: 0;
 }
 
+/* ===== SECTION O QUE OFERECEMOS ===== */
 .main-oferecimento {
     display: flex;
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    gap: 110px;
-
+    gap: 80px;
+    min-height: 100vh;
+    padding: 100px 8% 60px;
 }
 
-
-
 .titulo-oferecimento {
-    text-shadow: 3px 3px 8px rgba(0, 0, 0, 0.4);
     color: #59744d;
     font-weight: 700;
     letter-spacing: -1px;
-    font-size: 70px;
-    font-family: "Poppins", sans-serif;
-    padding-top: 19%;
+    font-size: 56px;
+    line-height: 1.1;
+    margin-bottom: 28px;
 }
 
 .paragrafoOferecemos {
-    font-size: 20px;
-    padding-top: 10%;
+    font-size: 17px;
+    line-height: 1.8;
     color: #2b2b2b;
+    max-width: 460px;
 }
 
-
 .div_imagemOferecimento {
-    padding-left: 70px;
-    margin-top: 7%;
-    margin-left: 2%;
-    padding: 20px;
-    color: #ffffff;
+    background-color: #ffffff;
     border-radius: 20px;
     box-shadow: 10px 10px #9ac289;
+    padding: 20px;
+    flex-shrink: 0;
 }
 
 .imagemOferecimento {
-    padding-top: 50px;
-    width: 30em;
+    width: 360px;
     height: auto;
     border-radius: 15px;
+    display: block;
 }
 
+/* ===== SECTION SUPORTE ===== */
 .main-suporte {
-    margin: 0;
     display: flex;
     justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 80px 5%;
+}
 
+.conteudoSuporte {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 32px;
+    width: 100%;
+    max-width: 1100px;
+}
+
+.titulo-Suporte {
+    color: #9ac2896e;
+    font-weight: 800;
+    font-size: 96px;
+    font-family: "Poppins", sans-serif;
+    text-align: center;
+    line-height: 1;
+    letter-spacing: -2px;
 }
 
 .card {
-    background-color: #ceedc2;
-    border-radius: 20px;
-    height: 24em;
-    width: 120em;
-    padding: 40px 20px;
-    padding-bottom: 40px;
-    margin: 0 auto;
-    max-width: 1100px;
     background-image: linear-gradient(to right, #9ac289, #006852);
+    border-radius: 20px;
+    width: 100%;
+    padding: 50px 30px 50px;
+    text-align: center;
+}
+
+.paragrafoSuporte {
+    font-weight: 700;
+    font-size: 56px;
+    font-family: "Poppins", sans-serif;
+    color: #ffffff;
+    line-height: 1.2;
+    margin: 0;
+}
+
+.palavraSeparada {
+    font-size: 56px;
+    color: #9ee796;
+    display: block;
 }
 
 .texto_complementar_suporte {
     display: block;
     color: #eef0e4;
     font-weight: 400;
-    font-size: 23px;
-    text-align: center;
-    margin-top: 30px;    /* Espaço garantido */
-    line-height: 1.3;
-}
-
-.paragrafoSuporte {
-    font-weight: 700;
-    font-size: 70px; /* Fonte adaptável */
-    font-family: "Poppins", sans-serif;
-    color: #ffffff;
-    text-align: center;
-    line-height: 1.2;   
-    margin: 0;
-}
-
-.palavraSeparada {
-    font-size: 70px;
-    color: #9ee796;
-    display: block;
-    margin-top: 0;
-}
-
-.titulo-Suporte {
-    color: #9ac2896e;
-    line-height: 0.8; 
-    font-weight: 800;
-    font-size: 110px;
-    font-family: "Poppins", sans-serif;
-    text-align: center;
-    margin-top: 140px;
+    font-size: 20px;
+    margin-top: 24px;
+    line-height: 1.6;
 }
 
 .ajuda {
     background-image: linear-gradient(to right, #c9edba, #9ac289);
     border-radius: 40px;
-    height: 5em;
-    width: 15em;
-    margin-left: 400px;
+    padding: 18px 40px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: opacity 0.2s;
+}
+
+.ajuda:hover {
+    opacity: 0.85;
 }
 
 .textoAjuda {
-    display: flex;
-    flex-direction: column;
-    font-weight: 400;
-    letter-spacing: 2px;
-    font-size: 20px;
+    font-weight: 600;
+    font-size: 18px;
     font-family: "Poppins", sans-serif;
     color: #ffffff;
-    justify-content: center;
-    display: flex; 
     text-align: center;
-    
-}
-
-.botao {
-    padding: 10px 0;
-    background-color: #073a0f;
-    border: none;
-    border-radius: 20px;
-    width: 100px;
+    line-height: 1.4;
+    letter-spacing: 1px;
 }
 
 .div_btn_cadastrar {
     display: flex;
     flex-direction: column;
     align-items: center;
+}
 
+.botao {
+    padding: 10px 20px;
+    background-color: #073a0f;
+    border: none;
+    border-radius: 20px;
+    color: white;
+    font-family: "Poppins", sans-serif;
+    cursor: pointer;
 }

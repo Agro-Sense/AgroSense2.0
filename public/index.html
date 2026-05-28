@@ -1,154 +1,122 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="./css/style.css">
-  <link rel="stylesheet" href="simuladorFinanceiro.html">
   <title>AgroSense</title>
 </head>
 
 <body>
   <section class="pagina inicial">
-    <!--Header para tudo que vai no topo da pagina (barra de navegação) -->
     <header>
-      <!--Barra de navegação no topo da pagina -->
       <nav class="barra">
         <ul class="topicos-barra">
-          <li class="logo-menu"> <img src="./assets/imgs/logoAgroSense.png" alt="" class="logoAgroSense">AgroSense
+          <li class="logo-menu">
+            <img src="./assets/imgs/logoAgroSense.png" alt="" class="logoAgroSense">AgroSense
           </li>
-
-          <li><a href="#">Início</a> </li>
-          <li><a href="#SobreNos">Sobre nós</a> </li>
-          <li><a href="#oferecimento">O que oferecemos</a> </li>
-          <li><a href="simuladorFinanceiro.html" target="_blank">Simulador financeiro</a> </li>
-          <li><a href="#suporte">Suporte</a> </li>
-          <li><a href="cadastro.html">Cadastrar</a> </li>
-          <li><a href="login.html">Entrar</a> </li>
+          <li><a href="#">Início</a></li>
+          <li><a href="#SobreNos">Sobre nós</a></li>
+          <li><a href="#oferecimento">O que oferecemos</a></li>
+          <li><a href="../public/simulador.html" target="_blank">Simulador financeiro</a></li>
+          <li><a href="#suporte">Suporte</a></li>
+          <li>|</li>
+          <li><a href="cadastro.html">Cadastrar</a></li>
+          <li><a href="login.html">Entrar</a></li>
         </ul>
       </nav>
-
     </header>
 
-    <!--Main para todos os conteudos principais (os que estão no centro da pagina) -->
     <main class="main-inicio">
       <div class="conteudo-texto">
         <ul class="paragrafo-marcado">
-          <li>Tecnologia Agrícola de Pressão</li>
+          <li>Tecnologia Agrícola de Precisão</li>
         </ul>
         <div class="Titulos">
-          <h1 class="titulo colorido1">Monitoramento inteligente <br>de umidade para <br> <span
-              class="titulo colorido2">cultivos de morango</span></h1>
+          <h1 class="titulo colorido1">Monitoramento inteligente <br>de umidade para <br>
+            <span class="titulo colorido2">cultivos de morango</span>
+          </h1>
         </div>
-        <p>Reduza perdas e melhore a qualidade dos seus <br> morangos usando dados em tempo real sobre <br> a
-          umidade do solo.</p>
+        <p>Reduza perdas e melhore a qualidade dos seus <br>morangos usando dados em tempo real sobre <br>a umidade do solo.</p>
         <div class="botaoinicial">
-          <a href="#siteEstaticoLogin" class="btn_conhecaAgora"> Conheça agora.</a>
+          <a href="cadastro.html" class="btn_conhecaAgora">Conheça agora.</a>
         </div>
       </div>
+
       <div class="conteudo-imagem">
-        <div class="div_imagemInicio">
-          <img src="./assets/imgs/imagemMorangos.png" alt="Imagem de morangos em um pote em uma plantação"
-            class="imagemInicio">
-        </div>
         <div class="caixaIrrigando">
-          <span class="irrigando"> 💧 Irrigando..</span>
+          <span class="irrigando">💧 Irrigando...</span>
+        </div>
+        <div class="div_imagemInicio">
+          <img src="./assets/imgs/imagemMorangos.png" alt="Imagem de morangos em um pote em uma plantação" class="imagemInicio">
         </div>
         <div class="caixaUmidade">
           <span class="tituloUmidade">Umidade do solo</span>
-          <p> <b>68%</b> <span class="caixaSensorAtivo">Sensor Ativo</span></p>
+          <p><b>68%</b> <span class="caixaSensorAtivo">Sensor Ativo</span></p>
           <div class="barraSensor"></div>
-
         </div>
       </div>
-
-
     </main>
-
-    <!-- Footer para todos os conteudos que vão no rodapé da pagina -->
-    <footer>
-
-
-    </footer>
   </section>
-  <section id="SobreNos" class="pagina sobrenos">
-    <main class="main-SobreNos">
-      <div class="conteudoSobreNos">
-        <div>
-          <h1 class="tituloSobreNos">Sobre nós</h1>
-        </div>
-        <div>
-          <p class="paragrafoSobreNos">A AgroSense é uma empresa voltada para a inovação no campo,
-            tendo como princípio unir tecnologia e sustentabilidade
-            para transformar o futuro do cultivo agrícola dos morangos. <br>
-            Nossa posição age como uma parceira do agricultor moderno,<br>
-            mostrando que as ferramentas certas juntamente <br>
-            com conhecimento aplicado e responsabilidade ambiental<br>
-            podem caminhar juntas para fortalecer o agronegócio.</p>
-        </div>
+
+  <section id="SobreNos" class="pagina">
+    <main class="main-oferecimento">
+      <div class="conteudoOferecimento">
+        <h1 class="tituloSobreNos">Sobre nós</h1>
+        <p class="paragrafoSobreNos">
+          A AgroSense é uma empresa voltada para a inovação no campo,
+          tendo como princípio unir tecnologia e sustentabilidade
+          para transformar o futuro do cultivo agrícola dos morangos.<br><br>
+          Nossa posição age como uma parceira do agricultor moderno,
+          mostrando que as ferramentas certas juntamente
+          com conhecimento aplicado e responsabilidade ambiental
+          podem caminhar juntas para fortalecer o agronegócio.
+        </p>
       </div>
       <div>
         <img src="./assets/imgs/morangoSobreNos.jpg" alt="Imagem de morangos em uma plantação" class="imagemSobreNos">
       </div>
     </main>
   </section>
-  <section id="oferecimento" class="pagina ofereceminto">
+
+  <section id="oferecimento" class="pagina">
     <main class="main-oferecimento">
-
       <div class="conteudoOferecimento">
-        <div class="div_tituloOferecemos">
-          <h1 class="titulo-oferecimento">O que oferecemos: </h1>
-        </div>
-        <div>
-          <p class="paragrafoOferecemos">Nosso sistema acompanha continuamente a umidade do solo<br>
-            nos canteiros de morango por meio de sensores de umidade,<br>
-            com isso podemos mostrar quando e onde é necessário a irrigação,<br>
-            transformando esses dados em <br>
-            gráficos simples e alertas fáceis de entender.<br><br>
-
-
-            Assim, o produtor deixa de depender só do “olhômetro” <br>
-            e passa a decidir quando irrigar com base em informações reais,<br>
-            evitando tanto o desperdício em excesso de água <br>
-            (que aumenta doenças) quanto a falta da mesma <br>
-            (que reduz produtividade). <br>
-        </div>
+        <h1 class="titulo-oferecimento">O que oferecemos:</h1>
+        <p class="paragrafoSobreNos">
+          Nosso sistema acompanha continuamente a umidade do solo
+          nos canteiros de morango por meio de sensores de umidade.
+          Com isso podemos mostrar quando e onde é necessário a irrigação,
+          transformando esses dados em gráficos simples e alertas fáceis de entender.<br><br>
+          Assim, o produtor deixa de depender só do "olhômetro"
+          e passa a decidir quando irrigar com base em informações reais,
+          evitando tanto o desperdício em excesso de água
+          (que aumenta doenças) quanto a falta da mesma
+          (que reduz produtividade).
+        </p>
       </div>
       <div class="div_imagemOferecimento">
-        <img src="./assets/imgs/SensorImagem.png" alt="Imagem de morangos em uma plantação" class="imagemOferecimento">
-      </div>
-
+        <img src="./assets/imgs/SensorImagem.png" alt="Imagem de sensor agrícola" class="imagemOferecimento">
       </div>
     </main>
-
   </section>
-  <section id="suporte" class="pagina ">
-    <main class="main-suporte">
 
+  <section id="suporte" class="pagina">
+    <main class="main-suporte">
       <div class="conteudoSuporte">
-        <div class="div_titulosuporte">
-          <h1 class="titulo-Suporte">SUPORTE</h1>
-        </div>
+        <h1 class="titulo-Suporte">Perguntas Frequentes</h1>
         <div class="card">
-          <p class="paragrafoSuporte">Pronto para otimizar sua <br>
-            <span class="palavraSeparada">Plantação?</span>
-            <span class="texto_complementar_suporte">Está com problema ou tem alguma dúvida? <br>
-              Entre em contato conosco:<br>
-              Nossa equipe está a postos para te guiar.</span>
-            <br>
+          <span class="texto_complementar_suporte">
+            
+          </span>
         </div>
         <div class="ajuda">
-          <p class="textoAjuda">Fale com <br>
-            Atendimento</p>
+          <p class="textoAjuda">Fale com<br>Atendimento</p>
         </div>
       </div>
-      </div>
-
-
     </main>
-
   </section>
-</body>
 
+</body>
 </html>

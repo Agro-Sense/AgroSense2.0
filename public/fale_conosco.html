@@ -155,10 +155,7 @@
   </div>
 
   <script>
-    function validarEmail(email) {
-      return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
-    }
-
+    
     function limparErros() {
       ["nome", "email", "mensagem"].forEach(function(campo) {
         document.getElementById(campo).classList.remove("campo-erro");
