@@ -7,8 +7,4 @@ router.post("/cadastrar", function (req, res) {
     fale_conoscoController.cadastrar(req, res);
 });
 
-router.post("/autenticar", function (req, res) {
-    fale_conoscoController.autenticar(req, res);
-});
-
 module.exports = router;
