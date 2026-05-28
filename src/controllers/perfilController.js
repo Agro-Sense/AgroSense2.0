@@ -22,7 +22,7 @@ function enviar(req, res) {
     } else {
 
         // Passe os valores como parâmetro e vá para o arquivo usuarioModel.js
-        usuarioModel.cadastrar(nomeEmpresa, cnpj, cep ,complemento, area)
+        perfilModel.enviar(nomeEmpresa, cnpj, cep ,complemento, area)
             .then(
                 function (resultado) {
                     res.json(resultado);
@@ -31,7 +31,7 @@ function enviar(req, res) {
                 function (erro) {
                     console.log(erro);
                     console.log(
-                        "\nHouve um erro ao realizar o cadastro! Erro: ",
+                        "\nHouve um erro ao atualizar o perfil! Erro: ",
                         erro.sqlMessage
                     );
                     res.status(500).json(erro.sqlMessage);
