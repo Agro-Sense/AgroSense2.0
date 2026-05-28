@@ -100,23 +100,23 @@
         <div class="empresa-grid">
           <div class="campo">
             <label>Nome da Empresa</label>
-            <input type="text" placeholder="Fazenda Boa Vista"/>
+            <input id="input_nome_empresa" type="text" placeholder="Fazenda Boa Vista"/>
           </div>
           <div class="campo">
             <label>CNPJ</label>
-            <input type="text" placeholder="01.001.001/0001-01"/>
+            <input id="input_cnpj" type="text" placeholder="01.001.001/0001-01"/>
           </div>
           <div class="campo">
             <label>CEP</label>
-            <input type="text" placeholder="01001-000"/>
+            <input id="input_cep" type="text" placeholder="01001-000"/>
           </div>
           <div class="campo">
             <label>Complemento</label>
-            <input type="text" placeholder="Descrição"/>
+            <input id="input_complemento" type="text" placeholder="Descrição"/>
           </div>
           <div class="campo">
             <label>Área Total (hectares)</label>
-            <input type="text" placeholder="120 ha"/>
+            <input id="input_area" type="text" placeholder="120 ha"/>
           </div>
         </div>
         <div style="grid-column: span 2;">
@@ -187,3 +187,76 @@
 
 </body>
 </html>
+<script>
+ function enviar() {
+    var nomeEmpresaVar = input_nome_empresa.value;
+    var cnpjVar = input_cnpj.value;
+    var cepVar = input_cep.value;
+    var complementoVar = input_complemento.value;
+    var areaVar = input_area.value;
+
+    // Verificando se há algum campo em branco
+    if (
+      nomeEmpresaVar == "" ||
+      cnpjVar == "" ||
+      cepVar == "" ||
+      complementoVar == "" ||
+      areaVar == "" 
+    ) {
+      cardErro.style.display = "block";
+      mensagem_erro.innerHTML =
+        "(Mensagem de erro para todos os campos em branco)";
+
+      finalizarAguardar();
+      return false;
+    } else {
+      setInterval(sumirMensagem, 5000);
+    }
+
+     fetch("/perfil/enviar", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        // crie um atributo que recebe o valor recuperado aqui
+        // Agora vá para o arquivo routes/usuario.js
+        nomeEmpresaServer: nomeEmpresaVar,
+        cnpjServer: cnpjVar,
+        cepServer: cepVar,
+        complementoServer: complementoVar,
+        areaServer: areaVar
+      }),
+    })
+      .then(function (resposta) {
+        console.log("resposta: ", resposta);
+
+        if (resposta.ok) {
+          cardErro.style.display = "block";
+
+          mensagem_erro.innerHTML =
+            "Cadastro realizado com sucesso! Redirecionando para tela de Login...";
+
+          setTimeout(() => {
+            window.location = "login.html";
+          }, "2000");
+
+          limparFormulario();
+          finalizarAguardar();
+        } else {
+          throw "Houve um erro ao tentar realizar o cadastro!";
+        }
+      })
+      .catch(function (resposta) {
+        console.log(`#ERRO: ${resposta}`);
+        finalizarAguardar();
+      });
+
+    return false;
+  }
+
+
+  function sumirMensagem() {
+    cardErro.style.display = "none";
+  }
+</script>
