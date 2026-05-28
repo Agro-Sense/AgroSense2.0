@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>AgroSense - Fale Conosco</title>
-  <link rel="stylesheet" href="../public/css/perfil.css">
+  <link rel="stylesheet" href="./css/perfil.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
   <style>
@@ -164,82 +164,76 @@
     }
 
     function enviar() {
-      limparErros();
+    limparErros();
 
-      var nome     = document.getElementById("nome").value.trim();
-      var email    = document.getElementById("email").value.trim();
-      var mensagem = document.getElementById("mensagem").value.trim();
-      var btn      = document.getElementById("btn-enviar");
-      var feedback = document.getElementById("feedback");
+    var nome     = document.getElementById("nome").value.trim();
+    var email    = document.getElementById("email").value.trim();
+    var mensagem = document.getElementById("mensagem").value.trim();
+    var btn      = document.getElementById("btn-enviar");
+    var feedback = document.getElementById("feedback");
 
-      var valido = true;
+    var regexEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    var valido = true;
 
-      if (!nome) {
-        document.getElementById("nome").classList.add("campo-erro");
-        document.getElementById("erro-nome").textContent = "Por favor, insira seu nome.";
-        valido = false;
-      }
-
-      if (!email) {
-        document.getElementById("email").classList.add("campo-erro");
-        document.getElementById("erro-email").textContent = "Por favor, insira seu e-mail.";
-        valido = false;
-      } else if (!validarEmail(email)) {
-        document.getElementById("email").classList.add("campo-erro");
-        document.getElementById("erro-email").textContent = "Insira um e-mail válido.";
-        valido = false;
-      }
-
-      if (!mensagem) {
-        document.getElementById("mensagem").classList.add("campo-erro");
-        document.getElementById("erro-mensagem").textContent = "Por favor, escreva sua mensagem.";
-        valido = false;
-      }
-
-      if (!valido) return;
-
-      btn.disabled = true;
-      btn.textContent = "Enviando...";
-      feedback.style.display = "none";
-
-      fetch("/fale-conosco/cadastrar", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify({
-          nomeServer:     nome,
-          emailServer:    email,
-          mensagemServer: mensagem
-        })
-      })
-      .then(function(response) {
-        if (response.ok) {
-          return response.text();
-        }
-        return response.text().then(function(msg) {
-          throw new Error(msg);
-        });
-      })
-      .then(function(msg) {
-        feedback.className = "feedback-msg sucesso";
-        feedback.textContent = "✅ " + msg;
-        feedback.style.display = "flex";
-
-        document.getElementById("nome").value = "";
-        document.getElementById("email").value = "";
-        document.getElementById("mensagem").value = "";
-      })
-      .catch(function(erro) {
-        feedback.className = "feedback-msg erro";
-        feedback.textContent = "❌ " + (erro.message || "Erro ao enviar a mensagem. Tente novamente.");
-        feedback.style.display = "flex";
-      })
-      .finally(function() {
-        btn.disabled = false;
-        btn.textContent = "Enviar Mensagem";
-      });
+    if (!nome) {
+      document.getElementById("nome").classList.add("campo-erro");
+      document.getElementById("erro-nome").textContent = "Por favor, insira seu nome.";
+      valido = false;
     }
+
+    if (!email) {
+      document.getElementById("email").classList.add("campo-erro");
+      document.getElementById("erro-email").textContent = "Por favor, insira seu e-mail.";
+      valido = false;
+    } else if (!regexEmail.test(email)) {
+      document.getElementById("email").classList.add("campo-erro");
+      document.getElementById("erro-email").textContent = "Insira um e-mail válido.";
+      valido = false;
+    }
+
+    if (!mensagem) {
+      document.getElementById("mensagem").classList.add("campo-erro");
+      document.getElementById("erro-mensagem").textContent = "Por favor, escreva sua mensagem.";
+      valido = false;
+    }
+
+    if (!valido) return;
+
+    btn.disabled = true;
+    btn.textContent = "Enviando...";
+    feedback.style.display = "none";
+
+    fetch("/fale-conosco/cadastrar", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        nomeServer:     nome,
+        emailServer:    email,
+        mensagemServer: mensagem
+      })
+    })
+    .then(function(response) {
+      if (response.ok) return response.text();
+      return response.text().then(function(msg) { throw new Error(msg); });
+    })
+    .then(function(msg) {
+      feedback.className = "feedback-msg sucesso";
+      feedback.textContent = msg;
+      feedback.style.display = "flex";
+      document.getElementById("nome").value = "";
+      document.getElementById("email").value = "";
+      document.getElementById("mensagem").value = "";
+    })
+    .catch(function(erro) {
+      feedback.className = "feedback-msg erro";
+      feedback.textContent = (erro.message || "Erro ao enviar. Tente novamente.");
+      feedback.style.display = "flex";
+    })
+    .finally(function() {
+      btn.disabled = false;
+      btn.textContent = "Enviar Mensagem";
+    });
+  }
   </script>
 
 </body>
