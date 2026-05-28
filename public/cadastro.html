@@ -10,88 +10,70 @@
 
   <script src="./js/sessao.js"></script>
 
-  <link rel="stylesheet" href="./css/estilo.css" />
+  <link rel="stylesheet" href="./css/site.css">
+  <link rel="stylesheet" href="./css/style.css">
   <link rel="icon" href="./assets/icon/favicon2.ico" />
   <link rel="preconnect" href="https://fonts.gstatic.com" />
 </head>
 
-<body onload="listar()">
-  <!--header inicio-->
-  <div class="header">
-    <div class="container">
-      <h1 class="titulo">AquaTech</h1>
-      <ul class="navbar">
-        <li>
-          <a href="index.html">Inicial</a>
-        </li>
-        <li>
-          <a href="simulador.html">Simulador</a>
-        </li>
-        <li>|</li>
-        <li>
-          <a href="login.html">Login</a>
-        </li>
-        <li class="agora">
-          <a href="#">Cadastro</a>
-        </li>
+<body>
+  <header>
+    <nav class="barra">
+      <ul class="topicos-barra">
+        <li class="logo-menu"><img src="./imgs/logoAgroSense.png" alt="" class="logoAgroSense">AgroSense</li>
+        <li><a href="index.html">Início</a></li>
+        <li><a href="index.html#SobreNos">Sobre nós</a></li>
+        <li><a href="index.html#oferecimento">O que oferecemos</a></li>
+        <li><a href="simuladorFinanceiro.html" target="_blank">Simulador financeiro</a></li>
+        <li><a href="index.html#suporte">Suporte</a></li>
+        <li><a href="siteEstaticoCadastro.html">Cadastrar</a></li>
+        <li><a href="login.html">Entrar</a></li>
       </ul>
-    </div>
-  </div>
-  <!--header fim-->
+    </nav>
+  </header>
 
-  <div class="login">
+  
     <div class="alerta_erro">
       <div class="card_erro" id="cardErro">
         <span id="mensagem_erro"></span>
       </div>
     </div>
-    <div class="container">
-      <div class="card card-cadastro">
-        <h2>Bem-vindo!</h2>
-        <div class="formulario">
-          <!--
-                         Para inserir mais um campo, copie uma das inputs abaixo.
-                         Assim que inserir vá para o script abaixo.
-                     -->
-          <div class="campo">
-            <span>Código de ativação:</span>
-            <input id="codigo_input" type="text" placeholder="Insira aqui seu código" />
-          </div>
-          <div class="campo">
-            <span>Nome:</span>
-            <input id="nome_input" type="text" placeholder="Seu nome" />
-          </div>
-          <div class="campo">
-            <span>E-mail:</span>
-            <input id="email_input" type="text" placeholder="meuemail@provedor.com" />
-          </div>
-          <div class="campo">
-            <span>Senha:</span>
-            <input id="senha_input" type="password" placeholder="******" />
-          </div>
-          <div class="campo">
-            <span>Confirmação da Senha:</span>
-            <input id="confirmacao_senha_input" type="password" placeholder="******" />
-          </div>
+    <main class="cadastro">
+
+      <div id="tela_cadastro" class="div_tela_cadastro_login">
+        <h2 class="tituloAgroSense">AgroSense</h2> <br>
+        <div class="campo">
+          <span>Nome Completo:</span>
+          <input class='ipt' id="nome_input" type="text" placeholder="Seu nome" />
+        </div>
+        <div class="campo">
+          <p>E-mail:</p>
+          <input class='ipt' id="email_input" type="text" placeholder="meuemail@provedor.com" />
+        </div>
+        <div class="campo">
+          <p>Senha:</p>
+          <input class='ipt' id="senha_input" type="password" placeholder="******" />
+        </div>
+        <div class="campo">
+          <p>Confirmação da Senha:</p>
+          <input class='ipt' id="confirmacao_senha_input" type="password" placeholder="******" />
+        </div>
+        <div class="div_btn_cadastrar">
           <button class="botao" onclick="cadastrar()">Cadastrar</button>
+          <button class='acesso' onclick="irLogin()">Já tem conta? Faça Login</button>
         </div>
-        <div id="div_aguardar" class="loading-div">
-          <img src="./assets/circle-loading.gif" id="loading-gif" />
-        </div>
-
-        <div id="div_erros_login"></div>
+        
       </div>
-    </div>
-  </div>
+      <div id="div_aguardar" class="loading-div" style="display: none;">
+        <img src="./assets/circle-loading.gif" id="loading-gif" />
+      </div></div></div>
 
-  <!--footer inicio-->
-  <div class="footer">
-    <div class="container">
-      <h4>Feito com amor por aluno &hearts; SPTech &copy; 2023</h4>
-      <span class="version">v1.0.0</span>
-    </div>
+      <div id="div_erros_login"></div>
   </div>
-  <!--footer fim-->
+  </div>
+  </div>
+  
+  </main>
 </body>
 
 </html>
@@ -99,7 +81,6 @@
 <script>
 
   // Array para armazenar empresas cadastradas para validação de código de ativação 
-  let listaEmpresasCadastradas = [];
 
   function cadastrar() {
     // aguardar();
@@ -110,16 +91,13 @@
     var emailVar = email_input.value;
     var senhaVar = senha_input.value;
     var confirmacaoSenhaVar = confirmacao_senha_input.value;
-    var codigoVar = codigo_input.value;
-    var idEmpresaVincular
 
     // Verificando se há algum campo em branco
     if (
       nomeVar == "" ||
       emailVar == "" ||
       senhaVar == "" ||
-      confirmacaoSenhaVar == "" ||
-      codigoVar == ""
+      confirmacaoSenhaVar == ""
     ) {
       cardErro.style.display = "block";
       mensagem_erro.innerHTML =
@@ -132,7 +110,7 @@
     }
 
     // Verificando se o código de ativação é de alguma empresa cadastrada
-    for (let i = 0; i < listaEmpresasCadastradas.length; i++) {
+   /* for (let i = 0; i < listaEmpresasCadastradas.length; i++) {
       if (listaEmpresasCadastradas[i].codigo_ativacao == codigoVar) {
         idEmpresaVincular = listaEmpresasCadastradas[i].id
         console.log("Código de ativação válido.");
@@ -142,7 +120,7 @@
         mensagem_erro.innerHTML = "(Mensagem de erro para código inválido)";
         finalizarAguardar();
       }
-    }
+    }*/
 
     // Enviando o valor da nova input
     fetch("/usuarios/cadastrar", {
@@ -155,8 +133,7 @@
         // Agora vá para o arquivo routes/usuario.js
         nomeServer: nomeVar,
         emailServer: emailVar,
-        senhaServer: senhaVar,
-        idEmpresaVincularServer: idEmpresaVincular
+        senhaServer: senhaVar
       }),
     })
       .then(function (resposta) {
@@ -187,7 +164,7 @@
   }
 
   // Listando empresas cadastradas 
-  function listar() {
+ /* function listar() {
     fetch("/empresas/listar", {
       method: "GET",
     })
@@ -204,7 +181,7 @@
       .catch(function (resposta) {
         console.log(`#ERRO: ${resposta}`);
       });
-  }
+  }*/
 
   function sumirMensagem() {
     cardErro.style.display = "none";

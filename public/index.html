@@ -2,81 +2,153 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>AquaTech | Página Inicial</title>
-
-    <script src="./js/sessao.js"></script>
-
-    <link rel="stylesheet" href="./css/estilo.css">
-    <link rel="icon" href="./assets/icon/favicon2.ico">
-    <link rel="preconnect" href="https://fonts.gstatic.com">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="./css/style.css">
+  <link rel="stylesheet" href="simuladorFinanceiro.html">
+  <title>AgroSense</title>
 </head>
 
 <body>
-    <div class="header">
-      <div class="container">
-        <h1 class="titulo">AquaTech</h1>
-        <ul class="navbar">
-          <li class="agora">
-            <a href="#">Inicial</a>
+  <section class="pagina inicial">
+    <!--Header para tudo que vai no topo da pagina (barra de navegação) -->
+    <header>
+      <!--Barra de navegação no topo da pagina -->
+      <nav class="barra">
+        <ul class="topicos-barra">
+          <li class="logo-menu"> <img src="./assets/imgs/logoAgroSense.png" alt="" class="logoAgroSense">AgroSense
           </li>
-          <li>
-            <a href="simulador.html">Simulador</a>
-          </li>
-          <li>|</li>
-          <li>
-            <a href="login.html">Login</a>
-          </li>
-          <li>
-            <a href="cadastro.html">Cadastro</a>
-          </li>
+
+          <li><a href="#">Início</a> </li>
+          <li><a href="#SobreNos">Sobre nós</a> </li>
+          <li><a href="#oferecimento">O que oferecemos</a> </li>
+          <li><a href="simuladorFinanceiro.html" target="_blank">Simulador financeiro</a> </li>
+          <li><a href="#suporte">Suporte</a> </li>
+          <li><a href="cadastro.html">Cadastrar</a> </li>
+          <li><a href="login.html">Entrar</a> </li>
         </ul>
-      </div>
-    </div>
-  
-    <div class="banner">
-      <div class="container">
-        <p>Preservando <span>hoje</span> para existirem <span>amanhã</span>.</p>
-      </div>
-    </div>
-  
-    <div class="social">
-      <div class="container">
-        <div class="boxes">
-          <div class="box">
-            <img src="assets/imgs/planet-earth_color.png">
-            <h4>Missão</h4>
-            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Et, quas cupiditate asperiores provident magnam
-              vitae illum iusto fugiat atque deleniti nulla sed iure suscipit, laborum, aliquid accusantium cum dicta
-              minima.</p>
-          </div>
-          <div class="box">
-            <img src="assets/imgs/lightbulb_color.png">
-            <h4>Visão</h4>
-            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Et, quas cupiditate asperiores provident magnam
-              vitae illum iusto fugiat atque deleniti nulla sed iure suscipit, laborum, aliquid accusantium cum dicta
-              minima.</p>
-          </div>
-          <div class="box">
-            <img src="assets/imgs/growth_color.png">
-            <h4>Valores</h4>
-            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Et, quas cupiditate asperiores provident magnam
-              vitae illum iusto fugiat atque deleniti nulla sed iure suscipit, laborum, aliquid accusantium cum dicta
-              minima.</p>
-          </div>
+      </nav>
+
+    </header>
+
+    <!--Main para todos os conteudos principais (os que estão no centro da pagina) -->
+    <main class="main-inicio">
+      <div class="conteudo-texto">
+        <ul class="paragrafo-marcado">
+          <li>Tecnologia Agrícola de Pressão</li>
+        </ul>
+        <div class="Titulos">
+          <h1 class="titulo colorido1">Monitoramento inteligente <br>de umidade para <br> <span
+              class="titulo colorido2">cultivos de morango</span></h1>
+        </div>
+        <p>Reduza perdas e melhore a qualidade dos seus <br> morangos usando dados em tempo real sobre <br> a
+          umidade do solo.</p>
+        <div class="botaoinicial">
+          <a href="#siteEstaticoLogin" class="btn_conhecaAgora"> Conheça agora.</a>
         </div>
       </div>
-    </div>
-  
-    <div class="footer">
-      <div class="container">
-        <h4>Feito com amor por aluno &hearts; SPTech &copy; 2023</h4>
-        <span class="version">v1.0.0</span>
+      <div class="conteudo-imagem">
+        <div class="div_imagemInicio">
+          <img src="./assets/imgs/imagemMorangos.png" alt="Imagem de morangos em um pote em uma plantação"
+            class="imagemInicio">
+        </div>
+        <div class="caixaIrrigando">
+          <span class="irrigando"> 💧 Irrigando..</span>
+        </div>
+        <div class="caixaUmidade">
+          <span class="tituloUmidade">Umidade do solo</span>
+          <p> <b>68%</b> <span class="caixaSensorAtivo">Sensor Ativo</span></p>
+          <div class="barraSensor"></div>
+
+        </div>
       </div>
-    </div>
-  </body>
+
+
+    </main>
+
+    <!-- Footer para todos os conteudos que vão no rodapé da pagina -->
+    <footer>
+
+
+    </footer>
+  </section>
+  <section id="SobreNos" class="pagina sobrenos">
+    <main class="main-SobreNos">
+      <div class="conteudoSobreNos">
+        <div>
+          <h1 class="tituloSobreNos">Sobre nós</h1>
+        </div>
+        <div>
+          <p class="paragrafoSobreNos">A AgroSense é uma empresa voltada para a inovação no campo,
+            tendo como princípio unir tecnologia e sustentabilidade
+            para transformar o futuro do cultivo agrícola dos morangos. <br>
+            Nossa posição age como uma parceira do agricultor moderno,<br>
+            mostrando que as ferramentas certas juntamente <br>
+            com conhecimento aplicado e responsabilidade ambiental<br>
+            podem caminhar juntas para fortalecer o agronegócio.</p>
+        </div>
+      </div>
+      <div>
+        <img src="./assets/imgs/morangoSobreNos.jpg" alt="Imagem de morangos em uma plantação" class="imagemSobreNos">
+      </div>
+    </main>
+  </section>
+  <section id="oferecimento" class="pagina ofereceminto">
+    <main class="main-oferecimento">
+
+      <div class="conteudoOferecimento">
+        <div class="div_tituloOferecemos">
+          <h1 class="titulo-oferecimento">O que oferecemos: </h1>
+        </div>
+        <div>
+          <p class="paragrafoOferecemos">Nosso sistema acompanha continuamente a umidade do solo<br>
+            nos canteiros de morango por meio de sensores de umidade,<br>
+            com isso podemos mostrar quando e onde é necessário a irrigação,<br>
+            transformando esses dados em <br>
+            gráficos simples e alertas fáceis de entender.<br><br>
+
+
+            Assim, o produtor deixa de depender só do “olhômetro” <br>
+            e passa a decidir quando irrigar com base em informações reais,<br>
+            evitando tanto o desperdício em excesso de água <br>
+            (que aumenta doenças) quanto a falta da mesma <br>
+            (que reduz produtividade). <br>
+        </div>
+      </div>
+      <div class="div_imagemOferecimento">
+        <img src="./assets/imgs/SensorImagem.png" alt="Imagem de morangos em uma plantação" class="imagemOferecimento">
+      </div>
+
+      </div>
+    </main>
+
+  </section>
+  <section id="suporte" class="pagina ">
+    <main class="main-suporte">
+
+      <div class="conteudoSuporte">
+        <div class="div_titulosuporte">
+          <h1 class="titulo-Suporte">SUPORTE</h1>
+        </div>
+        <div class="card">
+          <p class="paragrafoSuporte">Pronto para otimizar sua <br>
+            <span class="palavraSeparada">Plantação?</span>
+            <span class="texto_complementar_suporte">Está com problema ou tem alguma dúvida? <br>
+              Entre em contato conosco:<br>
+              Nossa equipe está a postos para te guiar.</span>
+            <br>
+        </div>
+        <div class="ajuda">
+          <p class="textoAjuda">Fale com <br>
+            Atendimento</p>
+        </div>
+      </div>
+      </div>
+
+
+    </main>
+
+  </section>
+</body>
 
 </html>

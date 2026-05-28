@@ -1,0 +1,416 @@
+/*Importação das fontes utilizadas no projeto*/
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+/* Padronização da pagina*/
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Poppins", sans-serif;
+    font-style: normal;
+    overflow-x: hidden;
+    background-color: #f7fdf5;
+}
+
+.inicial {
+    background-image: url(../assets/imgs/fundo3.png);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    width: 100vw;
+    height: 100vh;
+
+}
+
+.pagina {
+    width: 100vw;
+    height: 100vh;
+}
+
+header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 2%;
+}
+
+.barra {
+    display: flex;
+    width: 60%;
+    background-color: #006852;
+    justify-content: space-around;
+    height: auto;
+    border-radius: 30px;
+    position: fixed;
+    margin-top: 4%;
+}
+
+.topicos-barra a {
+    text-decoration: none;
+    color: #ffffff;
+}
+
+.topicos-barra {
+    display: flex;
+    flex-direction: row;
+    list-style-type: none;
+    gap: 30px;
+    padding-bottom: 15px;
+    padding-top: 15px;
+    color: #ffff;
+}
+
+.logo-menu {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.logoAgroSense {
+    border-radius: 20%;
+    width: 40px;
+    height: auto;
+    object-fit: contain;
+    /* faz a imagem não cortar */
+    object-position: center;
+    /*Alinha a imagem no centro */
+}
+
+.main-inicio {
+    display: flex;
+    flex-direction: row;
+    margin-top: 7%;
+    gap: 10%;
+    justify-content: center;
+}
+
+.conteudo-texto {
+    display: flex;
+    flex-direction: column;
+    gap: 2%;
+}
+
+.conteudo-texto p {
+    padding-bottom: 20px;
+    color: #545454;
+    font-weight: 600;
+    font-size: 20px;
+}
+
+.paragrafo-marcado {
+    background-color: #ceedc2;
+    border: solid 3px #59744d;
+    border-radius: 20px;
+    display: flex;
+    justify-content: center;
+    padding: 6px 0px 6px 10px;
+    width: 56%;
+}
+
+.titulo {
+    font-size: 45px;
+}
+
+.colorido1 {
+    color: #59744d;
+    text-shadow: 1px 1px 1px #adaead;
+}
+
+.colorido2 {
+    color: #ff5757;
+    text-shadow: 1px 1px 1px #f48585;
+}
+
+.botaoinicial {
+    padding-top: 20px;
+}
+
+.btn_conhecaAgora {
+    background-color: #59744d;
+    border-radius: 20px;
+    width: 200px;
+    height: 35px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    font-family: "Poppins", sans-serif;
+    font-style: normal;
+    font-weight: 600;
+    color: white;
+
+}
+
+.btn_conhecaAgora:hover {
+    background-color: #7caa68;
+    border-radius: 20px;
+    width: 230px;
+    height: 39px;
+}
+
+.div_imagemInicio {
+    margin-top: 10%;
+    padding: 20px 20px 0 20px;
+    background-color: #ffffff;
+    border-radius: 20px;
+    box-shadow: 20px 10px #9ac289;
+}
+
+.imagemInicio {
+    width: 286px;
+    height: 390px;
+    border-radius: 30px;
+}
+
+.caixaIrrigando {
+    background-color: #eef0e4;
+    border-radius: 20px;
+    display: flex;
+    padding: 5px;
+    width: 120px;
+    align-items: center;
+    position: relative;
+    right: 22%;
+    top: -385px;
+
+}
+
+.irrigando {
+    color: #38b6ff;
+    font-weight: 600;
+}
+
+
+.caixaUmidade {
+    background-color: #eef0e4;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    width: 200px;
+    height: 110px;
+    align-items: center;
+    position: absolute;
+    right: 10%;
+    bottom: 22%;
+    gap: 10px;
+}
+
+.caixaUmidade p {
+    font-size: 25px;
+
+}
+
+.caixaSensorAtivo {
+    background-color: #c9edba;
+    border-radius: 10px;
+    font-size: 10px;
+    padding: 10px;
+}
+
+.barraSensor {
+    width: 80px;
+    height: 10px;
+    border-radius: 20px;
+    background-image: linear-gradient(to right, #9ac289 30%, #59744d 50%, #a6a6a6 80%, #ff5757 5%);
+}
+
+.tituloUmidade {
+    color: #59744d;
+    font-weight: 600;
+}
+
+.main-SobreNos {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding-top: 4%;
+    padding-right: 14%;
+    gap: 40px;
+
+
+}
+
+
+.sobrenos {
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 100vw;
+    height: 100vh;
+}
+
+
+.conteudoSobreNos {
+    margin-left: 7%;
+    font-family: Poppins;
+
+}
+
+.tituloSobreNos {
+    text-shadow: 3px 3px 8px rgba(0, 0, 0, 0.4);
+    color: #59744d;
+    font-weight: 700;
+    letter-spacing: -1px;
+    font-size: 90px;
+    font-family: "Poppins", sans-serif;
+    padding-top: 10%;
+}
+
+.paragrafoSobreNos {
+    color: #2b2b2b;
+    font-size: 22px;
+    padding-top: 12%;
+}
+
+.imagemSobreNos {
+    width: 30em;
+    height: auto;
+    border-radius: 15px;
+    box-shadow: 0px 10px 25px rgba(0, 0, 0, 0.499);
+    top: 150px;
+    left: 100px;
+
+}
+
+.main-oferecimento {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 110px;
+
+}
+
+
+
+.titulo-oferecimento {
+    text-shadow: 3px 3px 8px rgba(0, 0, 0, 0.4);
+    color: #59744d;
+    font-weight: 700;
+    letter-spacing: -1px;
+    font-size: 70px;
+    font-family: "Poppins", sans-serif;
+    padding-top: 19%;
+}
+
+.paragrafoOferecemos {
+    font-size: 20px;
+    padding-top: 10%;
+    color: #2b2b2b;
+}
+
+
+.div_imagemOferecimento {
+    padding-left: 70px;
+    margin-top: 7%;
+    margin-left: 2%;
+    padding: 20px;
+    color: #ffffff;
+    border-radius: 20px;
+    box-shadow: 10px 10px #9ac289;
+}
+
+.imagemOferecimento {
+    padding-top: 50px;
+    width: 30em;
+    height: auto;
+    border-radius: 15px;
+}
+
+.main-suporte {
+    margin: 0;
+    display: flex;
+    justify-content: center;
+
+}
+
+.card {
+    background-color: #ceedc2;
+    border-radius: 20px;
+    height: 24em;
+    width: 120em;
+    padding: 40px 20px;
+    padding-bottom: 40px;
+    margin: 0 auto;
+    max-width: 1100px;
+    background-image: linear-gradient(to right, #9ac289, #006852);
+}
+
+.texto_complementar_suporte {
+    display: block;
+    color: #eef0e4;
+    font-weight: 400;
+    font-size: 23px;
+    text-align: center;
+    margin-top: 30px;    /* Espaço garantido */
+    line-height: 1.3;
+}
+
+.paragrafoSuporte {
+    font-weight: 700;
+    font-size: 70px; /* Fonte adaptável */
+    font-family: "Poppins", sans-serif;
+    color: #ffffff;
+    text-align: center;
+    line-height: 1.2;   
+    margin: 0;
+}
+
+.palavraSeparada {
+    font-size: 70px;
+    color: #9ee796;
+    display: block;
+    margin-top: 0;
+}
+
+.titulo-Suporte {
+    color: #9ac2896e;
+    line-height: 0.8; 
+    font-weight: 800;
+    font-size: 110px;
+    font-family: "Poppins", sans-serif;
+    text-align: center;
+    margin-top: 140px;
+}
+
+.ajuda {
+    background-image: linear-gradient(to right, #c9edba, #9ac289);
+    border-radius: 40px;
+    height: 5em;
+    width: 15em;
+    margin-left: 400px;
+}
+
+.textoAjuda {
+    display: flex;
+    flex-direction: column;
+    font-weight: 400;
+    letter-spacing: 2px;
+    font-size: 20px;
+    font-family: "Poppins", sans-serif;
+    color: #ffffff;
+    justify-content: center;
+    display: flex; 
+    text-align: center;
+    
+}
+
+.botao {
+    padding: 10px 0;
+    background-color: #073a0f;
+    border: none;
+    border-radius: 20px;
+    width: 100px;
+}
+
+.div_btn_cadastrar {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+}
