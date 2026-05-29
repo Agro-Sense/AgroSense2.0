@@ -9,7 +9,7 @@
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 
-<body>
+<body onload="obterDados()">
 
   <aside class="sidebar">
     <div class="logo-sidebar">
@@ -127,21 +127,47 @@
       options: { responsive: true, maintainAspectRatio: false }
     };
 
-    const config3 = {
-      type: 'doughnut',
-      data: {
-        labels: ['Inativos','Ativos'],
-        datasets: [{
-          label: 'Sensores',
-          data: [2, 8],
-          backgroundColor: ['rgba(223,106,106,0.7)','rgba(107,173,96,0.7)'],
+   function obterDados(){
+  // Aqui seria a função que obteria os dados do banco de dados
+  // No caso, aqui você colocaria o fetch que teria o endereço da sua rota que você criou na pasta /routes e chamaria a função plotarGraficoLinha nessa função. Exemplo:
+ 
+   fetch('/dashboard/listar')
+   .then(function(response){
+     return response.json();
+   })
+   .then(function(data){
+     plotarGraficoDoughnut(data);
+    // plotarGraficoBarra(data);
+   })
+   .catch(function(err){
+     console.log(err);
+   })
+
+
+}
+
+// Função para plotar o gráfico de linha
+function plotarGraficoDoughnut(dados){
+  
+  // Capturando o elemento canvas pelo id 
+  var ctx = document.getElementById('myChart3').getContext('2d');
+  // Criando o gráfico de linha usando o Chart.js
+  var myChart = new Chart(ctx, {
+      type: 'doughnut', // Tipo de gráfico: linha
+      data: { // Dados para o gráfico
+          labels: ['Inativo','Ativo'],   // Rótulos no eixo X
+          datasets: [{ 
+              label: 'Operação dos Sensores', // Nome do conjunto de dados
+              data: [dados[0].inativos,dados[0].ativos], // Dados dos votos
+              backgroundColor: ['rgba(223,106,106,0.7)','rgba(107,173,96,0.7)'],
           borderColor: ['#df6a6a','#6bad60'],
           borderWidth: 2,
           hoverOffset: 6
-        }]
+          }]
       },
-      options: { responsive: true, maintainAspectRatio: false }
-    };
+  });
+} 
+
 
     const labels4 = ['Jan','Fev','Mar','Abr','Mai','Jun','Jul','Ago','Set','Out','Nov','Dez'];
     const vals4   = [6.6,6.7,1.5,1.8,1.7,1.6,1.7,1.9,6.5,6.8,6.8,6.7];
@@ -169,7 +195,6 @@
 
     new Chart(document.getElementById('myChart1'), config1);
     new Chart(document.getElementById('myChart2'), config2);
-    new Chart(document.getElementById('myChart3'), config3);
     new Chart(document.getElementById('myChart4'), config4);
   </script>
 

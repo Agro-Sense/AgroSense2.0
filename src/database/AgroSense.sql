@@ -33,7 +33,8 @@ create table sensor (
 id int primary key auto_increment,
 localizacao varchar(100),
 sts varchar(20), constraint chkStatusSensor CHECK (sts in('Ativo','Inativo','Manutenção')),
-fkPlantacao int, constraint fkSensorPlantacao foreign key (fkPlantacao) references plantacao(id)
+fkPlantacao int, constraint fkSensorPlantacao foreign key (fkPlantacao) references plantacao(id),
+fkCliente int, constraint fkSensorCliente foreign key (fkCliente) references cliente(id)
 );
 
 create table capturaDoSensorUmidade (
@@ -86,5 +87,10 @@ INSERT INTO capturaDoSensorUmidade (porcentagem, fkSensor) VALUES
 (default, 4),
 (default, 5);
 
+SELECT 
+ SUM(CASE WHEN s.sts= "Ativo" THEN 1 ELSE 0 END) AS ativos,
+ SUM(CASE WHEN s.sts IN ('Inativo', 'Manutenção') THEN 1 ELSE 0 END) AS inativos
+ FROM sensor s 
+ JOIN plantacao p ON s.fkPlantacao = p.id;
 
 select*from capturaDoSensorUmidade;
