@@ -197,15 +197,13 @@
     var cnpjVar = input_cnpj.value;
     var cepVar = input_cep.value;
     var complementoVar = input_complemento.value;
-    var areaVar = input_area.value;
 
     // Verificando se há algum campo em branco
     if (
       nomeEmpresaVar == "" ||
       cnpjVar == "" ||
       cepVar == "" ||
-      complementoVar == "" ||
-      areaVar == "" 
+      complementoVar == "" 
     ) {
       cardErro.style.display = "block";
       mensagem_erro.innerHTML =
@@ -227,8 +225,7 @@
         nomeEmpresaServer: nomeEmpresaVar,
         cnpjServer: cnpjVar,
         cepServer: cepVar,
-        complementoServer: complementoVar,
-        areaServer: areaVar
+        complementoServer: complementoVar
       }),
     })
       .then(function (resposta) {
