@@ -1,23 +1,23 @@
 var dashboardModel = require("../models/dashboardModel");
 
 function ativoOuInativo(req, res) {
-    dashboardModel.ativoOuInativo().then(function(resultado){
+    dashboardModel.ativoOuInativo().then(function (resultado) {
         res.status(200).json(resultado);
-    }).catch(function(erro) {
+    }).catch(function (erro) {
         res.status(500).json(erro.sqlMessage);
     })
 }
-function analiseUmidade(req, res)  {
-    dashboardModel.analiseUmidade().then(function(resultado){
+function analiseUmidade(req, res) {
+    dashboardModel.analiseUmidade().then(function (resultado) {
         res.status(200).json(resultado);
-    }).catch(function(erro) {
+    }).catch(function (erro) {
         res.status(500).json(erro.sqlMessage);
     })
 }
-function horaMedicao(req, res)  {
-    dashboardModel.horaMedicao().then(function(resultado){
+function horaMedicao(req, res) {
+    dashboardModel.horaMedicao().then(function (resultado) {
         res.status(200).json(resultado);
-    }).catch(function(erro) {
+    }).catch(function (erro) {
         res.status(500).json(erro.sqlMessage);
     })
 }

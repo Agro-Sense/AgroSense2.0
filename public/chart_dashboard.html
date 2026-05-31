@@ -137,7 +137,6 @@
       fetch('/dashboard/kpiUmidade')
         .then(res => res.json())
         .then(data => {
-
           kpi_1.innerHTML = `
         <b>Umidade Registrada</b><br>
         Maior: ${data[0].maiorUmidade}% |
@@ -148,13 +147,11 @@
             .then(res => res.json())
             .then(data => {
               let mensagem = '';
-
               if (data[0].totalBaixas > 0) {
                 mensagem = 'Porcentagens de umidade baixa detectadas!';
               } else {
                 mensagem = 'Nenhuma umidade baixa detectada.';
               }
-
               kpi_2.innerHTML = `
         <b>Alerta de Umidade</b><br>
         ${mensagem}
@@ -166,7 +163,6 @@
       fetch('/dashboard/kpiSensores')
         .then(res => res.json())
         .then(data => {
-
           let sensores = data.map(sensor =>
             `SENSOR_UMID_${sensor.id}`
           );
@@ -184,11 +180,8 @@
       const labels = dados.map(item =>
         String(item.horario).padStart(2, '0') + ':00'
       );
-
       const valores = dados.map(item => item.valor);
-
       const ctx = document.getElementById('myChart1').getContext('2d');
-
       new Chart(ctx, {
         type: 'line',
         data: {

@@ -41,8 +41,7 @@ function kpiUmidade() {
     SELECT
     MAX(valor) AS maiorUmidade,
     MIN(valor) AS menorUmidade
-    FROM captura;
-    `;
+    FROM captura; `;
     console.log("Executando a instrução SQL: \n" + instrucao);
     return database.executar(instrucao);
 }
@@ -51,8 +50,7 @@ function kpiAlertaUmidade() {
     var instrucao = `
     SELECT COUNT(*) AS totalBaixas
     FROM captura
-    WHERE valor < 65;
-    `;
+    WHERE valor < 65;`;
     console.log("Executando a instrução SQL: \n" + instrucao);
     return database.executar(instrucao);
 }
@@ -61,8 +59,7 @@ function kpiSensores() {
     var instrucao = `
     SELECT id
     FROM sensor
-    WHERE sts = FALSE;
-    `;
+    WHERE sts = FALSE;`;
     console.log("Executando a instrução SQL: \n" + instrucao);
     return database.executar(instrucao);
 }
