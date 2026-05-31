@@ -29,30 +29,29 @@
 
   <header>
     <nav class="barradashboard">
-    <span>Olá, <span id="b_usuario">! Bem-vindo a Sua Área Exclusiva</span>
+      <span>Olá, <span id="b_usuario">! Bem-vindo a Sua Área Exclusiva</span>
     </nav>
   </header>
 
   <div class="main-dashboard">
 
     <div class="allkpi">
-      <div class="kpi_1">
-        <b>Umidade Registrada</b><br>
-        Maior: 85% &nbsp;|&nbsp; Menor: 59%
+      <div class="kpi_1" id="kpi_1">
+
       </div>
-      <div class="kpi_2">
+      <div class="kpi_2" id="kpi_2">
         <b>Alerta de Umidade</b><br>
         Porcentagens de umidade baixa detectadas!
       </div>
-      <div class="kpi_3">
+      <div class="kpi_3" id="kpi_3">
         <b>Erro de Sensor</b><br>
         SENSOR_UMID_001 e SENSOR_UMID_004 inativos.
       </div>
-      <div class="kpi_4">
+      <div class="kpi_4" id="kpi_4">
         <b>Progresso na Produção</b><br>
         Melhor mês: Dezembro
       </div>
-      <div class="kpi_5">
+      <div class="kpi_5" id="kpi_5">
         <b>Condição de Cultivo</b><br>
         Março apresenta historicamente menor produção.
       </div>
@@ -91,86 +90,178 @@
   </div>
 
   <script>
-    const labels1 = ['00:00','01:00','02:00','03:00','04:00','05:00','06:00','07:00','08:00','09:00','10:00','11:00','12:00','13:00','14:00','15:00','16:00','17:00','18:00','19:00','20:00','21:00','22:00','23:00'];
-    const config1 = {
-      type: 'line',
-      data: {
-        labels: labels1,
-        datasets: [{
-          label: 'Umidade do Solo (%)',
-          backgroundColor: 'rgba(107, 173, 96, 0.15)',
-          borderColor: '#6bad60',
-          borderWidth: 2,
-          pointBackgroundColor: '#28631d',
-          pointRadius: 3,
-          data: [78,77,77,76,75,74,73,85,83,80,76,72,68,65,62,60,59,61,64,67,70,72,74,76],
-          fill: true,
-          tension: 0.4
-        }]
-      },
-      options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false } } }
-    };
-
-    const config2 = {
-      type: 'pie',
-      data: {
-        labels: ['Seco','Ideal','Úmido'],
-        datasets: [{
-          label: 'Comportamento da Umidade',
-          data: [5, 17, 2],
-          backgroundColor: ['rgba(240,160,48,0.7)','rgba(107,173,96,0.7)','rgba(78,147,230,0.7)'],
-          borderColor: ['#f0a030','#6bad60','#4e93e6'],
-          borderWidth: 2,
-          hoverOffset: 6
-        }]
-      },
-      options: { responsive: true, maintainAspectRatio: false }
-    };
-
-   function obterDados(){
-  // Aqui seria a função que obteria os dados do banco de dados
-  // No caso, aqui você colocaria o fetch que teria o endereço da sua rota que você criou na pasta /routes e chamaria a função plotarGraficoLinha nessa função. Exemplo:
- 
-   fetch('/dashboard/listar')
-   .then(function(response){
-     return response.json();
-   })
-   .then(function(data){
-     plotarGraficoDoughnut(data);
-    // plotarGraficoBarra(data);
-   })
-   .catch(function(err){
-     console.log(err);
-   })
 
 
-}
 
-// Função para plotar o gráfico de linha
-function plotarGraficoDoughnut(dados){
-  
-  // Capturando o elemento canvas pelo id 
-  var ctx = document.getElementById('myChart3').getContext('2d');
-  // Criando o gráfico de linha usando o Chart.js
-  var myChart = new Chart(ctx, {
-      type: 'doughnut', // Tipo de gráfico: linha
-      data: { // Dados para o gráfico
-          labels: ['Inativo','Ativo'],   // Rótulos no eixo X
-          datasets: [{ 
-              label: 'Operação dos Sensores', // Nome do conjunto de dados
-              data: [dados[0].inativos,dados[0].ativos], // Dados dos votos
-              backgroundColor: ['rgba(223,106,106,0.7)','rgba(107,173,96,0.7)'],
-          borderColor: ['#df6a6a','#6bad60'],
-          borderWidth: 2,
-          hoverOffset: 6
+
+    function obterDados() {
+      // Aqui seria a função que obteria os dados do banco de dados
+      // No caso, aqui você colocaria o fetch que teria o endereço da sua rota que você criou na pasta /routes e chamaria a função plotarGraficoLinha nessa função. Exemplo:
+
+      fetch('/dashboard/ativoOuInativo')
+        .then(function (response) {
+          return response.json();
+        })
+        .then(function (data) {
+          plotarGraficoDoughnut(data);
+          // plotarGraficoBarra(data);
+        })
+        .catch(function (err) {
+          console.log(err);
+        })
+
+      fetch('/dashboard/analiseUmidade')
+        .then(function (response) {
+          return response.json();
+        })
+        .then(function (data) {
+          plotarGraficoPizza(data);
+          // plotarGraficoBarra(data);
+        })
+        .catch(function (err) {
+          console.log(err);
+        })
+
+      fetch('/dashboard/horaMedicao')
+        .then(function (response) {
+          return response.json();
+        })
+        .then(function (data) {
+          plotarGraficoLinha(data);
+          // plotarGraficoBarra(data);
+        })
+        .catch(function (err) {
+          console.log(err);
+        })
+
+      fetch('/dashboard/kpiUmidade')
+        .then(res => res.json())
+        .then(data => {
+
+          kpi_1.innerHTML = `
+        <b>Umidade Registrada</b><br>
+        Maior: ${data[0].maiorUmidade}% |
+        Menor: ${data[0].menorUmidade}%
+    `;
+
+          fetch('/dashboard/kpiAlertaUmidade')
+            .then(res => res.json())
+            .then(data => {
+              let mensagem = '';
+
+              if (data[0].totalBaixas > 0) {
+                mensagem = 'Porcentagens de umidade baixa detectadas!';
+              } else {
+                mensagem = 'Nenhuma umidade baixa detectada.';
+              }
+
+              kpi_2.innerHTML = `
+        <b>Alerta de Umidade</b><br>
+        ${mensagem}
+    `;
+            });
+
+        });
+
+      fetch('/dashboard/kpiSensores')
+        .then(res => res.json())
+        .then(data => {
+
+          let sensores = data.map(sensor =>
+            `SENSOR_UMID_${sensor.id}`
+          );
+
+          kpi_3.innerHTML = `
+        <b>Erro de Sensor</b><br>
+        ${sensores.join(' e ')} inativos.
+    `;
+        });
+
+
+    }
+    function plotarGraficoLinha(dados) {
+
+      const labels = dados.map(item =>
+        String(item.horario).padStart(2, '0') + ':00'
+      );
+
+      const valores = dados.map(item => item.valor);
+
+      const ctx = document.getElementById('myChart1').getContext('2d');
+
+      new Chart(ctx, {
+        type: 'line',
+        data: {
+          labels: labels,
+          datasets: [{
+            label: 'Umidade do Solo (%)',
+            data: valores,
+            backgroundColor: 'rgba(107, 173, 96, 0.15)',
+            borderColor: '#6bad60',
+            borderWidth: 2,
+            pointBackgroundColor: '#28631d',
+            pointRadius: 3,
+            fill: true,
+            tension: 0.4
           }]
-      },
-  });
-} 
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: {
+              display: false
+            }
+          }
+        }
+      });
+    }
+
+    function plotarGraficoPizza(dados) {
+      var ctx = document.getElementById('myChart2').getContext('2d');
+      var myChart = new Chart(ctx, {
+        type: 'pie',
+        data: {
+          labels: ['Seco', 'Ideal', 'Úmido'],
+          datasets: [{
+            label: 'Comportamento da Umidade',
+            data: [dados[0].seco, dados[0].ideal, dados[0].umido],
+            backgroundColor: ['rgba(240,160,48,0.7)', 'rgba(107,173,96,0.7)', 'rgba(78,147,230,0.7)'],
+            borderColor: ['#f0a030', '#6bad60', '#4e93e6'],
+            borderWidth: 2,
+            hoverOffset: 6
+          }]
+        },
+        options: { responsive: true, maintainAspectRatio: false }
+      });
+
+    };
+
+    // Função para plotar o gráfico de linha
+    function plotarGraficoDoughnut(dados) {
+
+      // Capturando o elemento canvas pelo id 
+      var ctx = document.getElementById('myChart3').getContext('2d');
+      // Criando o gráfico de linha usando o Chart.js
+      var myChart = new Chart(ctx, {
+        type: 'doughnut', // Tipo de gráfico: linha
+        data: { // Dados para o gráfico
+          labels: ['Inativo', 'Ativo'],   // Rótulos no eixo X
+          datasets: [{
+            label: 'Operação dos Sensores', // Nome do conjunto de dados
+            data: [dados[0].inativos, dados[0].ativos], // Dados dos votos
+            backgroundColor: ['rgba(223,106,106,0.7)', 'rgba(107,173,96,0.7)'],
+            borderColor: ['#df6a6a', '#6bad60'],
+            borderWidth: 2,
+            hoverOffset: 6
+          }]
+        },
+      });
+    }
 
 
-    const labels4 = ['Jan','Fev','Mar','Abr','Mai','Jun','Jul','Ago','Set','Out','Nov','Dez'];
-    const vals4   = [6.6,6.7,1.5,1.8,1.7,1.6,1.7,1.9,6.5,6.8,6.8,6.7];
+    const labels4 = ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez'];
+    const vals4 = [6.6, 6.7, 1.5, 1.8, 1.7, 1.6, 1.7, 1.9, 6.5, 6.8, 6.8, 6.7];
     const colors4 = vals4.map(v => v >= 5 ? 'rgba(107,173,96,0.7)' : 'rgba(240,160,48,0.7)');
     const config4 = {
       type: 'bar',
@@ -180,7 +271,7 @@ function plotarGraficoDoughnut(dados){
           label: 'Nível de Produção',
           data: vals4,
           backgroundColor: colors4,
-          borderColor: colors4.map(c => c.replace('0.7','1')),
+          borderColor: colors4.map(c => c.replace('0.7', '1')),
           borderWidth: 1,
           borderRadius: 6
         }]
@@ -193,10 +284,10 @@ function plotarGraficoDoughnut(dados){
       }
     };
 
-    new Chart(document.getElementById('myChart1'), config1);
-    new Chart(document.getElementById('myChart2'), config2);
+
     new Chart(document.getElementById('myChart4'), config4);
   </script>
 
 </body>
+
 </html>
