@@ -116,6 +116,17 @@ SELECT
   FROM sensor s 
   JOIN plantacao p ON s.fkPlantacao = p.id;
  
+ -- select do grafico 4
+ SELECT
+  c.data_horario_medicao AS mes,
+  c.data_horario_medicao AS nomeMes,
+  AVG(c.valor) AS mediaUmidade
+  FROM captura c
+  JOIN sensor s ON c.fkSensor = s.id
+  JOIN plantacao p ON s.fkPlantacao = p.id
+  WHERE p.fkCliente = ${idCliente}
+  GROUP BY mes, nomeMes
+  ORDER BY mes;
 
 -- select da kpi1
 SELECT
@@ -133,3 +144,26 @@ SELECT id
   FROM sensor
     WHERE sts = FALSE;
     
+-- select da kpi4
+SELECT
+c.data_horario_medicao AS nomeMes,
+AVG(c.valor) AS mediaUmidade
+FROM captura c
+JOIN sensor s ON c.fkSensor = s.id
+JOIN plantacao p ON s.fkPlantacao = p.id
+WHERE p.fkCliente = ${idCliente}
+GROUP BY nomeMes
+ORDER BY mediaUmidade DESC
+LIMIT 1;
+
+-- select da kpi5
+SELECT
+c.data_horario_medicao AS nomeMes,
+AVG(c.valor) AS mediaUmidade
+FROM captura c
+JOIN sensor s ON c.fkSensor = s.id
+JOIN plantacao p ON s.fkPlantacao = p.id
+WHERE p.fkCliente = ${idCliente}
+GROUP BY nomeMes
+ORDER BY mediaUmidade ASC
+LIMIT 1;

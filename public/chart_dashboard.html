@@ -134,6 +134,18 @@
           console.log(err);
         })
 
+      fetch('/dashboard/producaoPorMes')
+        .then(function (response) {
+          return response.json();
+        })
+        .then(function (data) {
+          plotarGraficoBarra(data);
+          // plotarGraficoBarra(data);
+        })
+        .catch(function (err) {
+          console.log(err);
+        })
+
       fetch('/dashboard/kpiUmidade')
         .then(res => res.json())
         .then(data => {
@@ -173,8 +185,28 @@
     `;
         });
 
+      fetch(`/dashboard/kpiMelhorMes`)
+        .then(res => res.json())
+        .then(data => {
+          kpi_4.innerHTML = `
+                <b>Progresso na Produção</b><br>
+                Melhor mês: ${data[0].nomeMes}
+            `;
+        });
+
+      fetch(`/dashboard/kpiPiorMes`)
+        .then(res => res.json())
+        .then(data => {
+          kpi_5.innerHTML = `
+                <b>Condição de Cultivo</b><br>
+                Fique de olho! ${data[0].nomeMes} tem a sua menor produção.
+            `;
+        });
 
     }
+
+    setInterval(obterDados, 30000);
+
     function plotarGraficoLinha(dados) {
 
       const labels = dados.map(item =>
@@ -277,6 +309,35 @@
       }
     };
 
+    function plotarGraficoBarra(dados) {
+    var labels = dados.map(item => item.nomeMes);
+    var valores = dados.map(item => parseFloat(item.mediaUmidade));
+    var cores = valores.map(v => v >= 65
+        ? 'rgba(107,173,96,0.7)'
+        : 'rgba(240,160,48,0.7)');
+
+    var ctx = document.getElementById('myChart4').getContext('2d');
+    return new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: labels,
+            datasets: [{
+                label: 'Média de Umidade por Mês (%)',
+                data: valores,
+                backgroundColor: cores,
+                borderColor: cores.map(c => c.replace('0.7', '1')),
+                borderWidth: 1,
+                borderRadius: 6
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            scales: { y: { beginAtZero: true } },
+            plugins: { legend: { display: false } }
+        }
+    })
+  };
 
     new Chart(document.getElementById('myChart4'), config4);
   </script>

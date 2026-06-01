@@ -22,6 +22,14 @@ function horaMedicao(req, res) {
     })
 }
 
+function producaoPorMes(req, res) {
+    dashboardModel.producaoPorMes().then(function (resultado) {
+        res.status(200).json(resultado);
+    }).catch(function (erro) {
+        res.status(500).json(erro.sqlMessage);
+    })
+}
+
 function kpiUmidade(req, res) {
     dashboardModel.kpiUmidade()
         .then(resultado => res.status(200).json(resultado))
@@ -40,13 +48,26 @@ function kpiSensores(req, res) {
         .catch(erro => res.status(500).json(erro.sqlMessage));
 }
 
+function kpiMelhorMes(req, res) {
+    dashboardModel.kpiMelhorMes()
+        .then(resultado => res.status(200).json(resultado))
+        .catch(erro => res.status(500).json(erro.sqlMessage));
+}
 
+function kpiPiorMes(req, res) {
+    dashboardModel.kpiPiorMes()
+        .then(resultado => res.status(200).json(resultado))
+        .catch(erro => res.status(500).json(erro.sqlMessage));
+}
 
 module.exports = {
     ativoOuInativo,
     analiseUmidade,
     horaMedicao,
+    producaoPorMes,
     kpiUmidade,
     kpiAlertaUmidade,
-    kpiSensores
+    kpiSensores,
+    kpiMelhorMes,
+    kpiPiorMes
 }

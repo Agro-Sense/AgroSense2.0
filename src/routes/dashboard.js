@@ -19,6 +19,12 @@ router.get("/horaMedicao", function(req,res) {
 
 );
 
+router.get("/producaoPorMes", function(req,res) {
+    dashboardController.producaoPorMes(req,res);
+ }
+
+);
+
 router.get("/kpiUmidade", function(req,res) {
     dashboardController.kpiUmidade(req,res);
  }
@@ -33,9 +39,18 @@ router.get("/kpiUmidade", function(req,res) {
     dashboardController.kpiSensores(req,res);
  }
 );
+
+router.get("/kpiMelhorMes", function(req,res) {
+    dashboardController.kpiMelhorMes(req,res);
+ }
+
+);
+
+router.get("/kpiPiorMes", function(req,res) {
+    dashboardController.kpiPiorMes(req,res);
+ }
+
+);
  
-
-
-
 
 module.exports = router;
