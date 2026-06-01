@@ -31,7 +31,7 @@ function producaoPorMes(req, res) {
 }
 
 function kpiUmidade(req, res) {
-    dashboardModel.kpiUmidade()
+    dashboardModel.kpiUmidade(idCliente)
         .then(resultado => res.status(200).json(resultado))
         .catch(erro => res.status(500).json(erro.sqlMessage));
 }
