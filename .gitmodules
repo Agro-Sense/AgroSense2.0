@@ -1,0 +1,3 @@
+[submodule "BOBIA"]
+	path = BOBIA
+	url = https://github.com/BandTec/BobIA.git
