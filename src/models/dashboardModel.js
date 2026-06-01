@@ -56,12 +56,15 @@ function producaoPorMes(idCliente) {
 }
 
 function kpiUmidade(idCliente) {
-    var instrucao = `
+     var instrucao = `
     SELECT
-    MAX(valor) AS maiorUmidade,
-    MIN(valor) AS menorUmidade
-    FROM captura
-    WHERE fkCliente = ${idCliente}; `;
+    MAX(c.valor) AS maiorUmidade,
+    MIN(c.valor) AS menorUmidade
+    FROM captura c
+    JOIN sensor s ON c.fkSensor = s.id
+    JOIN plantacao p ON s.fkPlantacao = p.id
+    WHERE p.fkCliente = ${idCliente};
+    `;
     console.log("Executando a instrução SQL: \n" + instrucao);
     return database.executar(instrucao);
 }
@@ -69,7 +72,9 @@ function kpiUmidade(idCliente) {
 function kpiAlertaUmidade(idCliente) {
     var instrucao = `
     SELECT COUNT(*) AS totalBaixas
-    FROM captura
+    FROM captura c
+    JOIN sensor s ON c.fkSensor = s.id
+    JOIN plantacao p ON s.fkPlantacao = p.id
     WHERE fkCliente = ${idCliente}
     AND valor < 65;`;
     console.log("Executando a instrução SQL: \n" + instrucao);
@@ -122,6 +127,7 @@ module.exports = {
     ativoOuInativo,
     analiseUmidade,
     horaMedicao,
+    producaoPorMes,
     kpiUmidade,
     kpiAlertaUmidade,
     kpiSensores,

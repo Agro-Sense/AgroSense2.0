@@ -90,7 +90,7 @@
   </div>
 
   <script>
-
+    const idCliente = sessionStorage.ID_CLIENTE;
 
 
 
@@ -98,7 +98,7 @@
       // Aqui seria a função que obteria os dados do banco de dados
       // No caso, aqui você colocaria o fetch que teria o endereço da sua rota que você criou na pasta /routes e chamaria a função plotarGraficoLinha nessa função. Exemplo:
 
-      fetch('/dashboard/ativoOuInativo')
+      fetch(`/dashboard/ativoOuInativo/${idCliente}`)
         .then(function (response) {
           return response.json();
         })
@@ -110,7 +110,7 @@
           console.log(erro);
         })
 
-      fetch('/dashboard/analiseUmidade')
+      fetch(`/dashboard/analiseUmidade/${idCliente}`)
         .then(function (response) {
           return response.json();
         })
@@ -122,7 +122,7 @@
           console.log(erro);
         })
 
-      fetch('/dashboard/horaMedicao')
+      fetch(`/dashboard/horaMedicao/${idCliente}`)
         .then(function (response) {
           return response.json();
         })
@@ -134,7 +134,7 @@
           console.log(erro);
         })
 
-      fetch('/dashboard/producaoPorMes')
+      fetch(`/dashboard/producaoPorMes/${idCliente}`)
         .then(function (response) {
           return response.json();
         })
@@ -146,7 +146,7 @@
           console.log(erro);
         })
 
-      fetch('/dashboard/kpiUmidade')
+      fetch(`/dashboard/kpiUmidade/${idCliente}`)
         .then(res => res.json())
         .then(data => {
           kpi_1.innerHTML = `
@@ -155,7 +155,7 @@
         Menor: ${data[0].menorUmidade}%
     `;
 
-          fetch('/dashboard/kpiAlertaUmidade')
+          fetch(`/dashboard/kpiAlertaUmidade/${idCliente}`)
             .then(res => res.json())
             .then(data => {
               let mensagem = '';
@@ -172,10 +172,10 @@
 
         });
 
-      fetch('/dashboard/kpiSensores')
+      fetch(`/dashboard/kpiSensores/${idCliente}`)
         .then(res => res.json())
         .then(data => {
-          let sensores = (
+          let sensores = data.map(sensor =>
             `SENSOR_UMID_${sensor.id}`
           );
 
@@ -185,7 +185,7 @@
     `;
         });
 
-      fetch(`/dashboard/kpiMelhorMes`)
+      fetch(`/dashboard/kpiMelhorMes/${idCliente}`)
         .then(res => res.json())
         .then(data => {
           kpi_4.innerHTML = `
@@ -194,7 +194,7 @@
             `;
         });
 
-      fetch(`/dashboard/kpiPiorMes`)
+      fetch(`/dashboard/kpiPiorMes/${idCliente}`)
         .then(res => res.json())
         .then(data => {
           kpi_5.innerHTML = `
@@ -310,34 +310,34 @@
     };
 
     function plotarGraficoBarra(dados) {
-    var labels = dados.map(item => item.nomeMes);
-    var valores = dados.map(item => parseFloat(item.mediaUmidade));
-    var cores = valores.map(v => v >= 65
+      var labels = dados.map(item => item.nomeMes);
+      var valores = dados.map(item => parseFloat(item.mediaUmidade));
+      var cores = valores.map(v => v >= 65
         ? 'rgba(107,173,96,0.7)'
         : 'rgba(240,160,48,0.7)');
 
-    var ctx = document.getElementById('myChart4').getContext('2d');
-    return new Chart(ctx, {
+      var ctx = document.getElementById('myChart4').getContext('2d');
+      return new Chart(ctx, {
         type: 'bar',
         data: {
-            labels: labels,
-            datasets: [{
-                label: 'Média de Umidade por Mês (%)',
-                data: valores,
-                backgroundColor: cores,
-                borderColor: cores.map(c => c.replace('0.7', '1')),
-                borderWidth: 1,
-                borderRadius: 6
-            }]
+          labels: labels,
+          datasets: [{
+            label: 'Média de Umidade por Mês (%)',
+            data: valores,
+            backgroundColor: cores,
+            borderColor: cores.map(c => c.replace('0.7', '1')),
+            borderWidth: 1,
+            borderRadius: 6
+          }]
         },
         options: {
-            responsive: true,
-            maintainAspectRatio: false,
-            scales: { y: { beginAtZero: true } },
-            plugins: { legend: { display: false } }
+          responsive: true,
+          maintainAspectRatio: false,
+          scales: { y: { beginAtZero: true } },
+          plugins: { legend: { display: false } }
         }
-    })
-  };
+      })
+    };
 
     new Chart(document.getElementById('myChart4'), config4);
   </script>
