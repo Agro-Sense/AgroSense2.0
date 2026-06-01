@@ -3,14 +3,14 @@ var router = express.Router();
 
 var dashboardController = require("../controllers/dashboardController");
 
-router.get("/ativoOuInativo", 
+router.get("/ativoOuInativo/:idCliente", 
 function(req,res) {
 
     dashboardController.ativoOuInativo(req,res);
  }
 
 );
-router.get("/analiseUmidade", 
+router.get("/analiseUmidade/:idCliente", 
 function(req,res) {
     dashboardController.analiseUmidade(req,res);
  }
