@@ -4,38 +4,63 @@
 * {
     padding: 0;
     margin: 0;
-    box-sizing: 0;
+    box-sizing: border-box;
 }
 
 
 body {
     width: 100%;
     height: 100vh;
-    background-image: url(../imgs/Screenshot\ 2026-04-16\ at\ 19.12.07.png);
+    background-image: url(../assets/imgs/Moango.jpg);
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    background-attachment: fixed;
     font-family: "Poppins", sans-serif;
     font-weight: 400;
     font-style: normal;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+
+.login {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 5px 20px 10px 20px;
+    box-sizing: border-box;
+    overflow: hidden;
+}
+
+.cadastro {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+    width: 100%;
+    flex-wrap: nowrap;
+    height: auto;
+    max-height: calc(100vh - 100px);
+    overflow: hidden;
 }
 
 .div_tela_cadastro_login {
     display: flex;
     flex-direction: column;
     background-image: linear-gradient(45deg, #306a2d, #4a8f4a);
-    width: 400px;
-    padding: 50px;
+    width: 320px;
+    padding: 40px 25px;
     border-radius: 30px;
-    box-shadow: 2px 2px 2px 2px #514b4b;
-    text-align: center;
-    gap: 20px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+    gap: 6px;
+    height: auto;
+    flex-shrink: 0;
 }
-
 
 .div_tela_cadastro {
     display: flex;
@@ -43,13 +68,70 @@ body {
     align-items: center;
     flex-direction: column;
     background-image: linear-gradient(45deg, #306a2d, #4a8f4a);
-    padding: 50px;
-    width: 300px;
+    padding: 40px 25px;
+    width: 320px;
     border-radius: 30px;
-    box-shadow: 2px 2px 2px 2px #514b4b;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+    height: auto;
+    flex-shrink: 0;
 }
+
+.card-vazio {
+    width: 320px;
+    height: auto;
+    background-image: linear-gradient(45deg, #306a2d, #4a8f4a);
+    border-radius: 30px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+    flex-shrink: 0;
+    padding: 40px 25px;
+}
+
+.card-exemplo {
+    width: 320px;
+    height: auto;
+    background-image: linear-gradient(45deg, #306a2d, #4a8f4a);
+    border-radius: 30px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 30px 20px;
+    gap: 12px;
+    flex-shrink: 0;
+}
+
+.img-cliente {
+    width: 100%;
+    height: auto;
+    max-height: 300px;
+    object-fit: cover;
+    border-radius: 20px;
+}
+
+.img-login {
+    width: 100%;
+    height: auto;
+    max-height: 100px;
+    object-fit: cover;
+    border-radius: 20px;
+}
+
+.texto-exemplo {
+    color: aliceblue;
+    font-size: 13px;
+    font-weight: 500;
+    text-align: center;
+    margin: 0;
+    padding: 0 5px;
+    line-height: 1.4;
+}
+
 .tituloAgroSense {
     color: aliceblue;
+    font-size: 24px;
+    font-weight: 600;
+    margin: 0;
 }
 
 #msg_alerta {
@@ -59,29 +141,54 @@ body {
     border-radius: 10px;
 }
 
+.campo {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.campo span,
+.campo p {
+    color: aliceblue;
+    font-weight: 500;
+    font-size: 12px;
+}
+
 .ipt {
-    padding: 6px;
-    height: 25px;
-    width: 200px;
+    padding: 8px;
+    height: 35px;
+    width: 100%;
     border-radius: 20px;
     border-style: none;
+    border: 2px solid #ceedc2;
     font-size: 12px;
+    background-color: rgba(255, 255, 255, 0.9);
+    transition: all 0.3s ease;
+}
+
+.ipt:focus {
+    outline: none;
+    border-color: #59744d;
+    background-color: #ffffff;
 }
 
 #button_registro {
     border-radius: 20px;
-    width: 200px;
-    height: 30px;
+    width: 100%;
+    height: 35px;
     border-style: none;
     background-color: #184c0f;
     color: aliceblue;
-    padding: 4px;
-    font-size: 20px;
+    padding: 6px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
 }
 
 #button_registro:hover {
     background-color: #82cb82;
-    transition: 2ms;
+    transform: translateY(-2px);
 }
 
 .link {
@@ -100,19 +207,21 @@ body {
     background-color: transparent;
     border: none;
     padding: 0;
+    font-size: 12px;
+    cursor: pointer;
+    transition: all 0.3s ease;
 }
 
 .acesso:hover {
     color: #d7d7d7;
+    text-decoration: underline;
 }
 
-.cadastro {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex: 1;
-    margin-top: 70px;
-    flex-direction: column;
+.alerta_erro {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 999;
 }
 
 
