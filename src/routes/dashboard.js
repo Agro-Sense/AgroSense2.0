@@ -3,12 +3,15 @@ var router = express.Router();
 
 var dashboardController = require("../controllers/dashboardController");
 
-router.get("/ativoOuInativo", function(req,res) {
+router.get("/ativoOuInativo", 
+function(req,res) {
+
     dashboardController.ativoOuInativo(req,res);
  }
 
 );
-router.get("/analiseUmidade", function(req,res) {
+router.get("/analiseUmidade", 
+function(req,res) {
     dashboardController.analiseUmidade(req,res);
  }
 

@@ -1,21 +1,21 @@
 var dashboardModel = require("../models/dashboardModel");
 
 function ativoOuInativo(req, res) {
-    dashboardModel.ativoOuInativo().then(function (resultado) {
+    dashboardModel.ativoOuInativo(idCliente).then(function (resultado) {
         res.status(200).json(resultado);
     }).catch(function (erro) {
         res.status(500).json(erro.sqlMessage);
     })
 }
 function analiseUmidade(req, res) {
-    dashboardModel.analiseUmidade().then(function (resultado) {
+    dashboardModel.analiseUmidade(idCliente).then(function (resultado) {
         res.status(200).json(resultado);
     }).catch(function (erro) {
         res.status(500).json(erro.sqlMessage);
     })
 }
 function horaMedicao(req, res) {
-    dashboardModel.horaMedicao().then(function (resultado) {
+    dashboardModel.horaMedicao(idCliente).then(function (resultado) {
         res.status(200).json(resultado);
     }).catch(function (erro) {
         res.status(500).json(erro.sqlMessage);
@@ -23,7 +23,7 @@ function horaMedicao(req, res) {
 }
 
 function producaoPorMes(req, res) {
-    dashboardModel.producaoPorMes().then(function (resultado) {
+    dashboardModel.producaoPorMes(idCliente).then(function (resultado) {
         res.status(200).json(resultado);
     }).catch(function (erro) {
         res.status(500).json(erro.sqlMessage);
@@ -37,25 +37,25 @@ function kpiUmidade(req, res) {
 }
 
 function kpiAlertaUmidade(req, res) {
-    dashboardModel.kpiAlertaUmidade()
+    dashboardModel.kpiAlertaUmidade(idCliente)
         .then(resultado => res.status(200).json(resultado))
         .catch(erro => res.status(500).json(erro.sqlMessage));
 }
 
 function kpiSensores(req, res) {
-    dashboardModel.kpiSensores()
+    dashboardModel.kpiSensores(idCliente)
         .then(resultado => res.status(200).json(resultado))
         .catch(erro => res.status(500).json(erro.sqlMessage));
 }
 
 function kpiMelhorMes(req, res) {
-    dashboardModel.kpiMelhorMes()
+    dashboardModel.kpiMelhorMes(idCliente)
         .then(resultado => res.status(200).json(resultado))
         .catch(erro => res.status(500).json(erro.sqlMessage));
 }
 
 function kpiPiorMes(req, res) {
-    dashboardModel.kpiPiorMes()
+    dashboardModel.kpiPiorMes(idCliente)
         .then(resultado => res.status(200).json(resultado))
         .catch(erro => res.status(500).json(erro.sqlMessage));
 }

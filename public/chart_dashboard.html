@@ -106,8 +106,8 @@
           plotarGraficoDoughnut(data);
           // plotarGraficoBarra(data);
         })
-        .catch(function (err) {
-          console.log(err);
+        .catch(function (erro) {
+          console.log(erro);
         })
 
       fetch('/dashboard/analiseUmidade')
@@ -118,8 +118,8 @@
           plotarGraficoPizza(data);
           // plotarGraficoBarra(data);
         })
-        .catch(function (err) {
-          console.log(err);
+        .catch(function (erro) {
+          console.log(erro);
         })
 
       fetch('/dashboard/horaMedicao')
@@ -130,8 +130,8 @@
           plotarGraficoLinha(data);
           // plotarGraficoBarra(data);
         })
-        .catch(function (err) {
-          console.log(err);
+        .catch(function (erro) {
+          console.log(erro);
         })
 
       fetch('/dashboard/producaoPorMes')
@@ -142,8 +142,8 @@
           plotarGraficoBarra(data);
           // plotarGraficoBarra(data);
         })
-        .catch(function (err) {
-          console.log(err);
+        .catch(function (erro) {
+          console.log(erro);
         })
 
       fetch('/dashboard/kpiUmidade')
@@ -175,7 +175,7 @@
       fetch('/dashboard/kpiSensores')
         .then(res => res.json())
         .then(data => {
-          let sensores = data.map(sensor =>
+          let sensores = (
             `SENSOR_UMID_${sensor.id}`
           );
 
