@@ -33,7 +33,7 @@ header {
     align-items: center;
     padding-top: 2%;
 }
-
+/*
 .barra {
     display: flex;
     width: 70%;
@@ -67,7 +67,7 @@ header {
 .topicos-barra a:hover {
     color: #9ee796;
 }
-
+*/
 .topicos-barra {
     display: flex;
     flex-direction: row;
