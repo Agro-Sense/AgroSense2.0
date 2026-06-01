@@ -10,6 +10,7 @@
 
     <script src="./js/sessao.js"></script>
 
+    <link rel="stylesheet" href="./css/navbar.css">
     <link rel="stylesheet" href="./css/style.css">
     <link rel="stylesheet" href="./css/site.css">
     <link rel="stylesheet" href="./css/estilo.css">
@@ -21,14 +22,18 @@
     <header>
         <nav class="barra">
             <ul class="topicos-barra">
-                <li class="logo-menu"><img src="./imgs/logoAgroSense.png" alt="" class="logoAgroSense">AgroSense</li>
+                <li class="logo-menu"><img src="./assets/imgs/logoAgroSense.png" alt="" class="logoAgroSense">AgroSense</li>
                 <li><a href="index.html">Início</a></li>
                 <li><a href="index.html#SobreNos">Sobre nós</a></li>
                 <li><a href="index.html#oferecimento">O que oferecemos</a></li>
-                <li><a href="simuladorFinanceiro.html" target="_blank">Simulador financeiro</a></li>
+                <li><a href="simulador.html" target="_blank">Simulador financeiro</a></li>
                 <li><a href="index.html#suporte">Suporte</a></li>
+<<<<<<< HEAD
                 <li>|</li>
                 <li><a href="siteEstaticoCadastro.html">Cadastrar</a></li>
+=======
+                <li><a href="cadastro.html">Cadastrar</a></li>
+>>>>>>> cd7623b (Login e Cadastro e Navbar arrumados!)
                 <li><a href="login.html">Entrar</a></li>
             </ul>
         </nav>
@@ -43,24 +48,35 @@
         </div>
         <main class="cadastro">
             <div id="tela_login" class="div_tela_cadastro_login">
-                <div class="display">
-                    <h2 class="tituloAgroSense">AgroSense</h2><br>
-                    <h3>Login</h3><br>
-                    Email:<br>
-                    <input class='ipt' type="text" id="email_input" placeholder="josé@morangos.silvestres.com"><br><br>
-                    Senha:<br>
-                    <input class='ipt' type="password" id="senha_input" placeholder="senhasilvestres"><br><br>
-
-                    <button id="button_registro" onclick="entrar()">Entrar</button><br><br>
-                    <a class='acesso' href="cadastro.html">Não tem conta? Cadastre-se</a>
+                <h2 class="tituloAgroSense">AgroSense</h2>
+                
+                <img class="img-login" src="./assets/imgs/Motango.jpg" alt="Moango">
+                
+                <p class="texto-exemplo">Bem vindo de volta!</p>
+                
+                <h3 style="color: aliceblue; margin: 0;">Login</h3>
+                                <div class="campo">
+                    <span>Email:</span>
+                    <input class='ipt' type="text" id="email_input" placeholder="seu@email.com">
                 </div>
+                
+                <div class="campo">
+                    <span>Senha:</span>
+                    <input class='ipt' type="password" id="senha_input" placeholder="Sua senha">
+                </div>
+
+                <button id="button_registro" onclick="entrar()">Entrar</button>
+
+                <a class='acesso' href="cadastro.html">Não tem conta? Cadastre-se</a>
             </div>
+
             <div id="div_aguardar" class="loading-div">
                 <img src="./assets/circle-loading.gif" id="loading-gif">
             </div>
 
             <div id="div_erros_login"></div>
         </main>
+    </div>
 
 
 </body>

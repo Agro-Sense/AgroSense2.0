@@ -32,6 +32,7 @@ header {
     display: flex;
     justify-content: center;
     align-items: center;
+<<<<<<< HEAD
     padding-top: 2%;
 }
 
@@ -49,6 +50,16 @@ header {
     transform: translateX(-50%);
     z-index: 100;
     padding: 0 20px;
+=======
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    z-index: 1000;
+    padding-top: 20px;
+    background: transparent;
+>>>>>>> cd7623b (Login e Cadastro e Navbar arrumados!)
 }
 
 .topicos-barra a {
@@ -65,8 +76,14 @@ header {
     display: flex;
     flex-direction: row;
     list-style-type: none;
+<<<<<<< HEAD
     gap: 24px;
     padding: 15px 0;
+=======
+    gap: 15px;
+    padding-bottom: 15px;
+    padding-top: 15px;
+>>>>>>> cd7623b (Login e Cadastro e Navbar arrumados!)
     color: #ffff;
     flex-wrap: wrap;
     align-items: center;
@@ -85,13 +102,20 @@ header {
     width: 40px;
     height: auto;
     object-fit: contain;
+<<<<<<< HEAD
     object-position: center;
+=======
+    /* faz a imagem não cortar */
+    object-position: left;
+    /*Alinha a imagem no centro */
+>>>>>>> cd7623b (Login e Cadastro e Navbar arrumados!)
 }
 
 /* ===== SECTION INÍCIO ===== */
 .main-inicio {
     display: flex;
     flex-direction: row;
+<<<<<<< HEAD
     padding-top: 40px;
     gap: 8%;
     justify-content: space-around;
@@ -99,6 +123,11 @@ header {
     min-height: 100vh;
     padding-left: 10%;
     padding-right: 10%;
+=======
+    margin-top: 15%;
+    gap: 10%;
+    justify-content: center;
+>>>>>>> cd7623b (Login e Cadastro e Navbar arrumados!)
 }
 
 .conteudo-texto {
