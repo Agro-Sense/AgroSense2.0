@@ -1,0 +1,223 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+    font-style: normal;
+}
+
+header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 2%;
+}
+
+body {
+     background-color: #f7fdf5;
+     overflow-x: hidden;
+}
+
+.barraFixa {
+    background-color: #006852;
+    width: 60%;
+    height: auto;
+    border-radius: 30px;
+    position: relative;
+    margin-top: 1%;
+    color: white;
+    font-size: 20px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 15px 8px;
+}
+
+.titulo {
+    text-align: center;
+    letter-spacing: 1px;
+}
+
+.voltar {
+    position: absolute;
+    right: 40px;
+    color: white;
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: 600;
+    background-color: #88bc72;
+    padding: 8px 16px;
+    border-radius: 20px;
+    transition: background-color 0.2s, width 0.2s;
+}
+
+.voltar:hover {
+    color: #7caa68;
+}
+
+main {
+    flex-direction: column;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+.conteudo_de_texto {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+
+.conteudo_de_input {
+    gap: 30px;
+}
+
+.titulo_calculadora {
+    font-size: 60px;
+    font-weight: 700;
+    color: #59744d;
+    text-shadow: 1px 1px 1px #adaead;
+    letter-spacing: -1px;
+    text-align: center;
+}
+
+.card_inputs {
+    background-color: #ffffff;
+    border-radius: 20px;
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    align-items: center;
+    box-shadow: 10px 10px #e79595; 
+    width: fit-content;
+}
+
+.titulo_input {
+    font-weight: 600;
+    color: #ac5b5b;
+    font-size: 14px;
+}
+
+.caixa_inputs {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+   
+}
+
+.ipt_com_titulo {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+input {
+    width: 300px;
+    height: 50px;
+    border: solid #00000062 2px;
+    border-radius: 25px;
+    padding-left: 20px;
+    font-size: 16px;
+    background-color: #ffffff;
+    color: #2b2b2b;
+}
+
+.btn_calcular {
+    width: 300px;
+    height: 50px;
+    border: none;
+    border-radius: 25px;
+    background-color: rgb(186, 80, 80);
+    color: white;
+    font-weight: 600;
+    font-size: 18px;
+    font-family: "Poppins", sans-serif;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.btn_calcular:hover {
+    background-color: #c94f4f;
+}
+
+.frase_resultado {
+    background-image: linear-gradient(to right, #50856b, #006852);
+    width: 700px;
+    height: 40px;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 20px;
+    font-weight: 600;
+    font-size: 16px;
+}
+
+.caixa_analise {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.texto_olhometro {
+    color: #545454;
+    font-weight: 600;
+    font-size: 14px;
+}
+
+.barraOlhometro {
+    width: 21em;
+    height: 1em;
+    background-image: linear-gradient(to right, #a6a6a6, #545454);
+    border-radius: 20px;
+}
+
+.span_agroSense {
+    color: #058246;
+    font-weight: 500;
+}
+
+.barraAgroSense {
+    width: 21em;
+    height: 1em;
+    background-image: linear-gradient(to right, #12a149 70%, #545454);
+    border-radius: 20px;
+}
+
+.texto_aumento_porcentagem {
+    color: #12a149;
+    font-weight: 700;
+    font-size: 18px;
+}
+
+#dv_msg {
+    background-color: #e9d9d9;
+    border-radius: 20px;
+    display: none;
+    width: 700px;
+    color: #2b2b2b;
+    line-height: 1.8;
+    align-items: center;
+    box-shadow: 10px 10px #e79595;
+    justify-content: center;
+    flex-direction: column;
+    text-align: center;
+    padding: 30px;
+    margin: 20px auto;
+    font-size: 16px;
+}
+
+#dv_msg:not(:empty) {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
