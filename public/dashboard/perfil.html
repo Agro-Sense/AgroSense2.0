@@ -64,7 +64,7 @@
 
   <header>
     <nav class="barradashboard">
-    <span>Olá, <span id="b_usuario">! Bem-vindo a Sua Área Exclusiva</span>
+    <span>Olá, <span id="nomeHeader">! Bem-vindo a Sua Área Exclusiva</span>
     </nav>
   </header>
 
@@ -75,7 +75,7 @@
 
       <div class="card-avatar">
         <div class="avatar-circle">🍓</div>
-        <div class="avatar-nome"><span id="b_usuario"></span></div>
+        <div class="avatar-nome"><span id="nomePerfil"></span></div>
         <div class="avatar-cargo">Cliente</div>
 
         <div class="avatar-divider"></div>
@@ -84,17 +84,20 @@
           <span class="info-label">Membro desde</span>
           <span class="info-value" id="b_data"></span>
         </div>
+
         <div class="info-item">
           <span class="info-label">E-mail</span>
-          <span class="info-value" id=b_email></span>
+          <span class="info-value" id="b_email"></span>
         </div>
+
         <div class="info-item">
           <span class="info-label">CPF</span>
-          <span class="info-value" id=b_cpf></span>
+          <span class="info-value" id="b_cpf"></span>
         </div>
+
         <div class="info-item">
           <span class="info-label">Telefone</span>
-          <span class="info-value" id=b_telefone></span>
+          <span class="info-value" id="b_telefone"></span>
         </div>
       </div>
 
@@ -151,6 +154,53 @@
 </body>
 </html>
 <script>
+
+window.onload = function () {
+    carregarPerfil();
+}
+
+function carregarPerfil() {
+
+    var idUsuario = sessionStorage.ID_USUARIO;
+
+    fetch(`/descPerfil/perfil/${idUsuario}`)
+        .then(function (resposta) {
+
+            if (!resposta.ok) {
+                throw new Error("Erro ao buscar perfil");
+            }
+
+            return resposta.json();
+        })
+        .then(function (dados) {
+
+            nomeHeader.innerHTML =
+                `${dados.nome}! Bem-vindo à Sua Área Exclusiva`;
+
+            nomePerfil.innerHTML =
+                dados.nome;
+
+            b_email.innerHTML =
+                dados.email;
+
+            b_cpf.innerHTML =
+                dados.cpf;
+
+            b_telefone.innerHTML =
+                dados.telefone;
+
+            const data = new Date(dados.data_cadastro);
+
+            b_data.innerHTML =
+                data.toLocaleDateString("pt-BR");
+
+        })
+        .catch(function (erro) {
+            console.log("Erro:", erro);
+        });
+}
+ 
+ 
  function enviar() {
     var nomeEmpresaVar = input_nome_empresa.value;
     var cnpjVar = input_cnpj.value;

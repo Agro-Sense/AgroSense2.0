@@ -22,6 +22,7 @@ var medidasRouter = require("./src/routes/medidas");
 var faleConoscoRouter = require("./src/routes/fale_conosco");
 var perfilRouter = require("./src/routes/perfil");
 var dashboardRouter = require("./src/routes/dashboard");
+var descPerfilRouter = require("./src/routes/descPerfil");
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -36,6 +37,7 @@ app.use("/medidas", medidasRouter);
 app.use("/fale-conosco", faleConoscoRouter);
 app.use("/perfil", perfilRouter);
 app.use("/dashboard", dashboardRouter);
+app.use("/descPerfil", descPerfilRouter);
 
 app.listen(PORTA_APP, function () {
     console.log(`
