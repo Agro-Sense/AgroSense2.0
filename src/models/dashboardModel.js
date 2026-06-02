@@ -41,32 +41,26 @@ console.log("Executando a instrução SQL: \n" + instrucao);
 return database.executar(instrucao);
 }
 
+// kpi 1
 function kpiUmidade(idCliente) {
 var instrucao = `
-SELECT
-MAX(c.valor) AS maiorUmidade,
-MIN(c.valor) AS menorUmidade
-FROM captura c
-JOIN sensor s ON c.fkSensor = s.id
-JOIN plantacao p ON s.fkPlantacao = p.id
-WHERE p.fkCliente = ${idCliente};
+select * from vw_kpi1
+WHERE fkCliente = ${idCliente};
 `;
 console.log("Executando a instrução SQL: \n" + instrucao);
 return database.executar(instrucao);
 }
 
+// kpi 2
 function kpiAlertaUmidade(idCliente) {
 var instrucao = `
-SELECT COUNT(*) AS totalBaixas
-FROM captura c
-JOIN sensor s ON c.fkSensor = s.id
-JOIN plantacao p ON s.fkPlantacao = p.id
-WHERE fkCliente = ${idCliente}
-AND valor < 65;`;
+select * from vw_kpi2
+WHERE fkCliente = ${idCliente};`;
 console.log("Executando a instrução SQL: \n" + instrucao);
 return database.executar(instrucao);
 }
 
+// kpi 3
 function kpiSensores(idCliente) {
 var instrucao = `
 SELECT id
@@ -77,22 +71,17 @@ console.log("Executando a instrução SQL: \n" + instrucao);
 return database.executar(instrucao);
 }
 
+
+// kpi 4
 function kpiMelhorMes(idCliente) {
 var instrucao = `
-SELECT
-c.data_horario_medicao AS nomeMes,
-AVG(c.valor) AS mediaUmidade
-FROM captura c
-JOIN sensor s ON c.fkSensor = s.id
-JOIN plantacao p ON s.fkPlantacao = p.id
-WHERE p.fkCliente = ${idCliente}
-GROUP BY nomeMes
-ORDER BY mediaUmidade DESC
-LIMIT 1;`;
+select * from vw_kpi4
+WHERE fkCliente = ${idCliente};`;
 console.log("Executando a instrução SQL: \n" + instrucao);
 return database.executar(instrucao);
 }
 
+// kpi 5
 function kpiPiorMes(idCliente) {
 var instrucao = `
 SELECT
@@ -108,6 +97,7 @@ LIMIT 1;`;
 console.log("Executando a instrução SQL: \n" + instrucao);
 return database.executar(instrucao);
 }
+
 
 module.exports = {
 ativoOuInativo,
