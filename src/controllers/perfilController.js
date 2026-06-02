@@ -6,6 +6,7 @@ function enviar(req, res) {
     var cnpj = req.body.cnpjServer;
     var cep = req.body.cepServer;
     var complemento = req.body.complementoServer;
+    var fkUsuario = req.body.fkUsuarioServer;
 
     // Faça as validações dos valores
     if (nomeEmpresa == undefined) {
@@ -19,7 +20,7 @@ function enviar(req, res) {
     } else {
 
         // Passe os valores como parâmetro e vá para o arquivo usuarioModel.js
-        perfilModel.enviar(nomeEmpresa, cnpj, cep ,complemento)
+        perfilModel.enviar(nomeEmpresa, cnpj, cep ,complemento, fkUsuario)
             .then(
                 function (resultado) {
                     res.json(resultado);

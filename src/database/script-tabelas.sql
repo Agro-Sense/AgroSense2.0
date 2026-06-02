@@ -2,14 +2,6 @@ create database agroSense;
 use agroSense;
 
 
-create table cliente (
-id int primary key auto_increment,
-nome varchar(50) not null,
-cnpj char (14) not null,
-cep char(8) not null,
-complemento varchar(45) not null
-);
-
 create table usuario(
 id int primary key auto_increment,
 nome varchar(50)not null, 
@@ -17,10 +9,18 @@ cpf char(11) not null,
 telefone char(11) not null,
 email varchar(50) not null,
 senha varchar(30),
-data_cadastro datetime default current_timestamp(),
-fkCliente int,
-constraint fk_usu_cliente foreign key (fkCliente)
-  references cliente(id)
+data_cadastro datetime default current_timestamp()
+);
+
+create table cliente (
+id int primary key auto_increment,
+nome varchar(50) not null,
+cnpj char (14) not null,
+cep char(8) not null,
+complemento varchar(45) not null,
+fkUsuario int unique,
+constraint fk_usu_cliente foreign key (fkUsuario)
+  references usuario(id)
 );
 
 create table plantacao (

@@ -152,10 +152,12 @@
 </html>
 <script>
  function enviar() {
+
     var nomeEmpresaVar = input_nome_empresa.value;
     var cnpjVar = input_cnpj.value;
     var cepVar = input_cep.value;
     var complementoVar = input_complemento.value;
+    var fkUsuario 
 
     // Verificando se há algum campo em branco
     if (
@@ -184,7 +186,8 @@
         nomeEmpresaServer: nomeEmpresaVar,
         cnpjServer: cnpjVar,
         cepServer: cepVar,
-        complementoServer: complementoVar
+        complementoServer: complementoVar,
+        fkUsuarioServer: fkUsuario
       }),
     })
       .then(function (resposta) {
