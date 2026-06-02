@@ -17,6 +17,8 @@ function enviar(req, res) {
         res.status(400).send("Seu cep está undefined!");
     } else if (complemento == undefined) {
         res.status(400).send("Seu complemento está undefined!");
+    } else if (fkUsuario == undefined) {
+        res.status(400).send("Seu id está undefined!");
     } else {
 
         // Passe os valores como parâmetro e vá para o arquivo usuarioModel.js
