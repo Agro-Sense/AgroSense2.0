@@ -128,35 +128,49 @@ select * from vw_grafico4;
 
 -- select da kpi1
 CREATE VIEW vw_kpi1 AS
-SELECT
-MAX(c.valor) AS maiorUmidade,
-MIN(c.valor) AS menorUmidade
-FROM captura c
-JOIN sensor s ON c.fkSensor = s.id
-JOIN plantacao p ON s.fkPlantacao = p.id;
+ SELECT
+ p.fkCliente,
+    MAX(c.valor) AS maiorUmidade,
+    MIN(c.valor) AS menorUmidade
+    FROM captura c
+    JOIN sensor s ON c.fkSensor = s.id
+    JOIN plantacao p ON s.fkPlantacao = p.id
+    group by p.fkCliente;
+    
+    
 SELECT * FROM vw_kpi1;
+    
 -- select da kpi2
 CREATE VIEW vw_kpi2 AS
-SELECT COUNT(*) AS totalBaixas
-FROM captura c
-JOIN sensor s ON c.fkSensor = s.id
-JOIN plantacao p ON s.fkPlantacao = p.id
-AND valor < 65;
-SELECT * FROM vw_kpi2;
+ SELECT
+      p.fkCliente,
+ COUNT(*) AS totalBaixas
+    FROM captura c
+    JOIN sensor s ON c.fkSensor = s.id
+    JOIN plantacao p ON s.fkPlantacao = p.id
+    AND valor < 65 
+    group by p.fkCliente;
+    
+    SELECT * FROM vw_kpi2;
+    
 -- select da kpi3
 CREATE VIEW vw_kpi3 AS
-SELECT id
-FROM sensor;
-select * FROM vw_kpi3;
+SELECT p.fkCliente,
+      s.id
+    FROM sensor s
+    JOIN plantacao p ON s.fkPlantacao = p.id;
+    select * FROM vw_kpi3;
+    
 -- select da kpi4
 CREATE VIEW vw_kpi4 AS
 SELECT
-c.data_horario_medicao AS nomeMes,
+p.fkCliente,
+month(c.data_horario_medicao) AS nomeMes,
 AVG(c.valor) AS mediaUmidade
 FROM captura c
 JOIN sensor s ON c.fkSensor = s.id
 JOIN plantacao p ON s.fkPlantacao = p.id
-GROUP BY nomeMes
+GROUP BY nomeMes, p.fkCliente
 ORDER BY mediaUmidade DESC
 LIMIT 1;
 
