@@ -79,79 +79,98 @@ INSERT INTO captura (data_horario_medicao, valor, fkSensor) VALUES
 ('2026-05-30 17:23:11', 61.75, 5);
 
 
---select do grafico 1
+-- select do grafico 1
+CREATE VIEW vw_grafico1 AS
 SELECT
-    HOUR(c.data_horario_medicao) AS horario,
-    c.valor
-  FROM captura c
-    JOIN sensor s ON c.fkSensor = s.id
-    JOIN plantacao p ON s.fkPlantacao = p.id
-    ORDER BY c.data_horario_medicao;
+p.fkCliente,
+HOUR(c.data_horario_medicao) AS horario,
+c.valor
+FROM captura c
+JOIN sensor s ON c.fkSensor = s.id
+JOIN plantacao p ON s.fkPlantacao = p.id;
+select * from vw_grafico1;
+-- select do grafico 2
+CREATE VIEW vw_grafico2 AS
+SELECT p.fkCliente,
+SUM(CASE WHEN c.valor < 65 THEN 1 ELSE 0 END) AS seco,
+SUM(CASE WHEN c.valor BETWEEN 65 AND 75 THEN 1 ELSE 0 END) AS ideal,
+SUM(CASE WHEN c.valor > 75 THEN 1 ELSE 0 END) AS umido
+FROM captura c
+JOIN sensor s ON c.fkSensor = s.id
+JOIN plantacao p ON s.fkPlantacao = p.id
+group by p.fkCliente;
 
- -- select do grafico 2
-SELECT
-    SUM(CASE WHEN c.valor < 65 THEN 1 ELSE 0 END) AS seco,
-    SUM(CASE WHEN c.valor BETWEEN 65 AND 75 THEN 1 ELSE 0 END) AS ideal,
-    SUM(CASE WHEN c.valor > 75 THEN 1 ELSE 0 END) AS umido
-	FROM captura c
-	JOIN sensor s ON c.fkSensor = s.id
-	JOIN plantacao p ON s.fkPlantacao = p.id;
+SELECT * FROM vw_grafico2;
 
 -- select do grafico 3
-SELECT 
- SUM(CASE WHEN s.sts= TRUE THEN 1 ELSE 0 END) AS ativos,
- SUM(CASE WHEN s.sts = FALSE THEN 1 ELSE 0 END) AS inativos
-  FROM sensor s 
-  JOIN plantacao p ON s.fkPlantacao = p.id;
- 
- -- select do grafico 4
- SELECT
-  c.data_horario_medicao AS mes,
-  c.data_horario_medicao AS nomeMes,
-  AVG(c.valor) AS mediaUmidade
-  FROM captura c
-  JOIN sensor s ON c.fkSensor = s.id
-  JOIN plantacao p ON s.fkPlantacao = p.id
-  WHERE p.fkCliente = ${idCliente}
-  GROUP BY mes, nomeMes
-  ORDER BY mes;
+CREATE VIEW vw_grafico3 AS
+SELECT
+p.fkCliente,
+SUM(CASE WHEN s.sts= TRUE THEN 1 ELSE 0 END) AS ativos,
+SUM(CASE WHEN s.sts = FALSE THEN 1 ELSE 0 END) AS inativos
+FROM sensor s
+JOIN plantacao p ON s.fkPlantacao = p.id
+group by p.fkCliente;
+select * from vw_grafico3;
+-- select do grafico 4
+CREATE VIEW vw_grafico4 AS
+SELECT
+p.fkCliente,
+c.data_horario_medicao AS mes,
+c.data_horario_medicao AS nomeMes,
+AVG(c.valor) AS mediaUmidade
+FROM captura c
+JOIN sensor s ON c.fkSensor = s.id
+JOIN plantacao p ON s.fkPlantacao = p.id
+GROUP BY mes, nomeMes, p.fkCliente
+ORDER BY mes;
+select * from vw_grafico4;
 
 -- select da kpi1
+CREATE VIEW vw_kpi1 AS
 SELECT
-    MAX(valor) AS maiorUmidade,
-    MIN(valor) AS menorUmidade
-  FROM captura;
-    
+MAX(c.valor) AS maiorUmidade,
+MIN(c.valor) AS menorUmidade
+FROM captura c
+JOIN sensor s ON c.fkSensor = s.id
+JOIN plantacao p ON s.fkPlantacao = p.id;
+SELECT * FROM vw_kpi1;
 -- select da kpi2
+CREATE VIEW vw_kpi2 AS
 SELECT COUNT(*) AS totalBaixas
-  FROM captura
-    WHERE valor < 65;
-    
+FROM captura c
+JOIN sensor s ON c.fkSensor = s.id
+JOIN plantacao p ON s.fkPlantacao = p.id
+AND valor < 65;
+SELECT * FROM vw_kpi2;
 -- select da kpi3
+CREATE VIEW vw_kpi3 AS
 SELECT id
-  FROM sensor
-    WHERE sts = FALSE;
-    
+FROM sensor;
+select * FROM vw_kpi3;
 -- select da kpi4
+CREATE VIEW vw_kpi4 AS
 SELECT
 c.data_horario_medicao AS nomeMes,
 AVG(c.valor) AS mediaUmidade
 FROM captura c
 JOIN sensor s ON c.fkSensor = s.id
 JOIN plantacao p ON s.fkPlantacao = p.id
-WHERE p.fkCliente = ${idCliente}
 GROUP BY nomeMes
 ORDER BY mediaUmidade DESC
 LIMIT 1;
 
+SELECT * FROM vw_kpi4;
+
 -- select da kpi5
+CREATE VIEW vw_kpi5 AS
 SELECT
 c.data_horario_medicao AS nomeMes,
 AVG(c.valor) AS mediaUmidade
 FROM captura c
 JOIN sensor s ON c.fkSensor = s.id
 JOIN plantacao p ON s.fkPlantacao = p.id
-WHERE p.fkCliente = ${idCliente}
 GROUP BY nomeMes
-ORDER BY mediaUmidade ASC
+ORDER BY mediaUmidade DESC
 LIMIT 1;
+SELECT * FROM vw_kpi5;
