@@ -103,14 +103,13 @@ header {
     display: flex;
     flex-direction: row;
     padding-top: 40px;
-    gap: 8%;
+    gap: 22%;
     justify-content: space-around;
     align-items: center;
     min-height: 100vh;
     padding-left: 10%;
     padding-right: 10%;
-    margin-top: 15%;
-    gap: 10%;
+    margin-top: -3%;
     justify-content: center;
 }
 
