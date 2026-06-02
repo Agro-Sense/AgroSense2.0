@@ -55,33 +55,21 @@ mensagem text not null
 -- inserts para testes
 
 INSERT INTO cliente (nome, cnpj, cep, complemento) VALUES
-('Novos Morangos', '45290600000100', '13010000', 'Galpão A'),
-('Familia Agro', '11900231000111', '12940000', 'Sede'),
-('Campos Belos', '90591110000122', '80010000', 'Fazenda Principal'),
-('Fazenda Nova', '43543302000133', '30110000', 'Setor Administrativo'),
-('Mais Agro', '75261743000144', '90010000', 'Bloco B');
-
+('Novos Morangos', '45290600000100', '13010000', 'Galpão A');
 
 INSERT INTO usuario (nome, cpf, telefone, email, senha, fkCliente) VALUES
-('José da Silva', '12334567840', '11999999999','jose@novosmorangos.com', 'AmoMorangos@1', 1),
-('Carla Moreira', '23145678911', '11988888888','carla@familiagro.com', '123Familia15', 2),
-('Manoel Campos', '34356789022', '41977777777','manoel@camposbelos.com', 'Senha123', 3),
-('Lorena Almeida', '45467890133', '31966666666','Lorena@fazendanova.com', 'Fazenda2024A', 4),
-('Barbara Rocha', '56778901244', '51955555555','barbara@maisagro.com', 'Agro1256', 5);
- 
+('José da Silva', '12334567840', '11999999999','jose@novosmorangos.com', 'AmoMorangos@1', 1);
+
+
 INSERT INTO plantacao (tamanho_hectares, fkCliente) VALUES
-(10, 1),
-(15, 2),
-(8, 3),
-(20, 4),
-(12, 5);
+(10, 1);
 
 INSERT INTO sensor (localizacao, sts, fkPlantacao) VALUES
 ('Estufa A - Linha 1', TRUE, 1),
 ('Estufa A - Linha 2', TRUE, 1),
-('Estufa B - Centro', FALSE, 2),
-('Campo Aberto - Setor 1', TRUE, 3),
-('Estufa C - Fundo', FALSE, 4);
+('Estufa B - Centro', FALSE, 1),
+('Campo Aberto - Setor 1', TRUE, 1),
+('Estufa C - Fundo', FALSE, 1);
 
 INSERT INTO captura (data_horario_medicao, valor, fkSensor) VALUES
 ('2026-05-30 06:12:45', 72.50, 1),
