@@ -92,11 +92,17 @@
   </div>
 
   <script>
-  const idCliente = sessionStorage.ID_USUARIO;
+    const idCliente = sessionStorage.ID_USUARIO;
+
+    let chartLinha = null;
+    let chartPizza = null;
+    let chartDoughnut = null;
+    let chartBarra = null;
 
 
 
     function obterDados() {
+      console.log('obterDados chamado em:', new Date().toLocaleTimeString()); // ← adicione isso
       // Aqui seria a função que obteria os dados do banco de dados
       // No caso, aqui você colocaria o fetch que teria o endereço da sua rota que você criou na pasta /routes e chamaria a função plotarGraficoLinha nessa função. Exemplo:
 
@@ -106,7 +112,6 @@
         })
         .then(function (data) {
           plotarGraficoDoughnut(data);
-          // plotarGraficoBarra(data);
         })
         .catch(function (erro) {
           console.log(erro);
@@ -211,123 +216,112 @@
 
     function plotarGraficoLinha(dados) {
 
-      const labels = dados.map(item =>
-        String(item.horario).padStart(2, '0') + ':00'
-      );
+      const labels = dados.map(item => String(item.horario).padStart(2, '0') + ':00');
       const valores = dados.map(item => item.valor);
-      const ctx = document.getElementById('myChart1').getContext('2d');
-      new Chart(ctx, {
-        type: 'line',
-        data: {
-          labels: labels,
-          datasets: [{
-            label: 'Umidade do Solo (%)',
-            data: valores,
-            backgroundColor: 'rgba(107, 173, 96, 0.15)',
-            borderColor: '#6bad60',
-            borderWidth: 2,
-            pointBackgroundColor: '#28631d',
-            pointRadius: 3,
-            fill: true,
-            tension: 0.4
-          }]
-        },
-        options: {
-          responsive: true,
-          maintainAspectRatio: false,
-          plugins: {
-            legend: {
-              display: false
+
+      if (chartLinha) {
+        // Gráfico já existe → só atualiza os dados (sem recriar)
+        chartLinha.data.labels = labels;
+        chartLinha.data.datasets[0].data = valores;
+        chartLinha.update();
+      } else {
+        const ctx = document.getElementById('myChart1').getContext('2d');
+        chartLinha = new Chart(ctx, {
+          type: 'line',
+          data: {
+            labels: labels,
+            datasets: [{
+              label: 'Umidade do Solo (%)',
+              data: valores,
+              backgroundColor: 'rgba(107, 173, 96, 0.15)',
+              borderColor: '#6bad60',
+              borderWidth: 2,
+              pointBackgroundColor: '#28631d',
+              pointRadius: 3,
+              fill: true,
+              tension: 0.4
+            }]
+          },
+          options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+              legend: {
+                display: false
+              }
             }
           }
-        }
-      });
+        });
+      }
     }
 
     function plotarGraficoPizza(dados) {
-      var ctx = document.getElementById('myChart2').getContext('2d');
-      var myChart = new Chart(ctx, {
-        type: 'pie',
-        data: {
-          labels: ['Seco', 'Ideal', 'Úmido'],
-          datasets: [{
-            label: 'Comportamento da Umidade',
-            data: [dados[0].seco, dados[0].ideal, dados[0].umido],
-            backgroundColor: ['rgba(240,160,48,0.7)', 'rgba(107,173,96,0.7)', 'rgba(78,147,230,0.7)'],
-            borderColor: ['#f0a030', '#6bad60', '#4e93e6'],
-            borderWidth: 2,
-            hoverOffset: 6
-          }]
-        },
-        options: { responsive: true, maintainAspectRatio: false }
-      });
+      const valores = [dados[0].seco, dados[0].ideal, dados[0].umido];
 
+      if (chartPizza) {
+        chartPizza.data.datasets[0].data = valores;
+        chartPizza.update();
+      } else {
+        const ctx = document.getElementById('myChart2').getContext('2d');
+        chartPizza = new Chart(ctx, {
+          type: 'pie',
+          data: {
+            labels: ['Seco', 'Ideal', 'Úmido'],
+            datasets: [{
+              label: 'Comportamento da Umidade',
+              data: [dados[0].seco, dados[0].ideal, dados[0].umido],
+              backgroundColor: ['rgba(240,160,48,0.7)', 'rgba(107,173,96,0.7)', 'rgba(78,147,230,0.7)'],
+              borderColor: ['#f0a030', '#6bad60', '#4e93e6'],
+              borderWidth: 2,
+              hoverOffset: 6
+            }]
+          },
+          options: { responsive: true, maintainAspectRatio: false }
+        });
+      }
     };
 
     // Função para plotar o gráfico de linha
     function plotarGraficoDoughnut(dados) {
+      const valores = [dados[0].inativos, dados[0].ativos];
 
-      // Capturando o elemento canvas pelo id 
-      var ctx = document.getElementById('myChart3').getContext('2d');
-      // Criando o gráfico de linha usando o Chart.js
-      var myChart = new Chart(ctx, {
-        type: 'doughnut', // Tipo de gráfico: linha
-        data: { // Dados para o gráfico
-          labels: ['Inativo', 'Ativo'],   // Rótulos no eixo X
-          datasets: [{
-            label: 'Operação dos Sensores', // Nome do conjunto de dados
-            data: [dados[0].inativos, dados[0].ativos], // Dados dos votos
-            backgroundColor: ['rgba(223,106,106,0.7)', 'rgba(107,173,96,0.7)'],
-            borderColor: ['#df6a6a', '#6bad60'],
-            borderWidth: 2,
-            hoverOffset: 6
-          }]
-        },
-      });
-    }
+      if (chartDoughnut) {
+        chartDoughnut.data.datasets[0].data = valores;
+        chartDoughnut.update();
+      } else {
 
-
-    const labels4 = ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez'];
-    const vals4 = [6.6, 6.7, 1.5, 1.8, 1.7, 1.6, 1.7, 1.9, 6.5, 6.8, 6.8, 6.7];
-    const colors4 = vals4.map(v => v >= 5 ? 'rgba(107,173,96,0.7)' : 'rgba(240,160,48,0.7)');
-    const config4 = {
-      type: 'bar',
-      data: {
-        labels: labels4,
-        datasets: [{
-          label: 'Nível de Produção',
-          data: vals4,
-          backgroundColor: colors4,
-          borderColor: colors4.map(c => c.replace('0.7', '1')),
-          borderWidth: 1,
-          borderRadius: 6
-        }]
-      },
-      options: {
-        responsive: true,
-        maintainAspectRatio: false,
-        scales: { y: { beginAtZero: true } },
-        plugins: { legend: { display: false } }
+        // Capturando o elemento canvas pelo id 
+        var ctx = document.getElementById('myChart3').getContext('2d');
+        // Criando o gráfico de linha usando o Chart.js
+        chartDoughnut = new Chart(ctx, {
+          type: 'doughnut', // Tipo de gráfico: linha
+          data: { // Dados para o gráfico
+            labels: ['Inativo', 'Ativo'],   // Rótulos no eixo X
+            datasets: [{
+              label: 'Operação dos Sensores', // Nome do conjunto de dados
+              data: [dados[0].inativos, dados[0].ativos], // Dados dos votos
+              backgroundColor: ['rgba(223,106,106,0.7)', 'rgba(107,173,96,0.7)'],
+              borderColor: ['#df6a6a', '#6bad60'],
+              borderWidth: 2,
+              hoverOffset: 6
+            }]
+          }
+        });
       }
-    };
 
-    function plotarGraficoBarra(dados) {
-      var labels = dados.map(item => item.nomeMes);
-      var valores = dados.map(item => parseFloat(item.mediaUmidade));
-      var cores = valores.map(v => v >= 65
-        ? 'rgba(107,173,96,0.7)'
-        : 'rgba(240,160,48,0.7)');
 
-      var ctx = document.getElementById('myChart4').getContext('2d');
-      return new Chart(ctx, {
+      const labels4 = ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez'];
+      const vals4 = [6.6, 6.7, 1.5, 1.8, 1.7, 1.6, 1.7, 1.9, 6.5, 6.8, 6.8, 6.7];
+      const colors4 = vals4.map(v => v >= 5 ? 'rgba(107,173,96,0.7)' : 'rgba(240,160,48,0.7)');
+      const config4 = {
         type: 'bar',
         data: {
-          labels: labels,
+          labels: labels4,
           datasets: [{
-            label: 'Média de Umidade por Mês (%)',
-            data: valores,
-            backgroundColor: cores,
-            borderColor: cores.map(c => c.replace('0.7', '1')),
+            label: 'Nível de Produção',
+            data: vals4,
+            backgroundColor: colors4,
+            borderColor: colors4.map(c => c.replace('0.7', '1')),
             borderWidth: 1,
             borderRadius: 6
           }]
@@ -338,7 +332,45 @@
           scales: { y: { beginAtZero: true } },
           plugins: { legend: { display: false } }
         }
-      })
+      }
+    };
+
+    function plotarGraficoBarra(dados) {
+      var labels = dados.map(item => item.nomeMes);
+      var valores = dados.map(item => parseFloat(item.mediaUmidade));
+      var cores = valores.map(v => v >= 65
+        ? 'rgba(107,173,96,0.7)'
+        : 'rgba(240,160,48,0.7)');
+
+      if (chartBarra) {
+        chartBarra.data.labels = labels;
+        chartBarra.data.datasets[0].data = valores;
+        chartBarra.data.datasets[0].backgroundColor = cores;
+        chartBarra.data.datasets[0].borderColor = cores.map(c => c.replace('0.7', '1'));
+        chartBarra.update();
+      } else {
+        const ctx = document.getElementById('myChart4').getContext('2d');
+        chartBarra = new Chart(ctx, {
+          type: 'bar',
+          data: {
+            labels: labels,
+            datasets: [{
+              label: 'Média de Umidade por Mês (%)',
+              data: valores,
+              backgroundColor: cores,
+              borderColor: cores.map(c => c.replace('0.7', '1')),
+              borderWidth: 1,
+              borderRadius: 6
+            }]
+          },
+          options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            scales: { y: { beginAtZero: true } },
+            plugins: { legend: { display: false } }
+          }
+        })
+      }
     };
 
   </script>

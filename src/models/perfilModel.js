@@ -3,7 +3,7 @@ var database = require("../database/config")
 // Coloque os mesmos parâmetros aqui. Vá para a var instrucaoSql
 function enviar(nomeEmpresa, cnpj, cep, complemento, fkUsuario) {
     console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function enviar():", nomeEmpresa, cnpj, cep, complemento, fkUsuario);
-    
+
     // Insira exatamente a query do banco aqui, lembrando da nomenclatura exata nos valores
     //  e na ordem de inserção dos dados.
     var instrucaoSql = `
@@ -13,6 +13,25 @@ function enviar(nomeEmpresa, cnpj, cep, complemento, fkUsuario) {
     return database.executar(instrucaoSql);
 }
 
+function carregarEmpresa(idUsuario) {
+
+    const instrucaoSql = `
+        SELECT
+            nome,
+            cnpj,
+            cep,
+            complemento,
+            fkUsuario
+        FROM cliente
+        WHERE fkUsuario = ${idUsuario};
+    `;
+
+    console.log(instrucaoSql);
+
+    return database.executar(instrucaoSql);
+}
+
 module.exports = {
-enviar
+    enviar,
+    carregarEmpresa
 };

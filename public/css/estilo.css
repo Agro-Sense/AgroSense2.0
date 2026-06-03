@@ -237,15 +237,15 @@ body {
 }
 
 .card_erro {
+  position: absolute;
   display: none;
   background-color: #fff;
   color: black;
-  width: 230px;
-  position: fixed;
+  width: 50px;
   border-radius: 4px;
-  border: #ED145B 3px solid;
+  border: #114503 3px solid;
   padding: 10px;
-  margin-right: 10%;
+  margin-top: -500px;
 }
 
 .card_erro #mensagem_erro{

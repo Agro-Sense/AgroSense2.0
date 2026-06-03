@@ -8,7 +8,9 @@
   <link rel="stylesheet" href="../css/perfil.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="icon" href="../assets/icon/icon_agrosense.png">
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Poppins:wght@300;400;500;600;700;800&display=swap"
+    rel="stylesheet">
   <style>
     .btn-enviar {
       background-color: #28631d;
@@ -57,16 +59,14 @@
       </div>
     </div>
   </aside>
-    <div class="alerta_erro">
-    <div class="card_erro" id="cardErro">
-      <span id="mensagem_erro"></span>
-    </div>
+
 
   <header>
     <nav class="barradashboard">
-    <span>Olá, <span id="nomeHeader">! Bem-vindo a Sua Área Exclusiva</span>
+      <span>Olá, <span id="nomeHeader">! Bem-vindo a Sua Área Exclusiva</span>
     </nav>
   </header>
+
 
   <div class="main-content">
     <div class="page-title">Perfil do Usuário</div>
@@ -101,26 +101,26 @@
         </div>
       </div>
 
-      <div class="card-empresa">
+      <div class="card-empresa" id="card_empresa_cadastro" style="display: block;">
         <div class="card-titulo">
           Informações da Empresa / Produtor
         </div>
         <div class="empresa-grid">
           <div class="campo">
             <label>Nome da Empresa</label>
-            <input id="input_nome_empresa" type="text" placeholder="Fazenda Boa Vista"/>
+            <input id="input_nome_empresa" type="text" placeholder="Fazenda Boa Vista" />
           </div>
           <div class="campo">
             <label>CNPJ</label>
-            <input id="input_cnpj" type="text" placeholder="01.001.001/0001-01"/>
+            <input id="input_cnpj" type="text" placeholder="01.001.001/0001-01" />
           </div>
           <div class="campo">
             <label>CEP</label>
-            <input id="input_cep" type="text" placeholder="01001-000"/>
+            <input id="input_cep" type="text" placeholder="01001-000" />
           </div>
           <div class="campo">
             <label>Complemento</label>
-            <input id="input_complemento" type="text" placeholder="Descrição"/>
+            <input id="input_complemento" type="text" placeholder="Descrição" />
           </div>
         </div>
         <div style="grid-column: span 2;">
@@ -128,9 +128,33 @@
         </div>
       </div>
 
+      <div id="card_empresa_cadastrada" class="card-empresa" style="display: none;">
+        <div class="card-titulo">
+          Informações da Empresa / Produtor
+        </div>
+        <div class="empresa-grid">
+          <div class="campo">
+            <label>Nome da Empresa</label>
+            <span class="info-value" id="b_empresa"></span>
+          </div>
+          <div class="campo">
+            <label>CNPJ</label>
+            <span class="info-value" id="b_cnpj"></span>
+          </div>
+          <div class="campo">
+            <label>CEP</label>
+            <span class="info-value" id="b_cep"></span>
+          </div>
+          <div class="campo">
+            <label>Complemento</label>
+            <span class="info-value" id="b_complemento"></span>
+          </div>
+        </div>
+      </div>
+
       <div class="card-sensores">
         <div class="card-titulo">
-         Sensores da Plantação
+          Sensores da Plantação
         </div>
 
         <div class="sensores-resumo">
@@ -150,58 +174,59 @@
       </div>
     </div>
   </div>
-
 </body>
+
 </html>
 <script>
 
-window.onload = function () {
+  window.onload = function () {
     carregarPerfil();
-}
+     carregarEmpresa();
+  }
 
-function carregarPerfil() {
+  function carregarPerfil() {
 
     var idUsuario = sessionStorage.ID_USUARIO;
 
     fetch(`/descPerfil/perfil/${idUsuario}`)
-        .then(function (resposta) {
+      .then(function (resposta) {
 
-            if (!resposta.ok) {
-                throw new Error("Erro ao buscar perfil");
-            }
+        if (!resposta.ok) {
+          throw new Error("Erro ao buscar perfil");
+        }
 
-            return resposta.json();
-        })
-        .then(function (dados) {
+        return resposta.json();
+      })
+      .then(function (dados) {
 
-            nomeHeader.innerHTML =
-                `${dados.nome}! Bem-vindo à Sua Área Exclusiva`;
+        nomeHeader.innerHTML =
+          `${dados.nome}! Bem-vindo à Sua Área Exclusiva`;
 
-            nomePerfil.innerHTML =
-                dados.nome;
+        nomePerfil.innerHTML =
+          dados.nome;
 
-            b_email.innerHTML =
-                dados.email;
+        b_email.innerHTML =
+          dados.email;
 
-            b_cpf.innerHTML =
-                dados.cpf;
+        b_cpf.innerHTML =
+          dados.cpf;
 
-            b_telefone.innerHTML =
-                dados.telefone;
+        b_telefone.innerHTML =
+          dados.telefone;
 
-            const data = new Date(dados.data_cadastro);
+        const data = new Date(dados.data_cadastro);
 
-            b_data.innerHTML =
-                data.toLocaleDateString("pt-BR");
+        b_data.innerHTML =
+          data.toLocaleDateString("pt-BR");
 
-        })
-        .catch(function (erro) {
-            console.log("Erro:", erro);
-        });
-}
- 
- 
- function enviar() {
+      })
+      .catch(function (erro) {
+        console.log("Erro:", erro);
+      });
+  }
+
+
+  function enviar() {
 
     var nomeEmpresaVar = input_nome_empresa.value;
     var cnpjVar = input_cnpj.value;
@@ -214,18 +239,30 @@ function carregarPerfil() {
       nomeEmpresaVar == "" ||
       cnpjVar == "" ||
       cepVar == "" ||
-      complementoVar == "" 
+      complementoVar == ""
     ) {
-      cardErro.style.display = "block";
-      mensagem_erro.innerHTML =
-        "(Mensagem de erro para todos os campos em branco)";
-
+      alert("Mensagem de erro para todos os campos em branco");
       return false;
-    } else {
+    } else if (cnpjVar == NaN) {
+      alert("Mensagem de erro para cnpj com caracteres não numéricos");
+      return false;
+    } else if (cepVar == NaN) {
+      alert("Mensagem de erro para cep com caracteres não numéricos");
+      return false;
+    } else if (cnpjVar.length > 14) {
+      alert("Mensagem de erro para cnpj com caracteres a mais");
+      return false;
+    } else if (cepVar.length > 8) {
+      alert("Mensagem de erro para cep com caracteres a mais");
+      return false;
+    }
+
+
+    else {
       setInterval(sumirMensagem, 5000);
     }
 
-     fetch("/perfil/enviar", {
+    fetch("/perfil/enviar", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -244,10 +281,7 @@ function carregarPerfil() {
         console.log("resposta: ", resposta);
 
         if (resposta.ok) {
-          cardErro.style.display = "block";
-
-          mensagem_erro.innerHTML =
-            "Perfil atualizado com sucesso";
+          alert("Perfil atualizado com sucesso");
 
         } else {
           throw "Houve um erro ao atualizar o perfil!";
@@ -259,6 +293,58 @@ function carregarPerfil() {
 
     return false;
   }
+
+
+  function carregarEmpresa() {
+
+    var idUsuario = sessionStorage.ID_USUARIO;
+
+    fetch(`/perfil/carregar/${idUsuario}`)
+      .then(function (resposta) {
+
+        if (!resposta.ok) {
+          throw new Error("Erro ao buscar perfil");
+          card_empresa_cadastro.style.display = 'block';
+          card_empresa_cadastrada.style.display = 'none';
+        } else {
+          resposta.json().then(json => {
+                    console.log(json);
+                    console.log(JSON.stringify(json));
+                    sessionStorage.CEP_EMPRESA = json.cep;
+                    sessionStorage.COMPLEMENTO_EMPRESA = json.complemento;
+                    sessionStorage.CNPJ_EMPRESA = json.cnpj;
+                    sessionStorage.NOME_EMPRESA = json.nome;
+                    sessionStorage.ID_USUARIO = json.id;
+          })
+      
+        card_empresa_cadastro.style.display = 'none';
+        card_empresa_cadastrada.style.display = 'block';
+      }
+
+        return resposta.json();
+      })
+      .then(function (dados) {
+
+        nomeHeader.innerHTML =
+          `${dados.nome}! Bem-vindo à Sua Área Exclusiva`;
+
+        b_empresa.innerHTML =
+          json[0].nome;
+
+        b_cnpj.innerHTML =
+          dados[0].cnpj;
+
+        b_cep.innerHTML =
+          dados[0].cep;
+
+        b_complemento.innerHTML =
+          dados[0].complemento;
+      })
+      .catch(function (erro) {
+        console.log("Erro:", erro);
+      });
+  }
+
 
 
   function sumirMensagem() {

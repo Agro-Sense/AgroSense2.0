@@ -8,4 +8,8 @@ router.post("/enviar", function (req, res) {
     perfilController.enviar(req, res);
 });
 
+router.get("/carregar/:idUsuario", function (req, res) {
+    perfilController.carregarEmpresa(req, res);
+});
+
 module.exports = router;

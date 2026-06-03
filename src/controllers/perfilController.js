@@ -40,6 +40,21 @@ function enviar(req, res) {
     }
 }
 
+
+
+function carregarEmpresa(req, res) {
+
+    const idUsuario = req.params.idUsuario;
+
+    perfilModel.carregarEmpresa(idUsuario).then(function(resultado){
+        res.status(200).json(resultado);
+    }).catch(function(erro){
+        res.status(500).json(erro.sqlMessage);
+    })
+}
+
+
 module.exports = {
-    enviar
+    enviar,
+    carregarEmpresa
 }

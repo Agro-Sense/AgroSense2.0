@@ -44,6 +44,7 @@ body::before {
     overflow: hidden;
 }
 
+
 .cadastro {
     display: flex;
     flex-direction: row;
@@ -55,6 +56,14 @@ body::before {
     height: auto;
     max-height: calc(100vh - 100px);
     overflow: hidden;
+}
+
+#cardErro{
+    transform: translate(-1110px, 620px);
+    width: 500px;
+    position: absolute;
+    font-size: 12px;
+    color: rgb(0, 38, 2);
 }
 
 .div_tela_cadastro_login {
