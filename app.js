@@ -23,6 +23,7 @@ var faleConoscoRouter = require("./src/routes/fale_conosco");
 var perfilRouter = require("./src/routes/perfil");
 var dashboardRouter = require("./src/routes/dashboard");
 var descPerfilRouter = require("./src/routes/descPerfil");
+var sensorRouter = require("./src/routes/sensor");
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -38,6 +39,7 @@ app.use("/fale-conosco", faleConoscoRouter);
 app.use("/perfil", perfilRouter);
 app.use("/dashboard", dashboardRouter);
 app.use("/descPerfil", descPerfilRouter);
+app.use("/sensor", sensorRouter);
 
 app.listen(PORTA_APP, function () {
     console.log(`
