@@ -131,14 +131,14 @@
 
       finalizarAguardar();
       return false;
-    } else if (cpfVar > 11) {
+    } else if (cpfVar.length > 11) {
       cardErro.style.display = "block";
       mensagem_erro.innerHTML =
         "Mensagem de erro para cpf com caracteres a mais";
 
       finalizarAguardar();
       return false;
-    } else if (!(emailVar.includes('@') || (emailVar.includes('.')))) {
+    } else if (!(emailVar.includes('@') && (emailVar.includes('.')))) {
       cardErro.style.display = "block";
       mensagem_erro.innerHTML =
         "Mensagem de erro para email deve incluir @ e .";

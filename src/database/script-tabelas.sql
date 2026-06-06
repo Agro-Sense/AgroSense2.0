@@ -54,12 +54,13 @@ mensagem text not null
 
 -- inserts para testes
 
-INSERT INTO cliente (nome, cnpj, cep, complemento) VALUES
-('Novos Morangos', '45290600000100', '13010000', 'Galpão A');
+-- 1. Primeiro usuário (sem fkCliente, essa coluna não existe)
+INSERT INTO usuario (nome, cpf, telefone, email, senha) VALUES
+('José da Silva', '12334567840', '11999999999', 'jose@novosmorangos.com', 'AmoMorangos@1');
 
-INSERT INTO usuario (nome, cpf, telefone, email, senha, fkCliente) VALUES
-('José da Silva', '12334567840', '11999999999','jose@novosmorangos.com', 'AmoMorangos@1', 1);
-
+-- 2. Depois cliente apontando para o usuário
+INSERT INTO cliente (nome, cnpj, cep, complemento, fkUsuario) VALUES
+('Novos Morangos', '45290600000100', '13010000', 'Galpão A', 1);
 
 INSERT INTO plantacao (tamanho_hectares, fkCliente) VALUES
 (10, 1);
