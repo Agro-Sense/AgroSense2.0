@@ -3,9 +3,7 @@ var database = require("../database/config");
 // grafico 1
 
 function horaMedicao(idCliente) {
-var instrucao = `
-select * from vw_grafico1
-WHERE fkCliente = ${idCliente}
+var instrucao = `select * from vw_grafico1
 ORDER BY horario;`
 ;
 console.log("Executando a instrução SQL: \n" + instrucao);

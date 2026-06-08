@@ -90,7 +90,7 @@
   </div>
 
   <script>
-    
+
     const idCliente = sessionStorage.ID_USUARIO;
 
     let chartLinha = null;
@@ -101,7 +101,7 @@
 
 
     function obterDados() {
-      
+
       console.log('obterDados chamado em:', new Date().toLocaleTimeString()); // ← adicione isso
       // Aqui seria a função que obteria os dados do banco de dados
       // No caso, aqui você colocaria o fetch que teria o endereço da sua rota que você criou na pasta /routes e chamaria a função plotarGraficoLinha nessa função. Exemplo:
@@ -212,7 +212,7 @@
 
     }
 
-    setInterval(obterDados, 30000);
+    setInterval(obterDados, 2000);
 
     function plotarGraficoLinha(dados) {
 
@@ -223,7 +223,7 @@
         // Gráfico já existe → só atualiza os dados (sem recriar)
         chartLinha.data.labels = labels;
         chartLinha.data.datasets[0].data = valores;
-        chartLinha.update();
+        chartLinha.update("none");
       } else {
         const ctx = document.getElementById('myChart1').getContext('2d');
         chartLinha = new Chart(ctx, {
@@ -245,11 +245,14 @@
           options: {
             responsive: true,
             maintainAspectRatio: false,
+            scales: {
+              x: { ticks: { maxRotation: 45 } },
+              y: { beginAtZero: false }
+            },
             plugins: {
-              legend: {
-                display: false
-              }
-            }
+              legend: { display: false }
+            },
+            animation: { duration: 0 }
           }
         });
       }
@@ -260,7 +263,7 @@
 
       if (chartPizza) {
         chartPizza.data.datasets[0].data = valores;
-        chartPizza.update();
+        chartPizza.update("none");
       } else {
         const ctx = document.getElementById('myChart2').getContext('2d');
         chartPizza = new Chart(ctx, {
@@ -287,7 +290,7 @@
 
       if (chartDoughnut) {
         chartDoughnut.data.datasets[0].data = valores;
-        chartDoughnut.update();
+        chartDoughnut.update("none");
       } else {
 
         // Capturando o elemento canvas pelo id 
@@ -307,7 +310,8 @@
             }]
           }
         });
-      }};
+      }
+    };
 
 
 
@@ -323,7 +327,7 @@
         chartBarra.data.datasets[0].data = valores;
         chartBarra.data.datasets[0].backgroundColor = cores;
         chartBarra.data.datasets[0].borderColor = cores.map(c => c.replace('0.7', '1'));
-        chartBarra.update();
+        chartBarra.update('none');
       } else {
         const ctx = document.getElementById('myChart4').getContext('2d');
         chartBarra = new Chart(ctx, {
