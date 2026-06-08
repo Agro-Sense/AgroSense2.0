@@ -117,8 +117,8 @@ select * from vw_grafico3;
 CREATE VIEW vw_grafico4 AS
 SELECT
 p.fkCliente,
-c.data_horario_medicao AS mes,
-c.data_horario_medicao AS nomeMes,
+DATE(c.data_horario_medicao) AS mes,
+TIME(c.data_horario_medicao) AS nomeMes,
 AVG(c.valor) AS mediaUmidade
 FROM captura c
 JOIN sensor s ON c.fkSensor = s.id
