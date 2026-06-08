@@ -47,7 +47,7 @@ constraint fkSensorDados foreign key (fkSensor) references sensor(id)
 
 
 create table fale_conosco (
-id int auto_increment primary key,
+id_fale_conosco int auto_increment primary key,
 nome varchar(100) not null,
 email varchar(150) not null,
 mensagem text not null
@@ -64,7 +64,11 @@ INSERT INTO plantacao (tamanho_hectares, fkCliente) VALUES
 (10, 1);
 
 INSERT INTO sensor (localizacao, sts, fkPlantacao) VALUES
-('Estufa A - Linha 1', TRUE, 1);
+('Estufa A - Linha 1', TRUE, 2),
+('Estufa B - Linha 2', FALSE, 2),
+('Estufa C - Linha 3', FALSE, 2);
+
+select * from sensor;
 
 INSERT INTO captura (data_horario_medicao, valor, fkSensor) VALUES
 ('2026-05-30 06:12:45', 72.50, 1),
@@ -72,6 +76,14 @@ INSERT INTO captura (data_horario_medicao, valor, fkSensor) VALUES
 ('2026-05-30 11:05:52', 55.10, 1),
 ('2026-05-30 14:48:27', 80.00, 1),
 ('2026-05-30 17:23:11', 61.75, 1);
+
+
+INSERT INTO captura (data_horario_medicao, valor, fkSensor) VALUES
+('2026-06-30 11:23:11', 67.00, 1),
+('2026-06-30 12:23:11', 62.00, 1),
+('2026-06-30 13:23:11', 51.00, 1),
+('2026-06-30 14:23:11', 67.00, 1),
+('2026-06-30 15:23:11', 70.00, 1);
 
 delete from cliente where id = 10;
 
@@ -86,14 +98,20 @@ select*from captura;
 
 
 CREATE VIEW vw_grafico1 AS
-SELECT
-p.fkCliente,
+SELECT s.id AS sensor_id,
+p.fkCliente AS cliente_id,
 TIME(c.data_horario_medicao) AS horario,
 c.valor
 FROM captura c
 JOIN sensor s ON c.fkSensor = s.id
-JOIN plantacao p ON s.fkPlantacao = p.id limit 10;
-select * from vw_grafico1;
+JOIN plantacao p ON s.fkPlantacao = p.id ;
+drop view vw_grafico1;
+select * from vw_grafico1 order by horario;
+
+select sensor_id, cliente_id, horario, valor
+FROM vw_grafico1
+ORDER BY cliente_id DESC
+LIMIT 1;
 
 -- select do grafico 2
 CREATE VIEW vw_grafico2 AS
@@ -133,6 +151,8 @@ JOIN plantacao p ON s.fkPlantacao = p.id
 GROUP BY mes, nomeMes, p.fkCliente
 ORDER BY mes;
 
+drop view vw_grafico4;
+
 select * from vw_grafico4;
 
 
@@ -160,8 +180,8 @@ CREATE VIEW vw_kpi2 AS
     AND valor < 65 
     group by p.fkCliente;
     
-    SELECT * FROM vw_kpi2;
-    
+    SELECT * FROM vw_kpi3;
+    drop view vw_kpi3;
 -- select da kpi3
 CREATE VIEW vw_kpi3 AS
 SELECT p.fkCliente, s.id, sts
@@ -197,6 +217,7 @@ LIMIT 1;
 
 SELECT * FROM vw_kpi4;
 
+
 -- select da kpi5
 CREATE VIEW vw_kpi5 AS
 SELECT
@@ -221,4 +242,7 @@ JOIN plantacao p ON s.fkPlantacao = p.id
 GROUP BY nomeMes
 ORDER BY mediaUmidade DESC
 LIMIT 1;
+
+SELECT * FROM vw_kpi5;
+select * from vw_grafico1 order by horario;
 
