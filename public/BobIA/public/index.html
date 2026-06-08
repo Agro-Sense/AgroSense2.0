@@ -13,6 +13,7 @@
         <textarea id="pergunta" type="text" placeholder="Digite a pergunta..."></textarea>
         <br><br>
         <button onclick="gerarResposta()">Gerar Resposta</button>
+        <button onclick="voltar()">Voltar</button>
         <h3>Resposta da IA:</h3>
         <div id="resposta"></div>
     </div>
@@ -34,6 +35,12 @@
 
             resposta.style.display = 'block';
             document.getElementById('resposta').innerText = data.resultado;
+        }
+
+        function voltar() {
+
+            window.location.href = "/public/dashboard/bobia.html"
+        
         }
 
     </script>
