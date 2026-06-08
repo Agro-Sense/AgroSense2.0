@@ -85,7 +85,7 @@ return database.executar(instrucao);
 function kpiPiorMes(idCliente) {
 var instrucao = `
 SELECT
-c.data_horario_medicao AS nomeMes,
+MONTHNAME(c.data_horario_medicao) AS nomeMes,
 AVG(c.valor) AS mediaUmidade
 FROM captura c
 JOIN sensor s ON c.fkSensor = s.id

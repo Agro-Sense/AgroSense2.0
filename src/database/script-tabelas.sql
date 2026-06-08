@@ -45,6 +45,7 @@ constraint pksensor_captura primary key (id, fkSensor),
 constraint fkSensorDados foreign key (fkSensor) references sensor(id)
 );
 
+
 create table fale_conosco (
 id_fale_conosco int auto_increment primary key,
 nome varchar(100) not null,
@@ -52,35 +53,38 @@ email varchar(150) not null,
 mensagem text not null
 );
 
--- inserts para testes
-
--- 1. Primeiro usuário (sem fkCliente, essa coluna não existe)
 INSERT INTO usuario (nome, cpf, telefone, email, senha) VALUES
-('José da Silva', '12334567840', '11999999999', 'jose@novosmorangos.com', 'AmoMorangos@1');
+('José da Silva', '12334567840', '11999999999','jose@novosmorangos.com', 'AmoMorangos@1');
 
--- 2. Depois cliente apontando para o usuário
+
 INSERT INTO cliente (nome, cnpj, cep, complemento, fkUsuario) VALUES
-('Novos Morangos', '45290600000100', '13010000', 'Galpão A', 1);
+('Novos Morangos', '45290600000100', '13010000', 'Galpão A');
 
 INSERT INTO plantacao (tamanho_hectares, fkCliente) VALUES
 (10, 1);
 
 INSERT INTO sensor (localizacao, sts, fkPlantacao) VALUES
-('Estufa A - Linha 1', TRUE, 1),
-('Estufa A - Linha 2', TRUE, 1),
-('Estufa B - Centro', FALSE, 1),
-('Campo Aberto - Setor 1', TRUE, 1),
-('Estufa C - Fundo', FALSE, 1);
+('Estufa A - Linha 1', TRUE, 1);
 
 INSERT INTO captura (data_horario_medicao, valor, fkSensor) VALUES
 ('2026-05-30 06:12:45', 72.50, 1),
-('2026-05-30 08:37:19', 68.30, 2),
-('2026-05-30 11:05:52', 55.10, 3),
-('2026-05-30 14:48:27', 80.00, 4),
-('2026-05-30 17:23:11', 61.75, 5);
+('2026-05-30 08:37:19', 68.30, 1),
+('2026-05-30 11:05:52', 55.10, 1),
+('2026-05-30 14:48:27', 80.00, 1),
+('2026-05-30 17:23:11', 61.75, 1);
+
+delete from cliente where id = 10;
+
+SET lc_time_names = 'pt_BR';
+
+select*from fale_conosco;
+select*from usuario;
+select*from cliente;
+select*from plantacao;
+select*from sensor;
+select*from captura;
 
 
--- select do grafico 1
 CREATE VIEW vw_grafico1 AS
 SELECT
 p.fkCliente,
@@ -89,7 +93,9 @@ c.valor
 FROM captura c
 JOIN sensor s ON c.fkSensor = s.id
 JOIN plantacao p ON s.fkPlantacao = p.id;
+
 select * from vw_grafico1;
+
 -- select do grafico 2
 CREATE VIEW vw_grafico2 AS
 SELECT p.fkCliente,
@@ -112,20 +118,24 @@ SUM(CASE WHEN s.sts = FALSE THEN 1 ELSE 0 END) AS inativos
 FROM sensor s
 JOIN plantacao p ON s.fkPlantacao = p.id
 group by p.fkCliente;
+
 select * from vw_grafico3;
+
 -- select do grafico 4
 CREATE VIEW vw_grafico4 AS
 SELECT
 p.fkCliente,
-c.data_horario_medicao AS mes,
-c.data_horario_medicao AS nomeMes,
+DATE(c.data_horario_medicao) AS mes,
+TIME(c.data_horario_medicao) AS nomeMes,
 AVG(c.valor) AS mediaUmidade
 FROM captura c
 JOIN sensor s ON c.fkSensor = s.id
 JOIN plantacao p ON s.fkPlantacao = p.id
 GROUP BY mes, nomeMes, p.fkCliente
 ORDER BY mes;
+
 select * from vw_grafico4;
+
 
 -- select da kpi1
 CREATE VIEW vw_kpi1 AS
@@ -143,8 +153,7 @@ SELECT * FROM vw_kpi1;
     
 -- select da kpi2
 CREATE VIEW vw_kpi2 AS
- SELECT
-      p.fkCliente,
+ SELECT p.fkCliente,
  COUNT(*) AS totalBaixas
     FROM captura c
     JOIN sensor s ON c.fkSensor = s.id
@@ -156,8 +165,7 @@ CREATE VIEW vw_kpi2 AS
     
 -- select da kpi3
 CREATE VIEW vw_kpi3 AS
-SELECT p.fkCliente,
-      s.id
+SELECT p.fkCliente, s.id
     FROM sensor s
     JOIN plantacao p ON s.fkPlantacao = p.id;
     select * FROM vw_kpi3;
@@ -166,7 +174,7 @@ SELECT p.fkCliente,
 CREATE VIEW vw_kpi4 AS
 SELECT
 p.fkCliente,
-month(c.data_horario_medicao) AS nomeMes,
+MONTHNAME(c.data_horario_medicao) AS nomeMes,
 AVG(c.valor) AS mediaUmidade
 FROM captura c
 JOIN sensor s ON c.fkSensor = s.id
@@ -180,7 +188,7 @@ SELECT * FROM vw_kpi4;
 -- select da kpi5
 CREATE VIEW vw_kpi5 AS
 SELECT
-c.data_horario_medicao AS nomeMes,
+MONTHNAME(c.data_horario_medicao) AS nomeMes,
 AVG(c.valor) AS mediaUmidade
 FROM captura c
 JOIN sensor s ON c.fkSensor = s.id
@@ -189,3 +197,4 @@ GROUP BY nomeMes
 ORDER BY mediaUmidade DESC
 LIMIT 1;
 SELECT * FROM vw_kpi5;
+
