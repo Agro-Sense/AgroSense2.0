@@ -165,9 +165,9 @@ CREATE VIEW vw_kpi2 AS
     
 -- select da kpi3
 CREATE VIEW vw_kpi3 AS
-SELECT p.fkCliente, s.id
+SELECT p.fkCliente, s.id, sts
     FROM sensor s
-    JOIN plantacao p ON s.fkPlantacao = p.id;
+    JOIN plantacao p ON s.fkPlantacao = p.id where s.sts = FALSE;
     select * FROM vw_kpi3;
     
 -- select da kpi4

@@ -63,10 +63,7 @@ return database.executar(instrucao);
 // kpi 3
 function kpiSensores(idCliente) {
 var instrucao = `
-SELECT id
-FROM sensor
-WHERE fkCliente = ${idCliente}
-AND sts = FALSE;`;
+select id FROM vw_kpi3 where fkCliente = ${idCliente};`
 console.log("Executando a instrução SQL: \n" + instrucao);
 return database.executar(instrucao);
 }
