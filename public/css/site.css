@@ -11,7 +11,7 @@
 body {
     width: 100%;
     height: 100vh;
-    background-image: url(../assets/imgs/Moango.jpg);
+    background-image: linear-gradient(45deg, #306a2d, #4a8f4a);
     font-family: "Poppins", sans-serif;
     font-weight: 400;
     font-style: normal;
@@ -24,7 +24,7 @@ body::before {
     content: '';
     position: fixed;
     inset: 0;
-    background-image: url(../assets/imgs/Moango.jpg);
+    background-color: #f7fdf5;
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
