@@ -47,7 +47,7 @@ constraint fkSensorDados foreign key (fkSensor) references sensor(id)
 
 
 create table fale_conosco (
-id_fale_conosco int auto_increment primary key,
+id int auto_increment primary key,
 nome varchar(100) not null,
 email varchar(150) not null,
 mensagem text not null
