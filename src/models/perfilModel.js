@@ -17,6 +17,7 @@ function carregarEmpresa(idUsuario) {
 
     const instrucaoSql = `
         SELECT
+            id,
             nome,
             cnpj,
             cep,

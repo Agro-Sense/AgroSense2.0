@@ -1,4 +1,4 @@
-// importando os bibliotecas necessárias
+// importando as bibliotecas necessárias
 const { GoogleGenAI } = require("@google/genai");
 const express = require("express");
 const path = require("path");
@@ -8,7 +8,7 @@ require("dotenv").config();
 
 // configurando o servidor express
 const app = express();
-const PORTA_SERVIDOR = process.env.PORTA;
+const PORTA_SERVIDOR = process.env.PORTA || 3000;
 
 // configurando o gemini (IA)
 const chatIA = new GoogleGenAI({ apiKey: process.env.MINHA_CHAVE });
@@ -16,7 +16,7 @@ const chatIA = new GoogleGenAI({ apiKey: process.env.MINHA_CHAVE });
 // configurando o servidor para receber requisições JSON
 app.use(express.json());
 
-// configurando o servidor para servir arquivos estáticos
+// configurando o servidor para servir arquivos estáticos (CSS, Imagens, JS do Front)
 app.use(express.static(path.join(__dirname, "public")));
 
 // configurando CORS
@@ -25,6 +25,50 @@ app.use((req, res, next) => {
     res.header('Access-Control-Allow-Headers', 'Origin, Content-Type, Accept');
     next();
 });
+
+// ROTA PRINCIPAL: Força o servidor a entregar o index.html logo de cara
+app.get("/", (req, res) => {
+    res.sendFile(path.join(__dirname, "public", "index.html"));
+});
+
+// rota para receber perguntas e gerar respostas
+app.post("/perguntar", async (req, res) => {
+    const pergunta = req.body.pergunta;
+
+    if (!pergunta) {
+        return res.status(400).json({ error: 'A pergunta não pode estar vazia.' });
+    }
+
+    try {
+        const resultado = await gerarResposta(pergunta);
+        res.json({ resultado });
+    } catch (error) {
+        res.status(500).json({ error: 'Erro interno do servidor ao processar a IA' });
+    }
+});
+
+// função para gerar respostas usando o gemini
+async function gerarResposta(mensagem) {
+    try {
+        // gerando conteúdo com base na pergunta
+        const respostaIA = await chatIA.models.generateContent({
+            model: "gemini-2.5-flash",
+            contents: `Em um parágrafo responda: ${mensagem}`
+        });
+
+        const resposta = respostaIA.text;
+        const tokens = respostaIA.usageMetadata;
+
+        console.log("\n--- Resposta da IA ---");
+        console.log(resposta);
+        console.log("Uso de Tokens:", tokens);
+
+        return resposta;
+    } catch (error) {
+        console.error("Erro na API do Gemini:", error);
+        throw error;
+    }
+}
 
 // inicializando o servidor
 app.listen(PORTA_SERVIDOR, () => {
@@ -39,7 +83,7 @@ app.listen(PORTA_SERVIDOR, () => {
         ######   ####  #####  ### #     # 
         `
     );
-    console.info(`A API BobIA iniciada, acesse http://localhost:${PORTA_SERVIDOR}`);
+    console.info(`A API BobIA iniciada, acesse: http://localhost:${PORTA_SERVIDOR}`);
 });
 
 // rota para receber perguntas e gerar respostas

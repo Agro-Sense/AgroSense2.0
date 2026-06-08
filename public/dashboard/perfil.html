@@ -181,7 +181,8 @@
 
   window.onload = function () {
     carregarPerfil();
-     carregarEmpresa();
+    carregarEmpresa();
+    carregarSensores();
   }
 
   function carregarPerfil() {
@@ -296,55 +297,53 @@
 
 
   function carregarEmpresa() {
-
     var idUsuario = sessionStorage.ID_USUARIO;
 
     fetch(`/perfil/carregar/${idUsuario}`)
-      .then(function (resposta) {
+        .then(function (resposta) {
+            if (!resposta.ok) throw new Error("Erro ao buscar empresa");
+            return resposta.json();
+        })
+        .then(function (dados) {
+            if (!dados || dados.length === 0) {
+                card_empresa_cadastro.style.display = 'block';
+                card_empresa_cadastrada.style.display = 'none';
+                return;
+            }
 
-        if (!resposta.ok) {
-          throw new Error("Erro ao buscar perfil");
-          card_empresa_cadastro.style.display = 'block';
-          card_empresa_cadastrada.style.display = 'none';
-        } else {
-          resposta.json().then(json => {
-                    console.log(json);
-                    console.log(JSON.stringify(json));
-                    sessionStorage.CEP_EMPRESA = json.cep;
-                    sessionStorage.COMPLEMENTO_EMPRESA = json.complemento;
-                    sessionStorage.CNPJ_EMPRESA = json.cnpj;
-                    sessionStorage.NOME_EMPRESA = json.nome;
-                    sessionStorage.ID_USUARIO = json.id;
-          })
-      
-        card_empresa_cadastro.style.display = 'none';
-        card_empresa_cadastrada.style.display = 'block';
-      }
+            const empresa = dados[0];
 
-        return resposta.json();
-      })
-      .then(function (dados) {
+            sessionStorage.CEP_EMPRESA = empresa.cep;
+            sessionStorage.COMPLEMENTO_EMPRESA = empresa.complemento;
+            sessionStorage.CNPJ_EMPRESA = empresa.cnpj;
+            sessionStorage.NOME_EMPRESA = empresa.nome;
+             sessionStorage.ID_CLIENTE = empresa.id;
 
-        nomeHeader.innerHTML =
-          `${dados.nome}! Bem-vindo à Sua Área Exclusiva`;
+            card_empresa_cadastro.style.display = 'none';
+            card_empresa_cadastrada.style.display = 'block';
 
-        b_empresa.innerHTML =
-          json[0].nome;
+            b_empresa.innerHTML = empresa.nome;
+            b_cnpj.innerHTML = empresa.cnpj;
+            b_cep.innerHTML = empresa.cep;
+            b_complemento.innerHTML = empresa.complemento;
+        })
+        .catch(function (erro) {
+            console.log("Erro:", erro);
+        });
+}
 
-        b_cnpj.innerHTML =
-          dados[0].cnpj;
+function carregarSensores() {
+    var idCliente = sessionStorage.ID_CLIENTE;
 
-        b_cep.innerHTML =
-          dados[0].cep;
-
-        b_complemento.innerHTML =
-          resposta[0].json.complemento;
-      })
-      .catch(function (erro) {
-        console.log("Erro:", erro);
-      });
-  }
-
+    fetch(`/sensor/sensores/${idCliente}`)
+        .then(resposta => resposta.json())
+        .then(dados => {
+            document.querySelector('.sensor-stat.total .numero').innerHTML = dados.total;
+            document.querySelector('.sensor-stat.ativos .numero').innerHTML = dados.ativos;
+            document.querySelector('.sensor-stat.inativos .numero').innerHTML = dados.inativos;
+        })
+        .catch(erro => console.log("Erro sensores:", erro));
+}
 
 
   function sumirMensagem() {
