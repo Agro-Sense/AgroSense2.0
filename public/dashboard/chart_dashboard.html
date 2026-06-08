@@ -92,6 +92,7 @@
   </div>
 
   <script>
+    
     const idCliente = sessionStorage.ID_USUARIO;
 
     let chartLinha = null;
@@ -102,6 +103,7 @@
 
 
     function obterDados() {
+      
       console.log('obterDados chamado em:', new Date().toLocaleTimeString()); // ← adicione isso
       // Aqui seria a função que obteria os dados do banco de dados
       // No caso, aqui você colocaria o fetch que teria o endereço da sua rota que você criou na pasta /routes e chamaria a função plotarGraficoLinha nessa função. Exemplo:
@@ -307,33 +309,9 @@
             }]
           }
         });
-      }
+      }};
 
 
-      const labels4 = ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez'];
-      const vals4 = [6.6, 6.7, 1.5, 1.8, 1.7, 1.6, 1.7, 1.9, 6.5, 6.8, 6.8, 6.7];
-      const colors4 = vals4.map(v => v >= 5 ? 'rgba(107,173,96,0.7)' : 'rgba(240,160,48,0.7)');
-      const config4 = {
-        type: 'bar',
-        data: {
-          labels: labels4,
-          datasets: [{
-            label: 'Nível de Produção',
-            data: vals4,
-            backgroundColor: colors4,
-            borderColor: colors4.map(c => c.replace('0.7', '1')),
-            borderWidth: 1,
-            borderRadius: 6
-          }]
-        },
-        options: {
-          responsive: true,
-          maintainAspectRatio: false,
-          scales: { y: { beginAtZero: true } },
-          plugins: { legend: { display: false } }
-        }
-      }
-    };
 
     function plotarGraficoBarra(dados) {
       var labels = dados.map(item => item.nomeMes);
