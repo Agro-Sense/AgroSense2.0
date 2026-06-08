@@ -104,6 +104,12 @@
         // porcentagem de rentabilidade
         let aumento_rentabilidade = ((novo_lucro - lucro_atual) / lucro_atual) * 100;
 
+        if (isNaN(lucro_atual) || isNaN(perda) || isNaN(nova_receita) || isNaN(novo_gasto_irrigacao) || isNaN(novo_lucro) || isNaN(diferenca) || isNaN(aumento_rentabilidade)) {
+            dv_msg.innerHTML = `<p class="texto_aumento_porcentagem">Por favor, preencha todos os campos corretamente para calcular o impacto financeiro.</p>`;
+        } else {
+        if (producao_atual <= 0 || receita_atual <= 0 || lucro_atual <= 0) {
+            dv_msg.innerHTML = `<p class="texto_aumento_porcentagem">Insira valores positivos! Bobão!</p>`;
+        } else {
         dv_msg.innerHTML = `
         Custo com irrigação: R$${Number(ipt_irrigacao.value).toFixed(2)} <br>
         Lucro atual: R$${lucro_atual.toFixed(2)} <br>
@@ -119,5 +125,7 @@
         <br> ajudando a produzir 30% a mais e reduzindo seus gastos com irrigação em 20%.</b>`
 
         rentabilidade.innerHTML = `<p class="texto_aumento_porcentagem">Aumento de ${aumento_rentabilidade.toFixed(2)}% na rentabilidade</p>`
+    }
+    }
     }
 </script>
