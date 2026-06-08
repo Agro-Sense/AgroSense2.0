@@ -167,25 +167,26 @@
 let senhaCadastrada = ['adminAgroSense@2026'];
 
 function validar() {
-    var senhaVar = input_senha.value;
+    let senhaVar = input_senha.value;
 
-    if (senhaVar == "") {
-        cardErro.style.display = "block";
-        mensagem_erro.innerHTML = "(Mensagem de erro: o campo está em branco)";
+    if (input_senha.value == "") {
+        alert('Mensagem de erro: o campo está em branco');
         return false;
-    } 
-    
-    if (senhaCadastrada.includes(senhaVar)) {
-        
-        console.log("Acesso liberado!");
-        window.location.href = "../BobIa/public/index.html"; 
-        
     } else {
-        
-        cardErro.style.display = "block";
-        mensagem_erro.innerHTML = "Senha incorreta. Tente novamente.";
+
     
-        setInterval(sumirMensagem, 5000); 
-        return false;
+        if (senhaCadastrada.includes(senhaVar)) {
+            
+            console.log("Acesso liberado!");
+            window.location.href = "../BobIa/public/index.html"; 
+            
+        } else {
+            
+            alert("Senha incorreta. Tente novamente.");
+        
+            setInterval(sumirMensagem, 5000); 
+            return false;
+        }
     }
 }
+</script>
