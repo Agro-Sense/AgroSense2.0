@@ -214,10 +214,15 @@
 
     setInterval(obterDados, 2000);
 
+    const LIMITE_LINHA = 10; // máximo de pontos exibidos no gráfico de linha
+
     function plotarGraficoLinha(dados) {
 
-      const labels = dados.map(item => String(item.horario).padStart(2, '0') + ':00');
-      const valores = dados.map(item => item.valor);
+      // Janela deslizante: pega só os últimos N registros
+      const dadosLimitados = Array.isArray(dados) ? dados.slice(-LIMITE_LINHA) : [];
+
+      const labels = dadosLimitados.map(item => String(item.horario).padStart(2, '0') + ':00');
+      const valores = dadosLimitados.map(item => item.valor);
 
       if (chartLinha) {
         // Gráfico já existe → só atualiza os dados (sem recriar)
