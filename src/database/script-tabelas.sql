@@ -141,17 +141,14 @@ select * from vw_grafico3;
 -- select do grafico 4
 CREATE VIEW vw_grafico4 AS
 SELECT
-p.fkCliente,
-DATE(c.data_horario_medicao) AS mes,
-TIME(c.data_horario_medicao) AS nomeMes,
-AVG(c.valor) AS mediaUmidade
+    p.fkCliente,
+    DATE(c.data_horario_medicao) AS dia,
+    ROUND(AVG(c.valor),2) AS mediaUmidade
 FROM captura c
 JOIN sensor s ON c.fkSensor = s.id
 JOIN plantacao p ON s.fkPlantacao = p.id
-GROUP BY mes, nomeMes, p.fkCliente
-ORDER BY mes;
-
-drop view vw_grafico4;
+GROUP BY p.fkCliente, DATE(c.data_horario_medicao)
+ORDER BY dia;
 
 select * from vw_grafico4;
 
