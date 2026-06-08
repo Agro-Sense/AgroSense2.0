@@ -188,7 +188,7 @@ SELECT * FROM vw_kpi4;
 -- select da kpi5
 CREATE VIEW vw_kpi5 AS
 SELECT
-c.data_horario_medicao AS nomeMes,
+MONTHNAME(c.data_horario_medicao) AS nomeMes,
 AVG(c.valor) AS mediaUmidade
 FROM captura c
 JOIN sensor s ON c.fkSensor = s.id
@@ -197,3 +197,4 @@ GROUP BY nomeMes
 ORDER BY mediaUmidade DESC
 LIMIT 1;
 SELECT * FROM vw_kpi5;
+
