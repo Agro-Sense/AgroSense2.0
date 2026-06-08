@@ -16,6 +16,10 @@ header {
 }
 
 body {
+        background-color: #f7fdf5;
+    overflow-x: hidden;
+    overflow-y: auto !important;
+    height: auto !important;
      background-color: #f7fdf5;
      overflow-x: hidden;
 }
