@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/perfil.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <script src="../js/header.js"></script>
+    <link rel="icon" href="./assets/icon/icon_agrosense.png">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Poppins:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <title>AgroSense | Área BobIa</title>
+    <style>
+        .bob-card {
+            background-color: white;
+            border-radius: 20px;
+            padding: 36px 40px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+            max-width: 860px;
+            display: flex;
+            flex-direction: column;
+            gap: 28px;
+        }
+
+        .bob-secao h2 {
+            font-size: 14px;
+            font-weight: 700;
+            color: #28631d;
+            margin-bottom: 8px;
+            font-family: "Montserrat", sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .bob-secao p {
+            font-size: 14px;
+            color: #555;
+            line-height: 1.9;
+            font-weight: 400;
+        }
+
+        .bob-divider {
+            width: 100%;
+            height: 1px;
+            background-color: #eee;
+        }
+
+        .bob-secao input {
+            padding: 10px 14px;
+            border: 1.5px solid #e0e0e0;
+            border-radius: 8px;
+            font-family: "Poppins", sans-serif;
+            font-size: 13px;
+            color: #353734;
+            background-color: #fafafa;
+            outline: none;
+            transition: 0.2s;
+        }
+
+        .bob-secao input:focus {
+            border-color: #6bad60;
+            background-color: white;
+        }
+
+        .bob-secao input[readonly] {
+            background-color: #f4f4f4;
+            color: #888;
+            cursor: default;
+        }
+
+        .btn-validar {
+            background-color: #28631d;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            padding: 12px 28px;
+            font-family: "Poppins", sans-serif;
+            font-size: 14px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: background 0.2s, transform 0.15s;
+            margin-top: 8px;
+        }
+
+        .btn-validar:hover {
+            background-color: #1f4f15;
+        }
+
+        .btn-validar:active {
+            transform: scale(0.98);
+        }
+
+        .btn-validar:disabled {
+            background-color: #aaa;
+            cursor: not-allowed;
+            transform: none;
+        }
+    </style>
+</head>
+
+<body>
+
+    <aside class="sidebar">
+        <div class="logo-sidebar">
+            <h2>AgroSense</h2>
+            <nav class="menu-itens">
+                <a href="../dashboard/perfil.html">Perfil</a>
+                <a href="..//dashboard/chart_dashboard.html">Dashboard</a>
+                <a href="../dashboard/manualInstalacao.html">Manuais de Instalação </a>
+                <a href="../dashboard/fale_conosco.html">Fale Conosco</a>
+                <a href="../dashboard/FAQ.html">Perguntas Frequentes</a>
+                <a href="../dashboard/bobia.html" class="active">Área BobIa</a>
+            </nav>
+            <div class="sidebar-footer">
+                <a href="../index.html" class="btn-sair">Sair</a>
+            </div>
+        </div>
+    </aside>
+
+    <header>
+        <nav class="barradashboard">
+            <span>Olá, <span id="nomeHeader">! Bem-vindo a Sua Área Exclusiva</span>
+        </nav>
+    </header>
+
+    <div class="main-content">
+        <div class="page-title">BobIa</div>
+
+        <div class="bob-card">
+
+            <div class="bob-secao">
+                <h2>Permissões</h2>
+            </div>
+
+            <div class="bob-divider"></div>
+
+            <div class="bob-secao">
+                <h2>Uso da Ferramenta BobIa</h2>
+                <p> O BobIa é uma Inteligência Artificial que pode auxiliar na tomada de decisões que surgem em
+                    situações de dúvidas técnicas. <br>
+                    A utilização é permitida apenas com a inserção e validação de uma senha compartilhada com Perfis
+                    Técnicos.
+                </p>
+            </div>
+
+            <div class="bob-divider"></div>
+
+            <div class="bob-secao">
+                <h2>Insira a sua Senha:</h2>
+                <input id="input_senha" type="text" placeholder="Senha" />
+            </div>
+
+            <div style="grid-column: span 2;">
+          <button class="btn-validar" id="btn-validar" onclick="validar()">Validar Senha</button>
+        </div>
+
+        </div>
+    </div>
+
+</body>
+
+</html>
+<script>
+
+let senhaCadastrada = ['adminAgroSense@2026'];
+
+function validar() {
+    var senhaVar = input_senha.value;
+
+    if (senhaVar == "") {
+        cardErro.style.display = "block";
+        mensagem_erro.innerHTML = "(Mensagem de erro: o campo está em branco)";
+        return false;
+    } 
+    
+    if (senhaCadastrada.includes(senhaVar)) {
+        
+        console.log("Acesso liberado!");
+        window.location.href = "../BobIa/public/index.html"; 
+        
+    } else {
+        
+        cardErro.style.display = "block";
+        mensagem_erro.innerHTML = "Senha incorreta. Tente novamente.";
+    
+        setInterval(sumirMensagem, 5000); 
+        return false;
+    }
+}
