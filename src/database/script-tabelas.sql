@@ -7,7 +7,7 @@ id int primary key auto_increment,
 nome varchar(50)not null, 
 cpf char(11) not null,
 telefone char(11) not null,
-email varchar(50) not null,
+email varchar(50) not null unique,
 senha varchar(30),
 data_cadastro datetime default current_timestamp()
 );
@@ -88,12 +88,11 @@ select*from captura;
 CREATE VIEW vw_grafico1 AS
 SELECT
 p.fkCliente,
-HOUR(c.data_horario_medicao) AS horario,
+TIME(c.data_horario_medicao) AS horario,
 c.valor
 FROM captura c
 JOIN sensor s ON c.fkSensor = s.id
-JOIN plantacao p ON s.fkPlantacao = p.id;
-
+JOIN plantacao p ON s.fkPlantacao = p.id limit 10;
 select * from vw_grafico1;
 
 -- select do grafico 2
