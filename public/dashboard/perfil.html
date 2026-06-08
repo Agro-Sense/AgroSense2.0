@@ -338,7 +338,7 @@
           dados[0].cep;
 
         b_complemento.innerHTML =
-          dados[0].complemento;
+          resposta[0].json.complemento;
       })
       .catch(function (erro) {
         console.log("Erro:", erro);
