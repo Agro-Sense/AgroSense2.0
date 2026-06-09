@@ -81,7 +81,7 @@
       </div>
 
       <div class="card-grafico">
-        <h3 class="titulo-grafico">Nível da Produção</h3>
+        <h3 class="titulo-grafico">Média da Umidade por Dia</h3>
         <div class="chart-wrapper">
           <canvas id="myChart4"></canvas>
         </div>
@@ -324,7 +324,7 @@
 
     function plotarGraficoBarra(dados) {
       const dadosLimitados = Array.isArray(dados) ? dados.slice(-LIMITE_BARRA) : [];
-      var labels = dadosLimitados.map(item => item.nomeMes);
+      var labels = dadosLimitados.map(item => item.dia);
       var valores = dadosLimitados.map(item => parseFloat(item.mediaUmidade));
       var cores = valores.map(v => v >= 65
         ? 'rgba(107,173,96,0.7)'

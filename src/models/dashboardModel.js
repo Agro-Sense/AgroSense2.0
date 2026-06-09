@@ -34,7 +34,7 @@ function producaoPorMes(idCliente) {
 var instrucao = `
 select * from vw_grafico4
 WHERE fkCliente = ${idCliente}
-ORDER BY mes;`;
+ORDER BY dia;`;
 console.log("Executando a instrução SQL: \n" + instrucao);
 return database.executar(instrucao);
 }
